@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToA;
 
 namespace Lab2
 {
@@ -14,14 +15,16 @@ namespace Lab2
         public Vector2 position;
         public Texture2D texture { get; }
         public BoundingSphere boundingSphere { get; set; }
+        public bool isPlayerControlled;
         public void setPosition(float x, float y)
         {
             position = new Vector2(x, y);
         }
-        public Sprite(Texture2D texture, Vector2 position)
+        public Sprite(Texture2D texture, Vector2 position, bool isPlayerControlled = false)
         {
             this.texture = texture;
             this.position = position;
+            this.isPlayerControlled = isPlayerControlled;
         }
         public Sprite(Texture2D texture)
         {
@@ -42,6 +45,27 @@ namespace Lab2
         {
             UpdateBoundingBox();
             UpdateBoundingSphere();
+           
+            if(isPlayerControlled)
+            {
+                if (Game1.Instance.InputManager.Pressed(Input.Up))
+                {
+                    position.Y -= 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
+                }
+                if (Game1.Instance.InputManager.Pressed(Input.Down))
+                {
+                    position.Y += 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
+                }
+                if (Game1.Instance.InputManager.Pressed(Input.Left))
+                {
+                    position.X -= 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
+                }
+                if (Game1.Instance.InputManager.Pressed(Input.Right))
+                {
+                    position.X += 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
+                }
+            }
+            
         }
         public void Draw(SpriteBatch sp)
         {

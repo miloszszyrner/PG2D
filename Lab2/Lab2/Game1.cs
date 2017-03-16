@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.IO;
+using ToA;
 
 namespace Lab2
 {
@@ -10,16 +12,40 @@ namespace Lab2
     /// </summary>
     public class Game1 : Game
     {
+        private static Game1 instance;
+        public static Game1 Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Game1();
+                }
+                return instance;
+            }
+        }
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Sprite dragonBallHero1;
         Sprite dragonBallHero;
+
+        InputManager inputManger;
+
+        public InputManager InputManager
+        {
+            get
+            {
+                return inputManger;
+            }
+        }
+
         private SpriteFont font;
         private bool isCollision = false;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            //Content.RootDirectory = "Content";
+            inputManger = new InputManager(false);
         }
 
         /// <summary>
@@ -44,8 +70,8 @@ namespace Lab2
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/dragonball.png"));
-            dragonBallHero1 = new Sprite(sample, new Vector2(500, 100));
-            dragonBallHero = new Sprite(sample, new Vector2(50, 50));
+            dragonBallHero1 = new Sprite(sample, new Vector2(500, 100),false);
+            dragonBallHero = new Sprite(sample, new Vector2(50, 50),true);
             font = Content.Load<SpriteFont>("Content/Tekst");
         }
 
@@ -65,27 +91,13 @@ namespace Lab2
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            inputManger.Update();
+
+            if (inputManger.Pressed(Input.Back)) 
+            {
                 Exit();
+            }
 
-            var keyboardState = Keyboard.GetState();
-
-            if(keyboardState.IsKeyDown(Keys.W))
-            {
-                dragonBallHero.position.Y -= 100 * gameTime.ElapsedGameTime.Milliseconds / 1000F;
-            }
-            if (keyboardState.IsKeyDown(Keys.S))
-            {
-                dragonBallHero.position.Y += 100 * gameTime.ElapsedGameTime.Milliseconds / 1000F;
-            }
-            if (keyboardState.IsKeyDown(Keys.A))
-            {
-                dragonBallHero.position.X -= 100 * gameTime.ElapsedGameTime.Milliseconds / 1000F;
-            }
-            if (keyboardState.IsKeyDown(Keys.D))
-            {
-                dragonBallHero.position.X += 100 * gameTime.ElapsedGameTime.Milliseconds / 1000F;
-            }
             dragonBallHero.Update(gameTime);
             dragonBallHero1.Update(gameTime);
 
