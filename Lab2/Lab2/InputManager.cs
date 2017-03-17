@@ -40,7 +40,7 @@ namespace ToA
             };
         }
 
-        public void Update(PlayerIndex pPlayer = PlayerIndex.Three)
+        public void Update(PlayerIndex pPlayer = PlayerIndex.One) //PLAYER INDEX domyślnie na One
         {
             playerInput = 0;
             if(isUsingKeyboard)

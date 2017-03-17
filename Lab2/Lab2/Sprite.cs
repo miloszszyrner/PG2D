@@ -11,36 +11,46 @@ namespace Lab2
 {
     class Sprite
     {
+        public float ScaleFactor;
+        public Rectangle Size;
         public BoundingBox boundingBox { get; set; }
         public Vector2 position;
         public Texture2D texture { get; }
         public BoundingSphere boundingSphere { get; set; }
         public bool isPlayerControlled;
+        public float scale
+        {
+            get { return ScaleFactor; }
+            set
+            {
+                ScaleFactor = value;
+                Size = new Rectangle(0, 0, (int)(texture.Width * scale), (int)(texture.Height * scale));
+            }
+        }
         public void setPosition(float x, float y)
         {
             position = new Vector2(x, y);
         }
-        public Sprite(Texture2D texture, Vector2 position, bool isPlayerControlled = false)
+        public Sprite(float scale,Texture2D texture, Vector2 position, bool isPlayerControlled = false)
         {
+            this.ScaleFactor = scale;
             this.texture = texture;
             this.position = position;
             this.isPlayerControlled = isPlayerControlled;
         }
-        public Sprite(Texture2D texture)
-        {
-            this.texture = texture;
-            this.position = position;
-        }
-
         private void UpdateBoundingBox()
         {
-            boundingBox = new BoundingBox(new Vector3(position, 0), new Vector3(position.X + texture.Width, position.Y + texture.Height, 0));
+            boundingBox = new BoundingBox(new Vector3(position, 0), new Vector3(position.X + (texture.Height * ScaleFactor), position.Y + (texture.Width * ScaleFactor), 0));
+         //   Console.WriteLine(texture.Height * ScaleFactor);
+         
         }
+        
         private void UpdateBoundingSphere()
         {
             //boundingSphere = new BoundingSphere(new Vector3(position.X + (texture.Width / 2), position.Y + (texture.Height / 2), 0), (float)Math.Sqrt(Math.Pow((position.X + texture.Width) - (position.X + (texture.Width / 2)), 2) + Math.Pow((position.Y + texture.Height) - (position.Y + (texture.Height / 2)), 2)));
-            boundingSphere = new BoundingSphere(new Vector3(position.X + (texture.Width / 2), position.Y + (texture.Height / 2), 0), Math.Max(texture.Height / 2, texture.Width / 2));
+            boundingSphere = new BoundingSphere(new Vector3(position.X + ((texture.Width * ScaleFactor) / 2), position.Y + ((texture.Height * ScaleFactor) / 2), 0), Math.Max((texture.Height * ScaleFactor) / 2, (texture.Width * ScaleFactor) / 2));
         }
+
         public void Update(GameTime pGameTime)
         {
             UpdateBoundingBox();
@@ -69,7 +79,7 @@ namespace Lab2
         }
         public void Draw(SpriteBatch sp)
         {
-            sp.Draw(texture, position, null, Color.White);
+            sp.Draw(texture, position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
         }
     }
 }
