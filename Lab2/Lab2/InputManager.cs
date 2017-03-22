@@ -32,10 +32,10 @@ namespace ToA
 
             keyBindingsGamepad = new Dictionary<Buttons, Input>
             {
-                {Buttons.LeftThumbstickUp, Input.Up },
-                {Buttons.LeftThumbstickLeft, Input.Left },
-                {Buttons.LeftThumbstickDown, Input.Down },
-                {Buttons.LeftThumbstickRight, Input.Right },
+                {Buttons.DPadUp, Input.Up },
+                {Buttons.DPadLeft, Input.Left },
+                {Buttons.DPadDown, Input.Down },
+                {Buttons.DPadRight, Input.Right },
                 {Buttons.Back, Input.Back }
             };
         }
