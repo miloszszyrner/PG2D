@@ -11,13 +11,20 @@ namespace Lab2
 {
     class Sprite
     {
+        public Texture2D texture { get; }
+
+        public Vector2 position;
+        public Vector2 velocity;
+
+        public BoundingBox boundingBox { get; set; }
+        public BoundingSphere boundingSphere { get; set; }
+
         public float ScaleFactor;
         public Rectangle Size;
-        public BoundingBox boundingBox { get; set; }
-        public Vector2 position;
-        public Texture2D texture { get; }
-        public BoundingSphere boundingSphere { get; set; }
+        
         public bool isPlayerControlled;
+        public bool hasJumped;
+    
         public float scale
         {
             get { return ScaleFactor; }
@@ -37,6 +44,7 @@ namespace Lab2
             this.texture = texture;
             this.position = position;
             this.isPlayerControlled = isPlayerControlled;
+            this.hasJumped = true;
         }
         private void UpdateBoundingBox()
         {
@@ -55,24 +63,45 @@ namespace Lab2
         {
             UpdateBoundingBox();
             UpdateBoundingSphere();
-           
+
+            position += velocity;
+
             if(isPlayerControlled)
             {
-                if (Game1.Instance.InputManager.Pressed(Input.Up))
-                {
-                    position.Y -= 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
-                }
-                if (Game1.Instance.InputManager.Pressed(Input.Down))
-                {
-                    position.Y += 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
-                }
+                //if (Game1.Instance.InputManager.Pressed(Input.Down))
+                //{
+                //    position.Y += 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
+                //}
                 if (Game1.Instance.InputManager.Pressed(Input.Left))
                 {
-                    position.X -= 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
+                    velocity.X = -3f;
                 }
-                if (Game1.Instance.InputManager.Pressed(Input.Right))
+                else if (Game1.Instance.InputManager.Pressed(Input.Right))
                 {
-                    position.X += 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
+                    velocity.X = 3f;
+                }
+                else
+                {
+                    velocity.X = 0f;
+                }
+                if (Game1.Instance.InputManager.Pressed(Input.Up) && hasJumped == false)
+                {
+                    position.Y -= 10f;
+                    velocity.Y = -5f;
+                    hasJumped = true;
+                }
+                if (hasJumped == true)
+                {
+                    float i = 1;
+                    velocity.Y += 0.15f * i;
+                }
+                if (position.Y + texture.Height >= 600) //podłoga
+                {
+                    hasJumped = false;
+                }
+                if (hasJumped == false)
+                {
+                    velocity.Y = 0f;
                 }
             }
             
