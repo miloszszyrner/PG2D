@@ -89,16 +89,25 @@ namespace Lab2
                     velocity.Y = -5f; //wysokość skoku
                     hasJumped = true;
                 }
+                for(int i = 0; i < Game1.Instance.TileMap.mapWidth; i ++)
+                {
+                    for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j ++)
+                    {
+                        if(Game1.Instance.TileMap.getTileAt(i,j).isWall == true && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox)) {
+                            hasJumped = false;
+                        }
+                    }
+                }
                 if (hasJumped == true)
                 {
                     float i = 1;
                     velocity.Y += 0.15f * i; //grawitacja
                 }
                 
-                if (position.Y + texture.Height >= ground) //podłoga
-                {
-                    hasJumped = false;
-                }
+                //if (position.Y + texture.Height >= ground) //podłoga
+                //{
+                //    hasJumped = false;
+                //}
                 if (hasJumped == false)
                 {
                     velocity.Y = 0f;

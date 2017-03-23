@@ -32,6 +32,15 @@ namespace Lab2
         Sprite dragonBallHero1;
         Sprite dragonBallHero;
         TileMap tileMap;
+
+        public TileMap TileMap
+        {
+            get
+            {
+                return tileMap;
+            }
+        }
+
         InputManager inputManger;
 
         public InputManager InputManager

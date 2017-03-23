@@ -13,33 +13,21 @@ namespace ToA
         Vector2 position;
         Texture2D texture;
         Rectangle sourceRectangle;
-        int typeOfElement;
-        public Rectangle getBoundingBox
+        public bool isWall { get; }
+        public BoundingBox getBoundingBox
         {
             get
             {
-                return new Rectangle(
-                    (int)position.X,
-                    (int)position.Y,
-                    texture.Width,
-                    texture.Height);
+                return new BoundingBox(new Vector3(position, 0), new Vector3(position.X + (texture.Height), position.Y + (texture.Width), 0));
             }
         }
 
-        public int TypeOfElement
-        {
-            get
-            {
-                return typeOfElement;
-            }
-        }
-
-        public Tile(Vector2 position, Texture2D texture, Rectangle sourceRectangle, int typeOfElement)
+        public Tile(Vector2 position, Texture2D texture, Rectangle sourceRectangle, bool isWall)
         {
             this.position = position;
             this.texture = texture;
             this.sourceRectangle = sourceRectangle;
-            this.typeOfElement = typeOfElement;
+            this.isWall = isWall;
         }
 
         public void Draw(SpriteBatch sb)

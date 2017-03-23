@@ -15,10 +15,9 @@ namespace ToA
     public class TileMap
     {
         Tile[,] tileSet;
-
         XDocument xDoc;
-        int mapWidth;
-        int mapHeight;
+        public int mapWidth { get; }
+        public int mapHeight { get; }
         int tilecount;
         int columns;
         String tileSetFileName;
@@ -74,7 +73,7 @@ namespace ToA
                         new Vector2(x * 16, y * 16),
                         sourceTex,
                         new Rectangle((int)sourcePos[intIDs[x, y] - 1].X, (int)sourcePos[intIDs[x, y] - 1].Y, 16, 16),
-                        intIDs[x, y]
+                        (intIDs[x, y] == 2) ? true : false
                         );
                 }
             }
