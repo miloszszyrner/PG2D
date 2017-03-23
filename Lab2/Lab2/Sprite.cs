@@ -87,13 +87,13 @@ namespace Lab2
                 if (Game1.Instance.InputManager.Pressed(Input.Up) && hasJumped == false)
                 {
                     position.Y -= 10f;
-                    velocity.Y = -5f;
+                    velocity.Y = -5f; //wysokość skoku
                     hasJumped = true;
                 }
                 if (hasJumped == true)
                 {
                     float i = 1;
-                    velocity.Y += 0.15f * i;
+                    velocity.Y += 0.15f * i; //grawitacja
                 }
                 if (position.Y + texture.Height >= 600) //podłoga
                 {

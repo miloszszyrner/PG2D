@@ -45,7 +45,7 @@ namespace Lab2
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            inputManger = new InputManager(true);
+            inputManger = new InputManager();
         }
 
         /// <summary>

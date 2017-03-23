@@ -46,12 +46,11 @@ namespace ToA
             if(isUsingKeyboard)
             {
                 Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
-
                 foreach(Keys key in pressedKeys)
                 {
                     if (keyBindingsKeyboard.ContainsKey(key))
                     {
-                        playerInput |= (int)keyBindingsKeyboard[key];
+                        playerInput += (int)keyBindingsKeyboard[key];
                     }
                 }
             }
@@ -74,7 +73,7 @@ namespace ToA
             
             foreach(var pInput in pInputs)
             {
-                n |= (int)pInput;
+                n += (int)pInput;
             }
 
             return playerInput == n;
