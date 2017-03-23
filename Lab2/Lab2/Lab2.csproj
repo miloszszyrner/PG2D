@@ -83,6 +83,9 @@
     <Content Include="Content\dragonball.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\mario.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Tileset.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
