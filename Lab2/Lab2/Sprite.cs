@@ -24,6 +24,7 @@ namespace Lab2
         
         public bool isPlayerControlled;
         public bool hasJumped;
+        int ground = 600;
     
         public float scale
         {
@@ -52,7 +53,6 @@ namespace Lab2
          //   Console.WriteLine(texture.Height * ScaleFactor);
          
         }
-        
         private void UpdateBoundingSphere()
         {
             //boundingSphere = new BoundingSphere(new Vector3(position.X + (texture.Width / 2), position.Y + (texture.Height / 2), 0), (float)Math.Sqrt(Math.Pow((position.X + texture.Width) - (position.X + (texture.Width / 2)), 2) + Math.Pow((position.Y + texture.Height) - (position.Y + (texture.Height / 2)), 2)));
@@ -63,7 +63,6 @@ namespace Lab2
         {
             UpdateBoundingBox();
             UpdateBoundingSphere();
-
             position += velocity;
 
             if(isPlayerControlled)
@@ -87,18 +86,39 @@ namespace Lab2
                 if (Game1.Instance.InputManager.Pressed(Input.Up) && hasJumped == false)
                 {
                     position.Y -= 10f;
-                    velocity.Y = -5f;
+                    velocity.Y = -5f; //wysokość skoku
                     hasJumped = true;
+                }
+                for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i++) 
+                {
+                    for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j++)
+                    {
+                        if (Game1.Instance.TileMap.getTileAt(i, j).isWall == false) //spadanie
+                        {
+                            hasJumped = true;
+                        }
+                    }
+                }
+                for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i ++)
+                {
+                    for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j ++)
+                    {
+                        if (Game1.Instance.TileMap.getTileAt(i, j).isWall == true && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
+                        {
+                            hasJumped = false;
+                        }
+                    }
                 }
                 if (hasJumped == true)
                 {
                     float i = 1;
-                    velocity.Y += 0.15f * i;
+                    velocity.Y += 0.15f * i; //grawitacja
                 }
-                if (position.Y + texture.Height >= 600) //podłoga
-                {
-                    hasJumped = false;
-                }
+                
+                //if (position.Y + texture.Height >= ground) //podłoga
+                //{
+                //    hasJumped = false;
+                //}
                 if (hasJumped == false)
                 {
                     velocity.Y = 0f;

@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.IO;
+using System.Xml.Linq;
 using ToA;
+
 
 namespace Lab2
 {
@@ -29,6 +31,15 @@ namespace Lab2
         SpriteBatch spriteBatch;
         Sprite dragonBallHero1;
         Sprite dragonBallHero;
+        TileMap tileMap;
+
+        public TileMap TileMap
+        {
+            get
+            {
+                return tileMap;
+            }
+        }
 
         InputManager inputManger;
 
@@ -42,10 +53,11 @@ namespace Lab2
 
         private SpriteFont font;
         private bool isCollision = false;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            inputManger = new InputManager(true);
+            inputManger = new InputManager();
         }
 
         /// <summary>
@@ -56,10 +68,14 @@ namespace Lab2
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
             base.Initialize();
         }
+
+        
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -67,12 +83,12 @@ namespace Lab2
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/dragonball.png"));
+            Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
             dragonBallHero1 = new Sprite(1.0f,sample, new Vector2(500, 100),false);
             dragonBallHero = new Sprite(0.5f,sample, new Vector2(50, 50),true);
             font = Content.Load<SpriteFont>("Content/Tekst");
+            tileMap = new TileMap("Content/tilemap.tmx", "Content/Tileset", Content);
         }
 
         /// <summary>
@@ -117,8 +133,8 @@ namespace Lab2
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointWrap);
+            tileMap.Draw(spriteBatch);
             spriteBatch.DrawString(font, (isCollision == true) ? "We stick together" : "We are apart", new Vector2(100, 20), Color.Black);
             dragonBallHero1.Draw(spriteBatch);
             dragonBallHero.Draw(spriteBatch);
