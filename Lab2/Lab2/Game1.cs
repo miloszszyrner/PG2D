@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.IO;
+using System.Xml.Linq;
 using ToA;
+
 
 namespace Lab2
 {
@@ -29,7 +31,7 @@ namespace Lab2
         SpriteBatch spriteBatch;
         Sprite dragonBallHero1;
         Sprite dragonBallHero;
-
+        TileMap tileMap;
         InputManager inputManger;
 
         public InputManager InputManager
@@ -42,6 +44,8 @@ namespace Lab2
 
         private SpriteFont font;
         private bool isCollision = false;
+
+        Tile[,] tileset;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -61,6 +65,8 @@ namespace Lab2
             base.Initialize();
         }
 
+        
+
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -73,6 +79,7 @@ namespace Lab2
             dragonBallHero1 = new Sprite(1.0f,sample, new Vector2(500, 100),false);
             dragonBallHero = new Sprite(0.5f,sample, new Vector2(50, 50),true);
             font = Content.Load<SpriteFont>("Content/Tekst");
+            tileMap = new TileMap("Content/tilemap.tmx", "Content/Tileset", Content);
         }
 
         /// <summary>
@@ -117,8 +124,8 @@ namespace Lab2
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointWrap);
+            tileMap.Draw(spriteBatch);
             spriteBatch.DrawString(font, (isCollision == true) ? "We stick together" : "We are apart", new Vector2(100, 20), Color.Black);
             dragonBallHero1.Draw(spriteBatch);
             dragonBallHero.Draw(spriteBatch);

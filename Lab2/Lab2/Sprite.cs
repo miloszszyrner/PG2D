@@ -24,6 +24,7 @@ namespace Lab2
         
         public bool isPlayerControlled;
         public bool hasJumped;
+        int ground = 600;
     
         public float scale
         {
@@ -52,7 +53,6 @@ namespace Lab2
          //   Console.WriteLine(texture.Height * ScaleFactor);
          
         }
-        
         private void UpdateBoundingSphere()
         {
             //boundingSphere = new BoundingSphere(new Vector3(position.X + (texture.Width / 2), position.Y + (texture.Height / 2), 0), (float)Math.Sqrt(Math.Pow((position.X + texture.Width) - (position.X + (texture.Width / 2)), 2) + Math.Pow((position.Y + texture.Height) - (position.Y + (texture.Height / 2)), 2)));
@@ -63,7 +63,6 @@ namespace Lab2
         {
             UpdateBoundingBox();
             UpdateBoundingSphere();
-
             position += velocity;
 
             if(isPlayerControlled)
@@ -95,7 +94,8 @@ namespace Lab2
                     float i = 1;
                     velocity.Y += 0.15f * i; //grawitacja
                 }
-                if (position.Y + texture.Height >= 600) //podłoga
+                
+                if (position.Y + texture.Height >= ground) //podłoga
                 {
                     hasJumped = false;
                 }
