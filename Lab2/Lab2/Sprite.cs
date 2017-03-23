@@ -89,11 +89,22 @@ namespace Lab2
                     velocity.Y = -5f; //wysokość skoku
                     hasJumped = true;
                 }
-                for(int i = 0; i < Game1.Instance.TileMap.mapWidth; i ++)
+                for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i++) 
+                {
+                    for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j++)
+                    {
+                        if (Game1.Instance.TileMap.getTileAt(i, j).isWall == false) //spadanie
+                        {
+                            hasJumped = true;
+                        }
+                    }
+                }
+                for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i ++)
                 {
                     for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j ++)
                     {
-                        if(Game1.Instance.TileMap.getTileAt(i,j).isWall == true && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox)) {
+                        if (Game1.Instance.TileMap.getTileAt(i, j).isWall == true && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
+                        {
                             hasJumped = false;
                         }
                     }
