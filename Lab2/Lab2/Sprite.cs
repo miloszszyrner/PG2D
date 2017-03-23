@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,7 +72,29 @@ namespace Lab2
                 //{
                 //    position.Y += 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
                 //}
-                if (Game1.Instance.InputManager.Pressed(Input.Left))
+                KeyboardState state = Keyboard.GetState();
+                if (state.IsKeyDown(Keys.W) && hasJumped == false)
+                {
+                    position.Y -= 10f;
+                    velocity.Y = -5f;
+                    hasJumped = true;
+                }
+
+                if (state.IsKeyDown(Keys.A))
+                {
+                    velocity.X = -3f;
+                }
+
+                if (state.IsKeyDown(Keys.D))
+                {
+                    velocity.X = 3f;
+                }
+
+                if (state.IsKeyUp(Keys.A) && state.IsKeyUp(Keys.D))
+                {
+                    velocity.X = 0f;
+                }
+                /*if (Game1.Instance.InputManager.Pressed(Input.Left))
                 {
                     velocity.X = -3f;
                 }
@@ -88,7 +111,7 @@ namespace Lab2
                     position.Y -= 10f;
                     velocity.Y = -5f; //wysokość skoku
                     hasJumped = true;
-                }
+                }*/
                 for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i++) 
                 {
                     for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j++)
