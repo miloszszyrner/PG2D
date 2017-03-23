@@ -79,6 +79,10 @@ namespace ToA
                 }
             }
         }
+        public Tile getTileAt(int x, int y)
+        {
+            return tileSet[x, y];
+        }
         public void Draw(SpriteBatch sp)
         {
             foreach (Tile t in tileSet)

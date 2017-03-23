@@ -45,7 +45,6 @@ namespace Lab2
         private SpriteFont font;
         private bool isCollision = false;
 
-        Tile[,] tileset;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
