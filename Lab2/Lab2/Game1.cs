@@ -68,8 +68,10 @@ namespace Lab2
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
             base.Initialize();
         }
 
@@ -81,7 +83,6 @@ namespace Lab2
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
             dragonBallHero1 = new Sprite(1.0f,sample, new Vector2(500, 100),false);
