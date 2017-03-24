@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,50 +67,26 @@ namespace Lab2
 
             if(isPlayerControlled)
             {
-                //if (Game1.Instance.InputManager.Pressed(Input.Down))
-                //{
-                //    position.Y += 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
-                //}
-                KeyboardState state = Keyboard.GetState();
-                if (state.IsKeyDown(Keys.W) && hasJumped == false)
+                if (Game1.Instance.InputManager.up && hasJumped == false)
                 {
                     position.Y -= 10f;
                     velocity.Y = -5f;
                     hasJumped = true;
                 }
-
-                if (state.IsKeyDown(Keys.A))
+                if (Game1.Instance.InputManager.right)
                 {
                     velocity.X = -3f;
                 }
 
-                if (state.IsKeyDown(Keys.D))
+                if (Game1.Instance.InputManager.left)
                 {
                     velocity.X = 3f;
                 }
-
-                if (state.IsKeyUp(Keys.A) && state.IsKeyUp(Keys.D))
+                
+                if (Game1.Instance.InputManager.right == Game1.Instance.InputManager.left)
                 {
                     velocity.X = 0f;
                 }
-                /*if (Game1.Instance.InputManager.Pressed(Input.Left))
-                {
-                    velocity.X = -3f;
-                }
-                else if (Game1.Instance.InputManager.Pressed(Input.Right))
-                {
-                    velocity.X = 3f;
-                }
-                else
-                {
-                    velocity.X = 0f;
-                }
-                if (Game1.Instance.InputManager.Pressed(Input.Up) && hasJumped == false)
-                {
-                    position.Y -= 10f;
-                    velocity.Y = -5f; //wysokość skoku
-                    hasJumped = true;
-                }*/
                 for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i++) 
                 {
                     for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j++)
@@ -137,11 +112,6 @@ namespace Lab2
                     float i = 1;
                     velocity.Y += 0.15f * i; //grawitacja
                 }
-                
-                //if (position.Y + texture.Height >= ground) //podłoga
-                //{
-                //    hasJumped = false;
-                //}
                 if (hasJumped == false)
                 {
                     velocity.Y = 0f;

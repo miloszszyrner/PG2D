@@ -68,10 +68,10 @@ namespace Lab2
         /// </summary>
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            graphics.IsFullScreen = true;
-            graphics.ApplyChanges();
+            //graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            //graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            //graphics.IsFullScreen = true;
+            //graphics.ApplyChanges();
             base.Initialize();
         }
 
@@ -109,7 +109,7 @@ namespace Lab2
         {
             inputManger.Update();
 
-            if (inputManger.Pressed(Input.Back)) 
+            if (inputManger.back) 
             {
                 Exit();
             }
