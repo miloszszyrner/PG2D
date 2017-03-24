@@ -13,7 +13,7 @@ namespace ToA
         Vector2 position;
         Texture2D texture;
         Rectangle sourceRectangle;
-        public bool isWall { get; }
+        public TileProperty property { get; }
         public BoundingBox getBoundingBox
         {
             get
@@ -22,12 +22,12 @@ namespace ToA
             }
         }
 
-        public Tile(Vector2 position, Texture2D texture, Rectangle sourceRectangle, bool isWall)
+        public Tile(Vector2 position, Texture2D texture, Rectangle sourceRectangle, TileProperty property)
         {
             this.position = position;
             this.texture = texture;
             this.sourceRectangle = sourceRectangle;
-            this.isWall = isWall;
+            this.property = property;
         }
 
         public void Draw(SpriteBatch sb)

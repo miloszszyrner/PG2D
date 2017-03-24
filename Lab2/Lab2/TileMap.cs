@@ -16,10 +16,13 @@ namespace ToA
     {
         Tile[,] tileSet;
         XDocument xDoc;
+        public Dictionary<int, TileProperty> tilePropertyType;
         public int mapWidth { get; }
         public int mapHeight { get; }
         int tilecount;
         int columns;
+        int tilewidth;
+        int tileheight;
         String tileSetFileName;
 
         ContentManager content;
@@ -29,11 +32,31 @@ namespace ToA
             xDoc = XDocument.Load(tileMapFileName);
             mapWidth = int.Parse(xDoc.Root.Attribute("width").Value);
             mapHeight = int.Parse(xDoc.Root.Attribute("height").Value);
+            tilewidth = int.Parse(xDoc.Root.Attribute("tilewidth").Value);
+            tileheight = int.Parse(xDoc.Root.Attribute("tileheight").Value);
             tilecount = int.Parse(xDoc.Root.Element("tileset").Attribute("tilecount").Value);
             columns = int.Parse(xDoc.Root.Element("tileset").Attribute("columns").Value);
             tileSet = new Tile[mapWidth, mapHeight];
             this.tileSetFileName = tileSetFileName;
             this.content = content;
+            tilePropertyType = new Dictionary<int, TileProperty>
+            {
+                {0, TileProperty.earth },
+                {36, TileProperty.floor },//center
+                {37, TileProperty.floor },//left
+                {38, TileProperty.floor },//right
+                {24, TileProperty.platform },//left
+                {23, TileProperty.platform },//center
+                {25, TileProperty.platform },//right
+                {15, TileProperty.trap },
+                {30, TileProperty.wall }, //left
+                {29, TileProperty.wall }, //right
+                {16, TileProperty.door },
+                {17, TileProperty.door },
+                {20, TileProperty.door },
+                {19, TileProperty.door },
+                {31, TileProperty.ceiling }
+            };
             getTileSet();
         }
 
@@ -57,7 +80,7 @@ namespace ToA
             {
                 for (int y = 0; y < columns; y++)
                 {
-                    sourcePos[key] = new Vector2(y * 16, x * 16);
+                    sourcePos[key] = new Vector2(y * tilewidth, x * tileheight);
                     key++;
                 }
             }
@@ -70,10 +93,10 @@ namespace ToA
                 {
                     tileSet[x, y] = new Tile
                         (
-                        new Vector2(x * 16, y * 16),
+                        new Vector2(x * tilewidth, y * tileheight),
                         sourceTex,
-                        new Rectangle((int)sourcePos[intIDs[x, y] - 1].X, (int)sourcePos[intIDs[x, y] - 1].Y, 16, 16),
-                        (intIDs[x, y] == 2) ? true : false
+                        new Rectangle((int)sourcePos[intIDs[x, y] - 1].X, (int)sourcePos[intIDs[x, y] - 1].Y, tilewidth, tileheight),
+                        tilePropertyType[intIDs[x, y]]
                         );
                 }
             }

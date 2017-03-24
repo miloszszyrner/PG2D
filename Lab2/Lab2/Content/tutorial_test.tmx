@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="22" height="16" tilewidth="100" tileheight="100" nextobjectid="1">
+ <tileset firstgid="1" name="Tileset_test" tilewidth="100" tileheight="100" tilecount="19" columns="0">
+  <tile id="0">
+   <image width="100" height="100" source="../palety/platform_1_center.png"/>
+  </tile>
+  <tile id="1">
+   <image width="100" height="100" source="../palety/platform_1_left.png"/>
+  </tile>
+  <tile id="2">
+   <image width="100" height="100" source="../palety/platform_1_right.png"/>
+  </tile>
+  <tile id="3">
+   <image width="100" height="100" source="../palety/Tile_Background.png"/>
+  </tile>
+  <tile id="4">
+   <image width="100" height="100" source="../palety/tile_base.png"/>
+  </tile>
+  <tile id="5">
+   <image width="100" height="100" source="../palety/tile_base_left.png"/>
+  </tile>
+  <tile id="6">
+   <image width="100" height="100" source="../palety/tile_base_right.png"/>
+  </tile>
+  <tile id="7">
+   <image width="100" height="100" source="../palety/tile_bottom_center.png"/>
+  </tile>
+  <tile id="8">
+   <image width="100" height="100" source="../palety/tile_bottom_left.png"/>
+  </tile>
+  <tile id="9">
+   <image width="100" height="100" source="../palety/tile_bottom_right.png"/>
+  </tile>
+  <tile id="10">
+   <image width="100" height="100" source="../palety/tile_broken.png"/>
+  </tile>
+  <tile id="11">
+   <image width="100" height="100" source="../palety/tile_floor.png"/>
+  </tile>
+  <tile id="12">
+   <image width="100" height="100" source="../palety/tile_floor_left.png"/>
+  </tile>
+  <tile id="13">
+   <image width="100" height="100" source="../palety/tile_floor_right.png"/>
+  </tile>
+  <tile id="14">
+   <image width="100" height="100" source="../palety/Spikes.png"/>
+  </tile>
+  <tile id="15">
+   <image width="100" height="100" source="../palety/stairs_part1.png"/>
+  </tile>
+  <tile id="16">
+   <image width="100" height="100" source="../palety/stairs_part2.png"/>
+  </tile>
+  <tile id="18">
+   <image width="100" height="100" source="../palety/stairs_part4.png"/>
+  </tile>
+  <tile id="19">
+   <image width="100" height="100" source="../palety/stairs_part3.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="21" name="tile_base_right" tilewidth="1" tileheight="1" tilecount="0" columns="0"/>
+ <tileset firstgid="21" name="tile_bottom_center" tilewidth="1" tileheight="1" tilecount="0" columns="0"/>
+ <tileset firstgid="21" name="tiles-test" tilewidth="100" tileheight="100" tilecount="1" columns="1">
+  <image source="../palety/Tile_Background.png" width="100" height="100"/>
+ </tileset>
+ <tileset firstgid="22" name="Tile_Background2" tilewidth="100" tileheight="100" tilecount="1" columns="1">
+  <image source="../palety/Tile_Background2.png" width="100" height="100"/>
+ </tileset>
+ <tileset firstgid="23" name="tileset_darker" tilewidth="100" tileheight="100" tilecount="16" columns="0">
+  <tile id="0">
+   <image width="100" height="100" source="../palety/platform_1_center.png"/>
+  </tile>
+  <tile id="1">
+   <image width="100" height="100" source="../palety/platform_1_left.png"/>
+  </tile>
+  <tile id="2">
+   <image width="100" height="100" source="../palety/platform_1_right.png"/>
+  </tile>
+  <tile id="3">
+   <image width="100" height="100" source="../palety/Tile_Background.png"/>
+  </tile>
+  <tile id="4">
+   <image width="100" height="100" source="../palety/Tile_Background2.png"/>
+  </tile>
+  <tile id="5">
+   <image width="100" height="100" source="../palety/tile_base.png"/>
+  </tile>
+  <tile id="6">
+   <image width="100" height="100" source="../palety/tile_base_left.png"/>
+  </tile>
+  <tile id="7">
+   <image width="100" height="100" source="../palety/tile_base_right.png"/>
+  </tile>
+  <tile id="8">
+   <image width="100" height="100" source="../palety/tile_bottom_center.png"/>
+  </tile>
+  <tile id="9">
+   <image width="100" height="100" source="../palety/tile_bottom_left.png"/>
+  </tile>
+  <tile id="10">
+   <image width="100" height="100" source="../palety/tile_bottom_right.png"/>
+  </tile>
+  <tile id="11">
+   <image width="100" height="100" source="../palety/tile_broken.png"/>
+  </tile>
+  <tile id="12">
+   <image width="100" height="100" source="../palety/tile_broken_background.png"/>
+  </tile>
+  <tile id="13">
+   <image width="100" height="100" source="../palety/tile_floor.png"/>
+  </tile>
+  <tile id="14">
+   <image width="100" height="100" source="../palety/tile_floor_left.png"/>
+  </tile>
+  <tile id="15">
+   <image width="100" height="100" source="../palety/tile_floor_right.png"/>
+  </tile>
+ </tileset>
+ <layer name="Background" width="22" height="16">
+  <data encoding="csv">
+27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,
+27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,
+27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,
+27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,
+27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,
+27,27,27,27,27,35,27,27,27,27,27,27,27,27,27,27,35,27,27,27,27,27,
+27,27,27,27,27,27,27,27,27,27,27,27,35,27,27,27,27,27,27,27,27,27,
+27,27,27,27,27,27,27,27,27,27,27,27,27,35,27,27,27,27,27,27,27,27,
+27,27,27,27,27,27,27,27,27,35,27,27,27,27,27,27,27,27,27,27,27,27,
+27,27,27,27,27,27,35,27,27,27,27,27,27,27,27,35,27,27,27,27,27,27,
+27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,
+27,27,27,27,27,27,27,27,35,27,27,27,27,27,27,27,27,27,27,27,27,27,
+27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,
+27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,
+27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,
+27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27
+</data>
+ </layer>
+ <layer name="Terrain" width="22" height="16">
+  <data encoding="csv">
+28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,
+28,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,28,
+30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+30,0,0,0,0,0,0,0,0,0,0,16,17,0,0,0,0,0,0,0,0,29,
+30,0,0,0,0,0,0,0,0,0,15,20,19,0,0,0,0,0,0,0,0,29,
+30,0,0,0,0,0,0,0,0,0,24,23,23,23,25,0,0,0,0,0,0,29,
+30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,
+30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,37,36,36,36,36,28,
+30,0,0,0,0,0,0,0,0,0,0,0,0,24,25,0,29,28,28,28,34,28,
+30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,34,28,28,28,28,
+28,37,36,36,36,36,36,38,0,0,37,36,36,36,36,36,28,28,28,28,28,28,
+28,28,28,28,28,34,28,30,15,15,29,28,28,34,28,28,28,28,28,28,28,34,
+28,28,28,28,28,28,28,28,37,36,28,28,28,28,28,28,28,28,28,28,28,28,
+28,28,28,28,28,28,28,28,34,28,28,28,28,28,28,28,28,28,28,28,28,28,
+28,28,28,34,28,28,28,28,28,28,28,34,28,28,34,28,28,28,34,28,28,28,
+28,28,28,28,28,28,34,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28
+</data>
+ </layer>
+</map>
