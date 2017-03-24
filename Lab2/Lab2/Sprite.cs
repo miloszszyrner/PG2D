@@ -74,48 +74,26 @@ namespace Lab2
                     hasJumped = true;
                 }
                 if (Game1.Instance.InputManager.right)
-                {
                     velocity.X = -3f;
-                }
-
                 if (Game1.Instance.InputManager.left)
-                {
                     velocity.X = 3f;
-                }
-                
                 if (Game1.Instance.InputManager.right == Game1.Instance.InputManager.left)
-                {
                     velocity.X = 0f;
-                }
+
                 for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i++) 
-                {
                     for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j++)
-                    {
                         if (Game1.Instance.TileMap.getTileAt(i, j).isWall == false) //spadanie
-                        {
                             hasJumped = true;
-                        }
-                    }
-                }
+
                 for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i ++)
-                {
                     for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j ++)
-                    {
                         if (Game1.Instance.TileMap.getTileAt(i, j).isWall == true && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
-                        {
                             hasJumped = false;
-                        }
-                    }
-                }
+
                 if (hasJumped == true)
-                {
-                    float i = 1;
-                    velocity.Y += 0.15f * i; //grawitacja
-                }
+                    velocity.Y += 0.15f * 1.0f; //grawitacja
                 if (hasJumped == false)
-                {
                     velocity.Y = 0f;
-                }
             }
             
         }
