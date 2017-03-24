@@ -93,9 +93,25 @@ namespace Lab2
                 {
                     for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j++)
                     {
-                        if (Game1.Instance.TileMap.getTileAt(i, j).isWall == false) //spadanie
+                        if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.earth) //spadanie
                         {
                             hasJumped = true;
+                        }
+                        if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.floor && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
+                        {
+                            hasJumped = false;
+                        }
+                        if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.platform && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na platformie
+                        {
+                            hasJumped = false;
+                        }
+                        if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.wall && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
+                        {
+                            velocity.X = 0f;
+                        }
+                        if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.trap && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //wpada w polapke
+                        {
+                            Console.WriteLine("Dead");
                         }
                     }
                 }
@@ -103,7 +119,7 @@ namespace Lab2
                 {
                     for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j ++)
                     {
-                        if (Game1.Instance.TileMap.getTileAt(i, j).isWall == true && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
+                        if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.floor && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
                         {
                             hasJumped = false;
                         }
