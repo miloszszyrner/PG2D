@@ -56,7 +56,7 @@
 /processorParam:TextureFormat=Color
 /build:mario.png
 
-#begin tutorial_test.png
+#begin spritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -66,5 +66,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:tutorial_test.png
+/build:spritesheet.png
 
