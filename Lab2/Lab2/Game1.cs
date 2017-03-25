@@ -88,7 +88,7 @@ namespace Lab2
             dragonBallHero1 = new Sprite(1.0f,sample, new Vector2(500, 100),false);
             dragonBallHero = new Sprite(0.5f,sample, new Vector2(50, 50),true);
             font = Content.Load<SpriteFont>("Content/Tekst");
-            tileMap = new TileMap("Content/tutorial_test.tmx", "Content/spritesheet", Content);
+            tileMap = new TileMap("Content/tilemap.tmx", "Content/Tileset", Content);
         }
 
         /// <summary>

@@ -41,21 +41,21 @@ namespace ToA
             this.content = content;
             tilePropertyType = new Dictionary<int, TileProperty>
             {
-                {0, TileProperty.earth },
-                {36, TileProperty.floor },//center
+                {4, TileProperty.earth },
+                {2, TileProperty.floor },//center
                 {37, TileProperty.floor },//left
                 {38, TileProperty.floor },//right
                 {24, TileProperty.platform },//left
                 {23, TileProperty.platform },//center
                 {25, TileProperty.platform },//right
                 {15, TileProperty.trap },
-                {30, TileProperty.wall }, //left
+                {1, TileProperty.wall }, //left
                 {29, TileProperty.wall }, //right
                 {16, TileProperty.door },
                 {17, TileProperty.door },
                 {20, TileProperty.door },
                 {19, TileProperty.door },
-                {31, TileProperty.ceiling }
+                {3, TileProperty.ceiling }
             };
             getTileSet();
         }
