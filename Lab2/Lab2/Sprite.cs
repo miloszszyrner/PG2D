@@ -67,30 +67,20 @@ namespace Lab2
 
             if(isPlayerControlled)
             {
-                //if (Game1.Instance.InputManager.Pressed(Input.Down))
-                //{
-                //    position.Y += 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
-                //}
-                if (Game1.Instance.InputManager.Pressed(Input.Left))
-                {
-                    velocity.X = -3f;
-                }
-                else if (Game1.Instance.InputManager.Pressed(Input.Right))
-                {
-                    velocity.X = 3f;
-                }
-                else
-                {
-                    velocity.X = 0f;
-                }
-                if (Game1.Instance.InputManager.Pressed(Input.Up) && hasJumped == false)
+                if (Game1.Instance.InputManager.up && hasJumped == false)
                 {
                     position.Y -= 10f;
-                    velocity.Y = -5f; //wysokość skoku
+                    velocity.Y = -5f;
                     hasJumped = true;
                 }
+                if (Game1.Instance.InputManager.right)
+                    velocity.X = -3f;
+                if (Game1.Instance.InputManager.left)
+                    velocity.X = 3f;
+                if (Game1.Instance.InputManager.right == Game1.Instance.InputManager.left)
+                    velocity.X = 0f;
+
                 for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i++) 
-                {
                     for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j++)
                     {
                         if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.earth) //spadanie
@@ -115,30 +105,16 @@ namespace Lab2
                         }
                     }
                 }
+                        if (Game1.Instance.TileMap.getTileAt(i, j).isWall == false) //spadanie
+                            hasJumped = true;
+
+
                 for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i ++)
-                {
                     for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j ++)
-                    {
-                        if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.floor && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
-                        {
-                            hasJumped = false;
-                        }
-                    }
-                }
                 if (hasJumped == true)
-                {
-                    float i = 1;
-                    velocity.Y += 0.15f * i; //grawitacja
-                }
-                
-                //if (position.Y + texture.Height >= ground) //podłoga
-                //{
-                //    hasJumped = false;
-                //}
+                    velocity.Y += 0.15f * 1.0f; //grawitacja
                 if (hasJumped == false)
-                {
                     velocity.Y = 0f;
-                }
             }
             
         }
