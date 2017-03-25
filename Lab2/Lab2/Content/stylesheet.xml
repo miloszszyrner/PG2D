@@ -1,0 +1,131 @@
+.sprite {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-Spikes {
+    width: 100px;
+    height: 100px;
+    background-position: -5px -5px;
+}
+
+.sprite-Tile_Background {
+    width: 100px;
+    height: 100px;
+    background-position: -115px -5px;
+}
+
+.sprite-Tile_Background2 {
+    width: 100px;
+    height: 100px;
+    background-position: -225px -5px;
+}
+
+.sprite-platform_1_center {
+    width: 100px;
+    height: 100px;
+    background-position: -335px -5px;
+}
+
+.sprite-platform_1_left {
+    width: 100px;
+    height: 100px;
+    background-position: -5px -115px;
+}
+
+.sprite-platform_1_right {
+    width: 100px;
+    height: 100px;
+    background-position: -115px -115px;
+}
+
+.sprite-stairs_part1 {
+    width: 100px;
+    height: 100px;
+    background-position: -225px -115px;
+}
+
+.sprite-stairs_part2 {
+    width: 100px;
+    height: 100px;
+    background-position: -335px -115px;
+}
+
+.sprite-stairs_part3 {
+    width: 100px;
+    height: 100px;
+    background-position: -5px -225px;
+}
+
+.sprite-stairs_part4 {
+    width: 100px;
+    height: 100px;
+    background-position: -115px -225px;
+}
+
+.sprite-tile_base {
+    width: 100px;
+    height: 100px;
+    background-position: -225px -225px;
+}
+
+.sprite-tile_base_left {
+    width: 100px;
+    height: 100px;
+    background-position: -335px -225px;
+}
+
+.sprite-tile_base_right {
+    width: 100px;
+    height: 100px;
+    background-position: -5px -335px;
+}
+
+.sprite-tile_bottom_center {
+    width: 100px;
+    height: 100px;
+    background-position: -115px -335px;
+}
+
+.sprite-tile_bottom_left {
+    width: 100px;
+    height: 100px;
+    background-position: -225px -335px;
+}
+
+.sprite-tile_bottom_right {
+    width: 100px;
+    height: 100px;
+    background-position: -335px -335px;
+}
+
+.sprite-tile_broken {
+    width: 100px;
+    height: 100px;
+    background-position: -445px -5px;
+}
+
+.sprite-tile_broken_background {
+    width: 100px;
+    height: 100px;
+    background-position: -445px -115px;
+}
+
+.sprite-tile_floor {
+    width: 100px;
+    height: 100px;
+    background-position: -445px -225px;
+}
+
+.sprite-tile_floor_left {
+    width: 100px;
+    height: 100px;
+    background-position: -445px -335px;
+}
+
+.sprite-tile_floor_right {
+    width: 100px;
+    height: 100px;
+    background-position: -5px -445px;
+}
