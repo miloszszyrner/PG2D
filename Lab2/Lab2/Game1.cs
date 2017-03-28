@@ -97,6 +97,7 @@ namespace Lab2
             backgroundMusic = Content.Load<Song>("Content/backgroundMusic");
 
             MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.IsRepeating = true;
         }
 
         /// <summary>
