@@ -20,15 +20,15 @@ namespace ToA
         {
             KeyboardState state = Keyboard.GetState();
             var gamePadState = GamePad.GetState(pPlayer);
-            if (state.IsKeyDown(Keys.A) || gamePadState.DPad.Left == ButtonState.Pressed)
+            if (state.IsKeyDown(Keys.A) || gamePadState.DPad.Left == ButtonState.Pressed || gamePadState.ThumbSticks.Left.X < 0.0f)
                 right = true;
             else
                 right = false;
-            if (state.IsKeyDown(Keys.D) || gamePadState.DPad.Right == ButtonState.Pressed)
+            if (state.IsKeyDown(Keys.D) || gamePadState.DPad.Right == ButtonState.Pressed || gamePadState.ThumbSticks.Left.X > 0.0f)
                 left = true;
             else
                 left = false;
-            if (state.IsKeyDown(Keys.W) || gamePadState.DPad.Up == ButtonState.Pressed)
+            if (state.IsKeyDown(Keys.W) || gamePadState.DPad.Up == ButtonState.Pressed || gamePadState.ThumbSticks.Left.Y > 0.5f)
                 up = true;
             else
                 up = false;
