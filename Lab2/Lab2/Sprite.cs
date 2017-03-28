@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -59,7 +61,7 @@ namespace Lab2
             boundingSphere = new BoundingSphere(new Vector3(position.X + ((texture.Width * ScaleFactor) / 2), position.Y + ((texture.Height * ScaleFactor) / 2), 0), Math.Max((texture.Height * ScaleFactor) / 2, (texture.Width * ScaleFactor) / 2));
         }
 
-        public void Update(GameTime pGameTime)
+        public void Update(GameTime pGameTime, SoundEffect effect)
         {
             UpdateBoundingBox();
             UpdateBoundingSphere();
@@ -72,6 +74,7 @@ namespace Lab2
                     position.Y -= 10f;
                     velocity.Y = -5f;
                     hasJumped = true;
+                    effect.Play();
                 }
                 if (Game1.Instance.InputManager.right)
                     velocity.X = -3f;

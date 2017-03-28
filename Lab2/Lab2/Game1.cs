@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -32,6 +34,8 @@ namespace Lab2
         Sprite dragonBallHero1;
         Sprite dragonBallHero;
         TileMap tileMap;
+        SoundEffect jumpEffect;
+        Song backgroundMusic;
 
         public TileMap TileMap
         {
@@ -89,6 +93,10 @@ namespace Lab2
             dragonBallHero = new Sprite(0.5f,sample, new Vector2(50, 50),true);
             font = Content.Load<SpriteFont>("Content/Tekst");
             tileMap = new TileMap("Content/tilemap.tmx", "Content/Tileset", Content);
+            jumpEffect = Content.Load<SoundEffect>("Content/jump");
+            backgroundMusic = Content.Load<Song>("Content/backgroundMusic");
+
+            MediaPlayer.Play(backgroundMusic);
         }
 
         /// <summary>
@@ -114,8 +122,8 @@ namespace Lab2
                 Exit();
             }
 
-            dragonBallHero.Update(gameTime);
-            dragonBallHero1.Update(gameTime);
+            dragonBallHero.Update(gameTime, jumpEffect);
+            dragonBallHero1.Update(gameTime, jumpEffect);
 
             isCollision = false;
             if (dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects)

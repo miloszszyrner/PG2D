@@ -68,3 +68,15 @@
 /processorParam:TextureFormat=Color
 /build:spritesheet.png
 
+#begin jump.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:jump.ogg
+
+#begin backgroundMusic.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:backgroundMusic.ogg
+
