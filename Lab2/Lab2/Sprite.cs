@@ -24,9 +24,10 @@ namespace Lab2
         public float ScaleFactor;
         public Rectangle Size;
         
-        public bool isPlayerControlled;
-        public bool hasJumped;
-        int ground = 600;
+        private bool isPlayerControlled;
+        private bool hasJumped;
+		private bool isGravity;
+		private bool gravity;
     
         public float scale
         {
@@ -47,11 +48,11 @@ namespace Lab2
             this.texture = texture;
             this.position = position;
             this.isPlayerControlled = isPlayerControlled;
-            this.hasJumped = true;
+            this.gravity = true;
         }
         private void UpdateBoundingBox()
         {
-            boundingBox = new BoundingBox(new Vector3(position, 0), new Vector3(position.X + (texture.Height * ScaleFactor), position.Y + (texture.Width * ScaleFactor), 0));
+            boundingBox = new BoundingBox(new Vector3(position, 0), new Vector3(position.X + (texture.Width * ScaleFactor), position.Y + (texture.Height * ScaleFactor), 0));
          //   Console.WriteLine(texture.Height * ScaleFactor);
          
         }
@@ -63,10 +64,9 @@ namespace Lab2
 
 		public void Update(GameTime pGameTime, SoundEffect effect)
 		{
+			position += velocity;
 			UpdateBoundingBox();
 			UpdateBoundingSphere();
-			position += velocity;
-
 
 			if (isPlayerControlled)
 			{
@@ -77,7 +77,7 @@ namespace Lab2
         public void Draw(SpriteBatch sp)
         {
             sp.Draw(texture, position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
-        }
+		}
 		private void checkCollisions()
 		{
 			for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i++)
@@ -85,16 +85,26 @@ namespace Lab2
 				{
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.EARTH) //spadanie
 					{
-						hasJumped = true;
+						if (gravity)
+						{
+							hasJumped = true;
+						}
+						else
+						{
+							isGravity = false;
+						}
 					}
 				}
 			for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i++)
 				for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j++)
 				{
-
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.FLOOR && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
 					{
 						hasJumped = false;
+					}
+					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.GROUND && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie w zmianie grawitacji
+					{
+						isGravity = true;
 					}
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na platformie
 					{
@@ -114,26 +124,13 @@ namespace Lab2
 					{
 						Console.WriteLine("Dead");
 					}
+
 				}
 		}
 		private void movement(SoundEffect effect)
 		{
-			Boolean gravity = true;
-			if (Game1.Instance.InputManager.changeGravity)
-			{
-				hasJumped = true;
-				if (gravity)
-				{
-					gravity = false;
-					position.Y -= 1f;
-				}
-				else
-				{
-					gravity = true;
-					position.Y += 1f;
-				}
-			}
-			if (Game1.Instance.InputManager.up && hasJumped == false)
+
+			if (Game1.Instance.InputManager.up && !hasJumped)
 			{
 				position.Y -= 10f;
 				velocity.Y = -5f;
@@ -147,14 +144,27 @@ namespace Lab2
 			if (Game1.Instance.InputManager.right == Game1.Instance.InputManager.left)
 				velocity.X = 0f;
 
-			if (hasJumped == true)
+			if (hasJumped && gravity)
 			{
-				if (gravity)
-					velocity.Y += 0.15f * 1.0f; //grawitacja
-				else
-					velocity.Y -= 0.15f * 1.0f; //grawitacja
+				float i = 1;
+				velocity.Y += 0.15f * i; //grawitacja
 			}
-			if (hasJumped == false)
+			if (!hasJumped && gravity)
+				velocity.Y = 0f;
+
+			if (Game1.Instance.InputManager.changeGravity)
+			{
+				if (!gravity)
+					gravity = true;
+				else
+					gravity = false;
+			}
+			if (!isGravity && !gravity)
+			{
+				float i = 1;
+				velocity.Y -= 0.15f * i; //grawitacja
+			}
+			if (isGravity && !gravity)
 				velocity.Y = 0f;
 		}
     }

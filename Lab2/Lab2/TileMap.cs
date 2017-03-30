@@ -49,7 +49,7 @@ namespace ToA
                 {23, TileProperty.PLATFORM },//center
                 {25, TileProperty.PLATFORM },//right
                 {15, TileProperty.TRAP },
-                {1, TileProperty.WALL_LEFT }, //left
+                {1, TileProperty.GROUND }, //left
                 {29, TileProperty.WALL_RIGHT }, //right
                 {16, TileProperty.DOOR },
                 {17, TileProperty.DOOR },
@@ -72,7 +72,7 @@ namespace ToA
                 for (int y = 0; y < mapHeight; y++)
                 {
                     intIDs[x, y] = int.Parse(splitArray[x + y * mapWidth]);
-                }
+				}
             }
             int key = 0;
             Vector2[] sourcePos = new Vector2[tilecount];

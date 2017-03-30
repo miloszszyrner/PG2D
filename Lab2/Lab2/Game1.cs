@@ -95,7 +95,7 @@ namespace Lab2
             tileMap = new TileMap("Content/tilemap.tmx", "Content/Tileset", Content);
             jumpEffect = Content.Load<SoundEffect>("Content/jump");
             backgroundMusic = Content.Load<Song>("Content/backgroundMusic");
-
+		
             MediaPlayer.Play(backgroundMusic);
             MediaPlayer.IsRepeating = true;
         }
