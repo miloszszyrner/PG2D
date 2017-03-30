@@ -8,14 +8,15 @@ namespace ToA
 {
     public enum TileProperty
     {
-        ground,
-        floor,
-        wall,
-        platform,
-        trap,
-        box,
-        earth,
-        door,
-        ceiling
+        GROUND,
+        FLOOR,
+        WALL_LEFT,
+		WALL_RIGHT,
+		PLATFORM,
+        TRAP,
+        BOX,
+        EARTH,
+        DOOR,
+        CEILING
     }
 }
