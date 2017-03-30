@@ -80,22 +80,6 @@ namespace Lab2
         }
 		private void checkCollisions()
 		{
-			Boolean gravity = true;
-			if (Game1.Instance.InputManager.changeGravity)
-			{
-				hasJumped = true;
-				if (gravity)
-				{
-					gravity = false;
-					position.Y -= 1f;
-				}
-				else
-				{
-					gravity = true;
-					position.Y += 1f;
-				}
-			}
-
 			for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i++)
 				for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j++)
 				{
@@ -130,21 +114,25 @@ namespace Lab2
 					{
 						Console.WriteLine("Dead");
 					}
-
 				}
-
-			if (hasJumped == true)
-			{
-				if (gravity)
-					velocity.Y += 0.15f * 1.0f; //grawitacja
-				else
-					velocity.Y -= 0.15f * 1.0f; //grawitacja
-			}
-			if (hasJumped == false)
-				velocity.Y = 0f;
 		}
 		private void movement(SoundEffect effect)
 		{
+			Boolean gravity = true;
+			if (Game1.Instance.InputManager.changeGravity)
+			{
+				hasJumped = true;
+				if (gravity)
+				{
+					gravity = false;
+					position.Y -= 1f;
+				}
+				else
+				{
+					gravity = true;
+					position.Y += 1f;
+				}
+			}
 			if (Game1.Instance.InputManager.up && hasJumped == false)
 			{
 				position.Y -= 10f;
@@ -158,6 +146,16 @@ namespace Lab2
 				velocity.X = 3f;
 			if (Game1.Instance.InputManager.right == Game1.Instance.InputManager.left)
 				velocity.X = 0f;
+
+			if (hasJumped == true)
+			{
+				if (gravity)
+					velocity.Y += 0.15f * 1.0f; //grawitacja
+				else
+					velocity.Y -= 0.15f * 1.0f; //grawitacja
+			}
+			if (hasJumped == false)
+				velocity.Y = 0f;
 		}
     }
 }
