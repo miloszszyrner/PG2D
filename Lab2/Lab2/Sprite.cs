@@ -129,12 +129,25 @@ namespace Lab2
 		}
 		private void movement(SoundEffect effect)
 		{
-
-			if (Game1.Instance.InputManager.up && !hasJumped)
+			if (Game1.Instance.InputManager.changeGravity)
+			{
+				if (!gravity)
+					gravity = true;
+				else
+					gravity = false;
+			}
+			if (Game1.Instance.InputManager.up && gravity && !hasJumped)
 			{
 				position.Y -= 10f;
 				velocity.Y = -5f;
 				hasJumped = true;
+				effect.Play();
+			}
+			if (Game1.Instance.InputManager.up && !gravity && isGravity)
+			{
+				position.Y += 10f;
+				velocity.Y = 5f;
+				isGravity = false;
 				effect.Play();
 			}
 			if (Game1.Instance.InputManager.right)
@@ -152,13 +165,6 @@ namespace Lab2
 			if (!hasJumped && gravity)
 				velocity.Y = 0f;
 
-			if (Game1.Instance.InputManager.changeGravity)
-			{
-				if (!gravity)
-					gravity = true;
-				else
-					gravity = false;
-			}
 			if (!isGravity && !gravity)
 			{
 				float i = 1;
