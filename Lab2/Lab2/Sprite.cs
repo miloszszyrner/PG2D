@@ -23,7 +23,8 @@ namespace Lab2
 
         public float ScaleFactor;
         public Rectangle Size;
-        
+        private SpriteEffects flip = SpriteEffects.None;
+
         private bool isPlayerControlled;
         private bool hasJumped;
 		private bool isGravity;
@@ -76,7 +77,7 @@ namespace Lab2
 		}
         public void Draw(SpriteBatch sp)
         {
-            sp.Draw(texture, position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            sp.Draw(texture, position, null, Color.White, 0.0f, Vector2.Zero, scale, flip, 0);
 		}
 		private void checkCollisions()
 		{
@@ -141,7 +142,7 @@ namespace Lab2
 				position.Y -= 10f;
 				velocity.Y = -5f;
 				hasJumped = true;
-				effect.Play();
+				effect.Play(0.1f,0f,0f);
 			}
 			if (Game1.Instance.InputManager.up && !gravity && isGravity)
 			{
@@ -172,6 +173,11 @@ namespace Lab2
 			}
 			if (isGravity && !gravity)
 				velocity.Y = 0f;
+
+            if (gravity)
+                flip = SpriteEffects.None;
+            else
+                flip = SpriteEffects.FlipVertically;
 		}
     }
 }

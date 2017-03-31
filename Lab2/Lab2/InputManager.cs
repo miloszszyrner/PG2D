@@ -21,9 +21,9 @@ namespace ToA
         KeyboardState previousstate = Keyboard.GetState();
         public void Update(PlayerIndex pPlayer = PlayerIndex.One) //PLAYER INDEX domyślnie na One
         {
-            KeyboardState state = Keyboard.GetState();
-            
+            KeyboardState state = Keyboard.GetState();    
             var gamePadState = GamePad.GetState(pPlayer);
+
             if (state.IsKeyDown(Keys.A) || gamePadState.DPad.Left == ButtonState.Pressed || gamePadState.ThumbSticks.Left.X < 0.0f)
                 right = true;
             else
@@ -36,7 +36,7 @@ namespace ToA
 				up = true;
 			else
 				up = false;
-			if (state.IsKeyDown(Keys.Q) || gamePadState.Buttons.A == ButtonState.Pressed)
+			if ((state.IsKeyDown(Keys.Q) && previousstate.IsKeyUp(Keys.Q)) || gamePadState.Buttons.A == ButtonState.Pressed)
                 changeGravity = true;
             else
                 changeGravity = false;

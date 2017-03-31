@@ -89,9 +89,9 @@ namespace Lab2
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
+            Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/dragonball.png"));
             dragonBallHero1 = new Sprite(1.0f,sample, new Vector2(500, 100),false);
-            dragonBallHero = new Sprite(0.5f,sample, new Vector2(50, 50),true);
+            dragonBallHero = new Sprite(0.2f,sample, new Vector2(50, 50),true);
             font = Content.Load<SpriteFont>("Content/Tekst");
             tileMap = new TileMap("Content/tilemap.tmx", "Content/Tileset", Content);
             jumpEffect = Content.Load<SoundEffect>("Content/jump");
@@ -99,6 +99,7 @@ namespace Lab2
 		
             MediaPlayer.Play(backgroundMusic);
             MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 0.1f;
         }
 
         /// <summary>
