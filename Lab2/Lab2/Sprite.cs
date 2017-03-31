@@ -28,6 +28,15 @@ namespace Lab2
         private bool hasJumped;
 		private bool isGravity;
 		private bool gravity;
+
+        private Rectangle sourceRectangle;
+        private Rectangle destinationRectangle;
+
+        private int currentFrame = 0;
+        private int totalFrames = 13;
+
+        private float elapsed;
+        private float delay = 100f;
     
         public float scale
         {
@@ -52,7 +61,7 @@ namespace Lab2
         }
         private void UpdateBoundingBox()
         {
-            boundingBox = new BoundingBox(new Vector3(position, 0), new Vector3(position.X + (texture.Width * ScaleFactor), position.Y + (texture.Height * ScaleFactor), 0));
+            boundingBox = new BoundingBox(new Vector3(position, 0), new Vector3(position.X + (95 * ScaleFactor), position.Y + (157 * ScaleFactor), 0));
          //   Console.WriteLine(texture.Height * ScaleFactor);
          
         }
@@ -70,13 +79,15 @@ namespace Lab2
 
 			if (isPlayerControlled)
 			{
+
 				checkCollisions();
-				movement(effect);
+				movement(effect, pGameTime);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
 			}
 		}
         public void Draw(SpriteBatch sp)
         {
-            sp.Draw(texture, position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            sp.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
 		}
 		private void checkCollisions()
 		{
@@ -127,7 +138,8 @@ namespace Lab2
 
 				}
 		}
-		private void movement(SoundEffect effect)
+
+		private void movement(SoundEffect effect, GameTime pGameTime)
 		{
 			if (Game1.Instance.InputManager.changeGravity)
 			{
@@ -150,11 +162,19 @@ namespace Lab2
 				isGravity = false;
 				effect.Play();
 			}
-			if (Game1.Instance.InputManager.right)
-				velocity.X = -3f;
-			if (Game1.Instance.InputManager.left)
-				velocity.X = 3f;
-			if (Game1.Instance.InputManager.right == Game1.Instance.InputManager.left)
+            if (Game1.Instance.InputManager.right)
+            {
+                velocity.X = -3f;
+                Animate(pGameTime, 1);
+            }
+			else if (Game1.Instance.InputManager.left)
+            {
+                velocity.X = 3f;
+                Animate(pGameTime, 0);
+            }
+            else
+                sourceRectangle = new Rectangle(0,0, 95, 157);
+            if (Game1.Instance.InputManager.right == Game1.Instance.InputManager.left)
 				velocity.X = 0f;
 
 			if (hasJumped && gravity)
@@ -173,5 +193,19 @@ namespace Lab2
 			if (isGravity && !gravity)
 				velocity.Y = 0f;
 		}
+        private void Animate(GameTime pGameTime, int row)
+        {
+            elapsed += (float)pGameTime.ElapsedGameTime.TotalMilliseconds;
+            if(elapsed >= delay)
+            {
+                if (currentFrame >= totalFrames)
+                    currentFrame = 0;
+                else
+                    currentFrame++;
+                elapsed = 0;
+            }
+            sourceRectangle = new Rectangle(95 * currentFrame, row * 157, 95, 157);
+
+        }
     }
 }

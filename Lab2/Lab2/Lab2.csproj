@@ -80,6 +80,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\chodz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\dragonball.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

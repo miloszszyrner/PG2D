@@ -88,7 +88,7 @@ namespace Lab2
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
+            Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/chodz.png"));
             dragonBallHero1 = new Sprite(1.0f,sample, new Vector2(500, 100),false);
             dragonBallHero = new Sprite(0.5f,sample, new Vector2(50, 50),true);
             font = Content.Load<SpriteFont>("Content/Tekst");
