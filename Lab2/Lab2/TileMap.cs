@@ -45,9 +45,8 @@ namespace ToA
             this.content = content;
             tilePropertyType = new Dictionary<int, TileProperty>
             {
-                {0, TileProperty.EARTH },
                 {1, TileProperty.TRAP },
-                //{2, TileProperty.FLOOR },
+                //{2, TileProperty. },
                 {3, TileProperty.BACKGROUND },
                 {4, TileProperty.COLUMN_DOWN_LEFT },
                 {5, TileProperty.COLUMN_DOWN_RIGHT },
@@ -71,25 +70,25 @@ namespace ToA
 				{23, TileProperty.BASE_LEFT }, 
                 {24, TileProperty.FLOOR_RIGHT }, 
                 {25, TileProperty.BASE_RIGHT },
-				//{26, TileProperty.BOTTOM },
+				{26, TileProperty.BOTTOM },
 				{27, TileProperty.BOTTOM },
-				//{28, TileProperty.DOOR },
+				{28, TileProperty.BASE },
 				{29, TileProperty.BROKEN },
 				{30, TileProperty.WINDOW_DOWN_LEFT }, 
                 {31, TileProperty.WINDOW_DOWN_RIGHT }, 
                 {32, TileProperty.WINDOW_MIDDLE_LEFT },
 				{33, TileProperty.WINDOW_MIDDLE_RIGHT },
 				{34, TileProperty.WINDOW_UP_LEFT },
-				{35, TileProperty.WINDOW_UP_RIGHT }
+				{35, TileProperty.WINDOW_UP_RIGHT },
+				{36, TileProperty.EARTH }
 			};
 			foreach (XElement layer in xDoc.Root.Descendants("layer"))
 			{
 				switch (layer.Attribute("name").Value)
 				{
 					case "Background":
-						getTileSet(layer.Element("data").Value.Split(','),background);
+						getTileSet(layer.Element("data").Value.Split(','), background);
 						break;
-
 					case "Decorations":
 						getTileSet(layer.Element("data").Value.Split(','),decorations);
 						break;
@@ -130,13 +129,13 @@ namespace ToA
                 for (int y = 0; y < mapHeight; y++)
                 {
 					tileSet[x, y] = new Tile
-                        (
-                        new Vector2(x * tilewidth, y * tileheight),
-                        sourceTex,
-                        new Rectangle((int)sourcePos[intIDs[x, y] - 1].X, (int)sourcePos[intIDs[x, y] - 1].Y, tilewidth, tileheight),
-                        tilePropertyType[intIDs[x, y]]
-                        );
-                }
+					(
+					new Vector2(x * tilewidth, y * tileheight),
+					sourceTex,
+					new Rectangle((int)sourcePos[intIDs[x, y]-1].X, (int)sourcePos[intIDs[x, y]-1].Y, tilewidth, tileheight),
+					tilePropertyType[intIDs[x, y]]
+					);
+				}
             }
         }
         public Tile getTileAt(int x, int y)
