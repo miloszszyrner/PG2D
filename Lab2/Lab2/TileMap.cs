@@ -14,8 +14,10 @@ namespace ToA
 {
     public class TileMap
     {
-        Tile[,] tileSet;
-        XDocument xDoc;
+        Tile[,] background;
+		Tile[,] decorations;
+		Tile[,] foreground;
+		XDocument xDoc;
         public Dictionary<int, TileProperty> tilePropertyType;
         public int mapWidth { get; }
         public int mapHeight { get; }
@@ -36,34 +38,70 @@ namespace ToA
             tileheight = int.Parse(xDoc.Root.Attribute("tileheight").Value);
             tilecount = int.Parse(xDoc.Root.Element("tileset").Attribute("tilecount").Value);
             columns = int.Parse(xDoc.Root.Element("tileset").Attribute("columns").Value);
-            tileSet = new Tile[mapWidth, mapHeight];
-            this.tileSetFileName = tileSetFileName;
+			background = new Tile[mapWidth, mapHeight];
+			decorations = new Tile[mapWidth, mapHeight];
+			foreground = new Tile[mapWidth, mapHeight];
+			this.tileSetFileName = tileSetFileName;
             this.content = content;
             tilePropertyType = new Dictionary<int, TileProperty>
             {
-                {4, TileProperty.EARTH },
-                {2, TileProperty.FLOOR },//center
-                {37, TileProperty.FLOOR },//left
-                {38, TileProperty.FLOOR },//right
-                {24, TileProperty.PLATFORM },//left
-                {23, TileProperty.PLATFORM },//center
-                {25, TileProperty.PLATFORM },//right
-                {15, TileProperty.TRAP },
-                {1, TileProperty.GROUND }, //left
-                {29, TileProperty.WALL_RIGHT }, //right
-                {16, TileProperty.DOOR },
-                {17, TileProperty.DOOR },
-                {20, TileProperty.DOOR },
-                {19, TileProperty.DOOR },
-                {3, TileProperty.CEILING }
-            };
-            getTileSet();
+                {0, TileProperty.EARTH },
+                {1, TileProperty.TRAP },
+                //{2, TileProperty.FLOOR },
+                {3, TileProperty.BACKGROUND },
+                {4, TileProperty.COLUMN_DOWN_LEFT },
+                {5, TileProperty.COLUMN_DOWN_RIGHT },
+                {6, TileProperty.BACKGROUND_BROKEN },
+                {7, TileProperty.COLUMN_MIDDLE_DECO_LEFT },
+                {8, TileProperty.COLUMN_MIDDLE_DECO_RIGHT }, 
+                {9, TileProperty.COLUMN_MIDDLE_LEFT }, 
+                {10, TileProperty.COLUMN_MIDDLE_RIGHT },
+                {11, TileProperty.COLUMN_TOP_LEFT },
+                {12, TileProperty.FLOOR },
+                {13, TileProperty.COLUMN_TOP_RIGHT },
+                {14, TileProperty.PLATFORM_CENTER },
+				{15, TileProperty.PLATFORM_LEFT },
+				{16, TileProperty.PLATFORM_RIGHT },
+                {17, TileProperty.STAIRS_PART1 },
+                {18, TileProperty.FLOOR_LEFT },
+                {19, TileProperty.STAIRS_PART2 },
+                {20, TileProperty.STAIRS_PART3 },
+                {21, TileProperty.STAIRS_PART4 },
+                {22, TileProperty.BASE },
+				{23, TileProperty.BASE_LEFT }, 
+                {24, TileProperty.FLOOR_RIGHT }, 
+                {25, TileProperty.BASE_RIGHT },
+				//{26, TileProperty.BOTTOM },
+				{27, TileProperty.BOTTOM },
+				//{28, TileProperty.DOOR },
+				{29, TileProperty.BROKEN },
+				{30, TileProperty.WINDOW_DOWN_LEFT }, 
+                {31, TileProperty.WINDOW_DOWN_RIGHT }, 
+                {32, TileProperty.WINDOW_MIDDLE_LEFT },
+				{33, TileProperty.WINDOW_MIDDLE_RIGHT },
+				{34, TileProperty.WINDOW_UP_LEFT },
+				{35, TileProperty.WINDOW_UP_RIGHT }
+			};
+			foreach (XElement layer in xDoc.Root.Descendants("layer"))
+			{
+				switch (layer.Attribute("name").Value)
+				{
+					case "Background":
+						getTileSet(layer.Element("data").Value.Split(','),background);
+						break;
+
+					case "Decorations":
+						getTileSet(layer.Element("data").Value.Split(','),decorations);
+						break;
+					case "Foreground":
+						getTileSet(layer.Element("data").Value.Split(','), foreground);
+						break;
+				}
+			}
         }
 
-        private void getTileSet()
+        private void getTileSet(string[] splitArray, Tile[,] tileSet)
         {
-            string IDArray = xDoc.Root.Element("layer").Element("data").Value;
-            string[] splitArray = IDArray.Split(',');
 
             int[,] intIDs = new int[mapWidth, mapHeight];
 
@@ -85,13 +123,13 @@ namespace ToA
                 }
             }
 
-            Texture2D sourceTex = content.Load<Texture2D>(tileSetFileName);
+			Texture2D sourceTex = content.Load<Texture2D>(tileSetFileName);
 
             for (int x = 0; x < mapWidth; x++)
             {
                 for (int y = 0; y < mapHeight; y++)
                 {
-                    tileSet[x, y] = new Tile
+					tileSet[x, y] = new Tile
                         (
                         new Vector2(x * tilewidth, y * tileheight),
                         sourceTex,
@@ -103,14 +141,22 @@ namespace ToA
         }
         public Tile getTileAt(int x, int y)
         {
-            return tileSet[x, y];
+            return foreground[x, y];
         }
         public void Draw(SpriteBatch sp)
         {
-            foreach (Tile t in tileSet)
+            foreach (Tile t in background)
             {
                 t.Draw(sp);
             }
-        }
+			foreach (Tile t in decorations)
+			{
+				t.Draw(sp);
+			}
+			foreach (Tile t in foreground)
+			{
+				t.Draw(sp);
+			}
+		}
     }
 }
