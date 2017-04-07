@@ -25,7 +25,7 @@ namespace Lab2
         public Rectangle Size;
         private SpriteEffects flip = SpriteEffects.None;
 
-        private bool isPlayerControlled;
+        private SpriteType spriteType;
         private bool hasJumped;
 		private bool isGravity;
 		private bool gravity;
@@ -43,12 +43,12 @@ namespace Lab2
         {
             position = new Vector2(x, y);
         }
-        public Sprite(float scale,Texture2D texture, Vector2 position, bool isPlayerControlled = false)
+        public Sprite(float scale,Texture2D texture, Vector2 position, SpriteType spriteType = SpriteType.TEST)
         {
             this.ScaleFactor = scale;
             this.texture = texture;
             this.position = position;
-            this.isPlayerControlled = isPlayerControlled;
+            this.spriteType = spriteType;
             this.gravity = true;
         }
         private void UpdateBoundingBox()
@@ -69,7 +69,7 @@ namespace Lab2
 			UpdateBoundingBox();
 			UpdateBoundingSphere();
 
-			if (isPlayerControlled)
+			if (spriteType == SpriteType.PLAYER)
 			{
 				checkCollisions();
 				movement(effect);

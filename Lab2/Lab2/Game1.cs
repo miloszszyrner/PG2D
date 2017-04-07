@@ -90,8 +90,9 @@ namespace Lab2
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/dragonball.png"));
-            dragonBallHero1 = new Sprite(1.0f,sample, new Vector2(500, 100),false);
-            dragonBallHero = new Sprite(0.2f,sample, new Vector2(50, 50),true);
+            Texture2D sample2 = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
+            dragonBallHero1 = new Sprite(0.8f,sample2, new Vector2(200, 100), SpriteType.TEST);
+            dragonBallHero = new Sprite(0.2f,sample, new Vector2(50, 50), SpriteType.PLAYER);
             font = Content.Load<SpriteFont>("Content/Tekst");
             tileMap = new TileMap("Content/tilemap.tmx", "Content/Tileset", Content);
             jumpEffect = Content.Load<SoundEffect>("Content/jump");
@@ -126,26 +127,26 @@ namespace Lab2
             }
             if (!inputManger.gameState)
             {
-                gameState = GameState.PauseMenu;
+                gameState = GameState.PAUSEMENU;
             }
             if (inputManger.gameState)
             {
-                gameState = GameState.Gameplay;
+                gameState = GameState.GAMEPLAY;
             }
 
             switch (gameState)
             {
-                case GameState.Gameplay:
+                case GameState.GAMEPLAY:
                     dragonBallHero.Update(gameTime, jumpEffect);
                     dragonBallHero1.Update(gameTime, jumpEffect);
 
                     isCollision = false;
-                    if (dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects)
+                    if ((dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
                     {
                         isCollision = true;
                     }
                     break;
-                case GameState.PauseMenu:
+                case GameState.PAUSEMENU:
                     
                     break;
             }
@@ -163,20 +164,19 @@ namespace Lab2
         {
             switch(gameState)
             {
-                case GameState.Gameplay:
+                case GameState.GAMEPLAY:
                     GraphicsDevice.Clear(Color.CornflowerBlue);
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointWrap);
                     tileMap.Draw(spriteBatch);
                     spriteBatch.DrawString(font, (isCollision == true) ? "We stick together" : "We are apart", new Vector2(100, 20), Color.Black);
-                    //dragonBallHero1.Draw(spriteBatch);
+                    dragonBallHero1.Draw(spriteBatch);
                     dragonBallHero.Draw(spriteBatch);
                     spriteBatch.End();
                     break;
-                case GameState.PauseMenu:
+                case GameState.PAUSEMENU:
                     GraphicsDevice.Clear(Color.CornflowerBlue);
                     spriteBatch.Begin();
                     spriteBatch.DrawString(font,"PAUSE", new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2), Color.Black);
-                    dragonBallHero1.Draw(spriteBatch);
                     spriteBatch.End();
                     break;
             }

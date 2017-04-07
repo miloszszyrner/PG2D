@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace ToA
 {
-    enum GameState
+    enum SpriteType
     {
-        GAMEPLAY,
-        PAUSEMENU,
+        PLAYER,
+        TEST,
+        BOX
     }
 }
