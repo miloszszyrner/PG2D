@@ -144,7 +144,7 @@ namespace Lab2
                     if ((dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
                     {
                         isCollision = true;
-                        dragonBallHero1.moveBox();
+                        dragonBallHero1.setPosition(dragonBallHero.position.X, dragonBallHero.position.Y);
                     }
                     break;
                 case GameState.PAUSEMENU:
@@ -170,10 +170,6 @@ namespace Lab2
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointWrap);
                     tileMap.Draw(spriteBatch);
                     spriteBatch.DrawString(font, (isCollision == true) ? "We stick together" : "We are apart", new Vector2(100, 20), Color.Black);
-                    if(isCollision)
-                    {
-                        dragonBallHero1.moveBox();
-                    }
                     dragonBallHero1.Draw(spriteBatch);
                     dragonBallHero.Draw(spriteBatch);
                     spriteBatch.End();
