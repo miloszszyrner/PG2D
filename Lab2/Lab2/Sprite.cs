@@ -154,7 +154,7 @@ namespace Lab2
 					}
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.TRAP && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //wpada w polapke
 					{
-						Console.WriteLine("Dead");
+                        position = new Vector2(150, 800);
 					}
 
 				}
