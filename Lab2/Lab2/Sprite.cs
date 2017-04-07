@@ -89,6 +89,22 @@ namespace Lab2
             if (spriteType == SpriteType.BOX)
             {
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
+                checkCollisions();
+                if (hasJumped && gravity)
+                {
+                    float i = 1;
+                    velocity.Y += 0.15f * i; //grawitacja
+                }
+                if (!hasJumped && gravity)
+                    velocity.Y = 0f;
+
+                if (!isGravity && !gravity)
+                {
+                    float i = 1;
+                    velocity.Y -= 0.15f * i; //grawitacja
+                }
+                if (isGravity && !gravity)
+                    velocity.Y = 0f;
             }
 		}
         public void Draw(SpriteBatch sp)
