@@ -89,16 +89,10 @@ namespace Lab2
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-<<<<<<< HEAD
             Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/dragonball.png"));
             Texture2D sample2 = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
             dragonBallHero1 = new Sprite(0.8f,sample2, new Vector2(200, 100), SpriteType.TEST);
             dragonBallHero = new Sprite(0.2f,sample, new Vector2(50, 50), SpriteType.PLAYER);
-=======
-            Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/chodz.png"));
-            dragonBallHero1 = new Sprite(1.0f,sample, new Vector2(500, 100),false);
-            dragonBallHero = new Sprite(0.2f,sample, new Vector2(50, 50),true);
->>>>>>> bdf87b176b9be0b2d386f84f07f0d21a872d3a26
             font = Content.Load<SpriteFont>("Content/Tekst");
             tileMap = new TileMap("Content/level_1.tmx", "Content/spritesheet", Content);
             jumpEffect = Content.Load<SoundEffect>("Content/jump");
