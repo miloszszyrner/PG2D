@@ -88,8 +88,8 @@ namespace Lab2
 		}
         public void Draw(SpriteBatch sp)
         {
-            sp.Draw(texture, position, null, Color.White, 0.0f, Vector2.Zero, scale, flip, 0);
-		    }
+            sp.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+        }
 		private void checkCollisions()
 		{
 			for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i++)

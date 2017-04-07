@@ -69,7 +69,7 @@ namespace ToA
                 {22, TileProperty.BASE },
 				{23, TileProperty.BASE_LEFT }, 
                 {24, TileProperty.FLOOR_RIGHT }, 
-                {25, TileProperty.BOTTOM },
+                {25, TileProperty.BASE_RIGHT },
 				{26, TileProperty.BOTTOM },
 				{27, TileProperty.BOTTOM },
 				{28, TileProperty.BOTTOM },
