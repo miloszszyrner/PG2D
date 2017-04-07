@@ -126,10 +126,14 @@ namespace Lab2
 					{
 						isGravity = true;
 					}
-					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_CENTER && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na platformie
+					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_CENTER && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox) && Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Max.Y == boundingBox.Min.Y)  //utrzymywanie sie na platformie
 					{
-						hasJumped = false;
+						hasJumped = true;
 					}
+                    if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_CENTER && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox) && Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Min.Y == boundingBox.Max.Y)
+                    {
+                        hasJumped = false;
+                    }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na platformie
 					{
 						hasJumped = false;
