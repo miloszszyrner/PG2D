@@ -85,10 +85,15 @@ namespace Lab2
 				movement(effect, pGameTime);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
 			}
+
+            if (spriteType == SpriteType.BOX)
+            {
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
+            }
 		}
         public void Draw(SpriteBatch sp)
         {
-            sp.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+            sp.Draw(texture, destinationRectangle, sourceRectangle, Color.White,0.0f,Vector2.Zero,flip,0.0f);
         }
 		private void checkCollisions()
 		{
@@ -215,9 +220,17 @@ namespace Lab2
 				velocity.Y = 0f;
 
             if (gravity)
+            {
                 flip = SpriteEffects.None;
+                UpdateBoundingBox();
+                UpdateBoundingSphere();
+            }          
             else
+            {
                 flip = SpriteEffects.FlipVertically;
+                UpdateBoundingBox();
+                UpdateBoundingSphere();
+            }          
 		}
         private void Animate(GameTime pGameTime, int row)
         {
@@ -232,6 +245,22 @@ namespace Lab2
             }
             sourceRectangle = new Rectangle(95 * currentFrame, row * 157, 95, 157);
 
+        }
+
+        public void moveBox()
+        {
+            if (Game1.Instance.InputManager.right)
+            {
+                velocity.X = -3f;
+            }
+            else if (Game1.Instance.InputManager.left)
+            {
+                velocity.X = 3f;
+            }
+            else
+                sourceRectangle = new Rectangle(0, 0, 95, 157);
+            if (Game1.Instance.InputManager.right == Game1.Instance.InputManager.left)
+                velocity.X = 0f;
         }
     }
 }

@@ -89,10 +89,10 @@ namespace Lab2
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/dragonball.png"));
+            Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/chodz.png"));
             Texture2D sample2 = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
-            dragonBallHero1 = new Sprite(0.8f,sample2, new Vector2(200, 100), SpriteType.TEST);
-            dragonBallHero = new Sprite(0.2f,sample, new Vector2(50, 50), SpriteType.PLAYER);
+            dragonBallHero1 = new Sprite(1f,sample2, new Vector2(50, 50), SpriteType.BOX);
+            dragonBallHero = new Sprite(1f,sample, new Vector2(50, 50), SpriteType.PLAYER);
             font = Content.Load<SpriteFont>("Content/Tekst");
             tileMap = new TileMap("Content/level_1.tmx", "Content/spritesheet", Content);
             jumpEffect = Content.Load<SoundEffect>("Content/jump");
@@ -144,6 +144,7 @@ namespace Lab2
                     if ((dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
                     {
                         isCollision = true;
+                        dragonBallHero1.moveBox();
                     }
                     break;
                 case GameState.PAUSEMENU:
@@ -169,6 +170,10 @@ namespace Lab2
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointWrap);
                     tileMap.Draw(spriteBatch);
                     spriteBatch.DrawString(font, (isCollision == true) ? "We stick together" : "We are apart", new Vector2(100, 20), Color.Black);
+                    if(isCollision)
+                    {
+                        dragonBallHero1.moveBox();
+                    }
                     dragonBallHero1.Draw(spriteBatch);
                     dragonBallHero.Draw(spriteBatch);
                     spriteBatch.End();
