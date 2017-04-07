@@ -130,7 +130,8 @@ namespace ToA
                 {
 					tileSet[x, y] = new Tile
 					(
-					new Vector2(x * tilewidth, y * tileheight),
+                    0.8727272727272727f,
+                    new Vector2(x * tilewidth, y * tileheight),
 					sourceTex,
 					new Rectangle((int)sourcePos[intIDs[x, y]-1].X, (int)sourcePos[intIDs[x, y]-1].Y, tilewidth, tileheight),
 					tilePropertyType[intIDs[x, y]]
