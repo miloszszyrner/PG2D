@@ -72,10 +72,10 @@ namespace Lab2
         /// </summary>
         protected override void Initialize()
         {
-            //graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-            //graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            //graphics.IsFullScreen = true;
-            //graphics.ApplyChanges();
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
             base.Initialize();
         }
 
@@ -88,14 +88,14 @@ namespace Lab2
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
+            Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/chodz.png"));
             dragonBallHero1 = new Sprite(1.0f,sample, new Vector2(500, 100),false);
             dragonBallHero = new Sprite(0.5f,sample, new Vector2(50, 50),true);
             font = Content.Load<SpriteFont>("Content/Tekst");
-            tileMap = new TileMap("Content/tilemap.tmx", "Content/Tileset", Content);
+            tileMap = new TileMap("Content/level_1.tmx", "Content/spritesheet", Content);
             jumpEffect = Content.Load<SoundEffect>("Content/jump");
             backgroundMusic = Content.Load<Song>("Content/backgroundMusic");
-
+		
             MediaPlayer.Play(backgroundMusic);
             MediaPlayer.IsRepeating = true;
         }

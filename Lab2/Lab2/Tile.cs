@@ -18,7 +18,7 @@ namespace ToA
         {
             get
             {
-                return new BoundingBox(new Vector3(position, 0), new Vector3(position.X + (texture.Height), position.Y + (texture.Width), 0));
+                return new BoundingBox(new Vector3(position, 0), new Vector3(position.X + (texture.Width), position.Y + (texture.Height), 0));
             }
         }
 

@@ -29,11 +29,11 @@ namespace ToA
                 left = true;
             else
                 left = false;
-            if (state.IsKeyDown(Keys.W) || gamePadState.DPad.Up == ButtonState.Pressed || gamePadState.ThumbSticks.Left.Y > 0.5f)
-                up = true;
-            else
-                up = false;
-            if (state.IsKeyDown(Keys.Q) || gamePadState.Buttons.A == ButtonState.Pressed)
+			if (state.IsKeyDown(Keys.W) || gamePadState.DPad.Up == ButtonState.Pressed || gamePadState.ThumbSticks.Left.Y > 0.5f)
+				up = true;
+			else
+				up = false;
+			if (state.IsKeyDown(Keys.Q) || gamePadState.Buttons.A == ButtonState.Pressed)
                 changeGravity = true;
             else
                 changeGravity = false;
