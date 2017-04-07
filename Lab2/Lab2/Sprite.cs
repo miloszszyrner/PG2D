@@ -88,8 +88,8 @@ namespace Lab2
 		}
         public void Draw(SpriteBatch sp)
         {
-            sp.Draw(texture, position, null, Color.White, 0.0f, Vector2.Zero, scale, flip, 0);
-		    }
+            sp.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+        }
 		private void checkCollisions()
 		{
 			for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i++)
@@ -126,10 +126,14 @@ namespace Lab2
 					{
 						isGravity = true;
 					}
-					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_CENTER && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na platformie
+					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_CENTER && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox) && Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Max.Y == boundingBox.Min.Y)  //utrzymywanie sie na platformie
 					{
-						hasJumped = false;
+						hasJumped = true;
 					}
+                    if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_CENTER && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox) && Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Min.Y == boundingBox.Max.Y)
+                    {
+                        hasJumped = false;
+                    }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na platformie
 					{
 						hasJumped = false;
