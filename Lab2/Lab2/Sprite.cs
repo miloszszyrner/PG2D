@@ -128,21 +128,30 @@ namespace Lab2
 					}
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_CENTER && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox) && Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Max.Y == boundingBox.Min.Y)  //utrzymywanie sie na platformie
 					{
-						hasJumped = true;
+                        velocity.Y = 0;
+                        hasJumped = true;
 					}
                     if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_CENTER && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox) && Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Min.Y == boundingBox.Max.Y)
                     {
                         hasJumped = false;
                     }
-					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na platformie
-					{
-						hasJumped = false;
-					}
-					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_RIGHT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na platformie
-					{
-						hasJumped = false;
-					}
-					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.BASE_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
+                    if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox) && Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Max.Y == boundingBox.Min.Y)  //utrzymywanie sie na platformie
+                    {
+                        hasJumped = true;
+                    }
+                    if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox) && Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Min.Y == boundingBox.Max.Y)
+                    {
+                        hasJumped = false;
+                    }
+                    if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_RIGHT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox) && Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Max.Y == boundingBox.Min.Y)  //utrzymywanie sie na platformie
+                    {
+                        hasJumped = true;
+                    }
+                    if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_RIGHT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox) && Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Min.Y == boundingBox.Max.Y)
+                    {
+                        hasJumped = false;
+                    }
+                    if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.BASE_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
 					{
 						velocity.X = 0f;
 						position.X--;

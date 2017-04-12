@@ -20,7 +20,7 @@ namespace ToA
             {   
                 
                 if( property == TileProperty.PLATFORM_CENTER || property == TileProperty.PLATFORM_LEFT || property == TileProperty.PLATFORM_RIGHT)
-                    return new BoundingBox(new Vector3(position, 0), new Vector3(position.X + texture.Width, position.Y + 25, 0));
+                    return new BoundingBox(new Vector3(position, 0), new Vector3(position.X + sourceRectangle.Width, position.Y + 25, 0));
                 return new BoundingBox(new Vector3(position, 0), new Vector3(position.X + sourceRectangle.Width, position.Y + sourceRectangle.Height, 0));
             }
         }
