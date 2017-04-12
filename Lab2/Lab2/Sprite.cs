@@ -11,7 +11,7 @@ using ToA;
 
 namespace Lab2
 {
-    class Sprite
+    public class Sprite
     {
         public Texture2D texture { get; }
 
@@ -88,7 +88,7 @@ namespace Lab2
 		}
         public void Draw(SpriteBatch sp)
         {
-            sp.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+            sp.Draw(texture, destinationRectangle , sourceRectangle, Color.White);
         }
 		private void checkCollisions()
 		{

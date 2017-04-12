@@ -28,12 +28,13 @@ namespace Lab2
                 return instance;
             }
         }
-
+        Camera camera;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Sprite dragonBallHero1;
         Sprite dragonBallHero;
         TileMap tileMap;
+
         SoundEffect jumpEffect;
         Song backgroundMusic;
         GameState gameState;
@@ -77,6 +78,7 @@ namespace Lab2
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
+            camera = new Camera(GraphicsDevice.Viewport);
             base.Initialize();
         }
 
@@ -150,9 +152,9 @@ namespace Lab2
                     break;
             }
 
-            
 
-                base.Update(gameTime);
+            camera.Update(gameTime, dragonBallHero);
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -165,7 +167,7 @@ namespace Lab2
             {
                 case GameState.Gameplay:
                     GraphicsDevice.Clear(Color.CornflowerBlue);
-                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointWrap);
+                    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, camera.transform);
                     tileMap.Draw(spriteBatch);
                     spriteBatch.DrawString(font, (isCollision == true) ? "We stick together" : "We are apart", new Vector2(100, 20), Color.Black);
                     //dragonBallHero1.Draw(spriteBatch);
