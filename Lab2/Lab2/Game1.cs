@@ -153,7 +153,7 @@ namespace Lab2
             }
 
 
-            camera.Update(gameTime, dragonBallHero);
+            camera.Update(gameTime, dragonBallHero,tileMap);
             base.Update(gameTime);
         }
 

@@ -13,30 +13,20 @@ namespace ToA
         Vector2 position;
         Texture2D texture;
         Rectangle sourceRectangle;
-        public float ScaleFactor;
-        public Rectangle Size;
         public TileProperty property { get; }
         public BoundingBox getBoundingBox
         {
             get
             {   
+                
                 if( property == TileProperty.PLATFORM_CENTER || property == TileProperty.PLATFORM_LEFT || property == TileProperty.PLATFORM_RIGHT)
-                    return new BoundingBox(new Vector3(position, 0), new Vector3(position.X + (texture.Width * ScaleFactor), position.Y + (25 * ScaleFactor), 0));
-                return new BoundingBox(new Vector3(position, 0), new Vector3(position.X + (texture.Width * ScaleFactor), position.Y + (texture.Height * ScaleFactor), 0));
+                    return new BoundingBox(new Vector3(position, 0), new Vector3(position.X + texture.Width, position.Y + 25, 0));
+                return new BoundingBox(new Vector3(position, 0), new Vector3(position.X + sourceRectangle.Width, position.Y + sourceRectangle.Height, 0));
             }
         }
-        public float scale
+
+        public Tile(Vector2 position, Texture2D texture, Rectangle sourceRectangle, TileProperty property)
         {
-            get { return ScaleFactor; }
-            set
-            {
-                ScaleFactor = value;
-                Size = new Rectangle(0, 0, (int)(texture.Width * scale), (int)(texture.Height * scale));
-            }
-        }
-        public Tile(float ScaleFactor, Vector2 position, Texture2D texture, Rectangle sourceRectangle, TileProperty property)
-        {
-            this.ScaleFactor = ScaleFactor;
             this.position = position;
             this.texture = texture;
             this.sourceRectangle = sourceRectangle;
