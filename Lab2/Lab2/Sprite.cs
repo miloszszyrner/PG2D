@@ -25,7 +25,7 @@ namespace Lab2
         public Rectangle Size;
         private SpriteEffects flip = SpriteEffects.None;
 
-        private bool isPlayerControlled;
+        private SpriteType spriteType;
         private bool hasJumped;
 		private bool isGravity;
 		private bool gravity;
@@ -52,12 +52,12 @@ namespace Lab2
         {
             position = new Vector2(x, y);
         }
-        public Sprite(float scale,Texture2D texture, Vector2 position, bool isPlayerControlled = false)
+        public Sprite(float scale,Texture2D texture, Vector2 position, SpriteType spriteType = SpriteType.TEST)
         {
             this.ScaleFactor = scale;
             this.texture = texture;
             this.position = position;
-            this.isPlayerControlled = isPlayerControlled;
+            this.spriteType = spriteType;
             this.gravity = true;
         }
         private void UpdateBoundingBox()
@@ -78,17 +78,24 @@ namespace Lab2
 			UpdateBoundingBox();
 			UpdateBoundingSphere();
 
-			if (isPlayerControlled)
+			if (spriteType == SpriteType.PLAYER)
 			{
 
 				checkCollisions();
 				movement(effect, pGameTime);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
 			}
+
+            if (spriteType == SpriteType.BOX)
+            {
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
+                checkCollisions();
+                checkGravitation();
+            }
 		}
         public void Draw(SpriteBatch sp)
         {
-            sp.Draw(texture, destinationRectangle , sourceRectangle, Color.White);
+            sp.Draw(texture, destinationRectangle, sourceRectangle, Color.White,0.0f,Vector2.Zero,flip,0.0f);
         }
 		private void checkCollisions()
 		{
@@ -198,26 +205,20 @@ namespace Lab2
             if (Game1.Instance.InputManager.right == Game1.Instance.InputManager.left)
 				velocity.X = 0f;
 
-			if (hasJumped && gravity)
-			{
-				float i = 1;
-				velocity.Y += 0.15f * i; //grawitacja
-			}
-			if (!hasJumped && gravity)
-				velocity.Y = 0f;
-
-			if (!isGravity && !gravity)
-			{
-				float i = 1;
-				velocity.Y -= 0.15f * i; //grawitacja
-			}
-			if (isGravity && !gravity)
-				velocity.Y = 0f;
+            checkGravitation();
 
             if (gravity)
+            {
                 flip = SpriteEffects.None;
+                UpdateBoundingBox();
+                UpdateBoundingSphere();
+            }          
             else
+            {
                 flip = SpriteEffects.FlipVertically;
+                UpdateBoundingBox();
+                UpdateBoundingSphere();
+            }          
 		}
         private void Animate(GameTime pGameTime, int row)
         {
@@ -232,6 +233,24 @@ namespace Lab2
             }
             sourceRectangle = new Rectangle(95 * currentFrame, row * 157, 95, 157);
 
+        }
+        private void checkGravitation()
+        {
+            if (hasJumped && gravity)
+            {
+                float i = 1;
+                velocity.Y += 0.15f * i; //grawitacja
+            }
+            if (!hasJumped && gravity)
+                velocity.Y = 0f;
+
+            if (!isGravity && !gravity)
+            {
+                float i = 1;
+                velocity.Y -= 0.15f * i; //grawitacja
+            }
+            if (isGravity && !gravity)
+                velocity.Y = 0f;
         }
     }
 }
