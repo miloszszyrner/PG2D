@@ -32,7 +32,10 @@ namespace ToA
             this.texture = texture;
             this.sourceRectangle = sourceRectangle;
             this.property = property;
-            boundingRectangle = new Rectangle((int)position.X,(int)position.Y, sourceRectangle.Width, sourceRectangle.Height);
+            if (property == TileProperty.PLATFORM_CENTER || property == TileProperty.PLATFORM_LEFT || property == TileProperty.PLATFORM_RIGHT)
+                boundingRectangle = new Rectangle((int)position.X,(int)position.Y, sourceRectangle.Width, 25);
+            else
+                boundingRectangle = new Rectangle((int)position.X, (int)position.Y, sourceRectangle.Width, sourceRectangle.Height);
         }
 
         public void Draw(SpriteBatch sb)
