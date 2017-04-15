@@ -16,6 +16,7 @@ namespace Lab2
         public Texture2D texture { get; }
 
         public Vector2 position;
+        public Vector2 objectPreviousPosition;
         public Vector2 velocity;
 
         public Rectangle boundingBox { get; set; }
@@ -74,14 +75,14 @@ namespace Lab2
 
 		public void Update(GameTime pGameTime, SoundEffect effect)
 		{
-			position += velocity;
+            objectPreviousPosition = position;
+            position += velocity;
 			UpdateBoundingBox();
 			UpdateBoundingSphere();
 
 			if (spriteType == SpriteType.PLAYER)
 			{
-
-				checkCollisions();
+                checkCollisions();
 				movement(effect, pGameTime);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
 			}
@@ -99,7 +100,8 @@ namespace Lab2
         }
 		private void checkCollisions()
 		{
-			for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i++)
+
+            for (int i = 0; i < Game1.Instance.TileMap.mapWidth; i++)
 				for (int j = 0; j < Game1.Instance.TileMap.mapHeight; j++)
 				{
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.EARTH) //spadanie
@@ -145,6 +147,10 @@ namespace Lab2
                     }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na platformie
 					{
+                        if (boundingBox.Center.X < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.X)
+                        {
+                            position = objectPreviousPosition;
+                        }
                         if (boundingBox.Center.Y < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.Y)
                             hasJumped = false;
                         else
@@ -153,11 +159,14 @@ namespace Lab2
                             velocity.Y = -velocity.Y;
                         }
 
-                        if (boundingBox.Center.X > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.X)
-                            velocity.X = 0;
+                       
                     }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_RIGHT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na platformie
 					{
+                        if (boundingBox.Center.X > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.X)
+                        {
+                            position = objectPreviousPosition;
+                        }
                         if (boundingBox.Center.Y < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.Y)
                             hasJumped = false;
                         else
@@ -165,19 +174,15 @@ namespace Lab2
                             hasJumped = true;
                             velocity.Y = -velocity.Y;
                         }
-                        if (boundingBox.Center.X < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.X)
-                            velocity.X = 0;
                     }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.BASE_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
 					{
-						velocity.X = 0f;
-						position.X--;
-					}
+                        position = objectPreviousPosition;
+                    }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.BASE_RIGHT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
 					{
-						velocity.X = 0f;
-						position.X++;
-					}
+                        position = objectPreviousPosition;
+                    }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.TRAP && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //wpada w polapke
 					{
                         position = new Vector2(150, 800);

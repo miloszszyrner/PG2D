@@ -94,7 +94,7 @@ namespace Lab2
             Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/chodz.png"));
             Texture2D sample2 = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
             dragonBallHero1 = new Sprite(1f,sample2, new Vector2(50, 50), SpriteType.BOX);
-            dragonBallHero = new Sprite(1f,sample, new Vector2(50, 50), SpriteType.PLAYER);
+            dragonBallHero = new Sprite(1f,sample, new Vector2(150, 800), SpriteType.PLAYER);
             font = Content.Load<SpriteFont>("Content/Tekst");
             tileMap = new TileMap("Content/level_1.tmx", "Content/spritesheet", Content);
             jumpEffect = Content.Load<SoundEffect>("Content/jump");
