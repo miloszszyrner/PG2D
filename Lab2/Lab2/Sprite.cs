@@ -20,6 +20,7 @@ namespace Lab2
 
         public BoundingBox boundingBox { get; set; }
         public BoundingSphere boundingSphere { get; set; }
+        public Rectangle boundingRectangle { get; set; }
 
         public float ScaleFactor;
         public Rectangle Size;
@@ -59,12 +60,12 @@ namespace Lab2
             this.position = position;
             this.spriteType = spriteType;
             this.gravity = true;
+            boundingRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
         }
         private void UpdateBoundingBox()
         {
             boundingBox = new BoundingBox(new Vector3(position, 0), new Vector3(position.X + (95 * ScaleFactor), position.Y + (157 * ScaleFactor), 0));
-         //   Console.WriteLine(texture.Height * ScaleFactor);
-         
+            boundingRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
         }
         private void UpdateBoundingSphere()
         {
@@ -119,7 +120,7 @@ namespace Lab2
 				{
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.FLOOR && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
 					{
-						hasJumped = false;
+                        hasJumped = false;
 					}
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.FLOOR_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
 					{

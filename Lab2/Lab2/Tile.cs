@@ -13,6 +13,7 @@ namespace ToA
         Vector2 position;
         Texture2D texture;
         Rectangle sourceRectangle;
+        public Rectangle boundingRectangle { get; }
         public TileProperty property { get; }
         public BoundingBox getBoundingBox
         {
@@ -31,6 +32,7 @@ namespace ToA
             this.texture = texture;
             this.sourceRectangle = sourceRectangle;
             this.property = property;
+            boundingRectangle = new Rectangle((int)position.X,(int)position.Y, sourceRectangle.Width, sourceRectangle.Height);
         }
 
         public void Draw(SpriteBatch sb)
