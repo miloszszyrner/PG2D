@@ -143,11 +143,11 @@ namespace Lab2
                     dragonBallHero1.Update(gameTime, jumpEffect);
 
                     isCollision = false;
-                    if ((dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
-                    {
-                        isCollision = true;
-                        dragonBallHero1.setPosition(dragonBallHero.position.X, dragonBallHero.position.Y);
-                    }
+                    //if ((dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
+                    //{
+                    //    isCollision = true;
+                    //    dragonBallHero1.setPosition(dragonBallHero.position.X, dragonBallHero.position.Y);
+                    //}
                     break;
                 case GameState.PAUSEMENU:
                     

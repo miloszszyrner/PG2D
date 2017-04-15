@@ -14,14 +14,14 @@ namespace ToA
         Texture2D texture;
         Rectangle sourceRectangle;
         public TileProperty property { get; }
-        public BoundingBox getBoundingBox
+        public Rectangle getBoundingBox
         {
             get
             {   
-                
                 if( property == TileProperty.PLATFORM_CENTER || property == TileProperty.PLATFORM_LEFT || property == TileProperty.PLATFORM_RIGHT)
-                    return new BoundingBox(new Vector3(position, 0), new Vector3(position.X + sourceRectangle.Width, position.Y + 25, 0));
-                return new BoundingBox(new Vector3(position, 0), new Vector3(position.X + sourceRectangle.Width, position.Y + sourceRectangle.Height, 0));
+                    return new Rectangle((int)position.X, (int)position.Y, sourceRectangle.Width, 25);
+                return new Rectangle((int)position.X, (int)position.Y, sourceRectangle.Width, sourceRectangle.Height);
+
             }
         }
 
