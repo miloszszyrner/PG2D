@@ -11,6 +11,7 @@ namespace ToA
         PLAYER,
         TEST,
         BOX,
-        BUTTON
+        BUTTON,
+        GRAVITY
     }
 }

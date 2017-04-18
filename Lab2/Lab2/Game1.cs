@@ -115,8 +115,9 @@ namespace Lab2
             optionsChosen = new Sprite(1f, optionsButtonChosenTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 150), SpriteType.BUTTON);
             exit = new Sprite(1f, exitButtonTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2), SpriteType.BUTTON);
             exitChosen = new Sprite(1f, exitButtonChosenTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2), SpriteType.BUTTON);
-            gravityUpsideDown = new Sprite(1f, gravityUpsideDownTexture, Vector2.Zero, SpriteType.BUTTON);
-            gravityRightsideUp = new Sprite(1f, gravityRightsideUpTexture, Vector2.Zero, SpriteType.BUTTON);
+
+            gravityUpsideDown = new Sprite(1f, gravityUpsideDownTexture, new Vector2(300,900), SpriteType.GRAVITY);
+            gravityRightsideUp = new Sprite(1f, gravityRightsideUpTexture, new Vector2(1400, 200), SpriteType.GRAVITY);
 
             font = Content.Load<SpriteFont>("Content/Tekst");
             tileMap = new TileMap("Content/level_1.tmx", "Content/spritesheet", Content);
@@ -164,12 +165,23 @@ namespace Lab2
                 case GameState.GAMEPLAY:
                     dragonBallHero.Update(gameTime, jumpEffect);
                     dragonBallHero1.Update(gameTime, jumpEffect);
+                    gravityUpsideDown.Update(gameTime, jumpEffect);
+                    gravityRightsideUp.Update(gameTime, jumpEffect);
 
                     isCollision = false;
                     if ((dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
                     {
                         isCollision = true;
                         dragonBallHero1.setPosition(dragonBallHero.position.X, dragonBallHero.position.Y);
+                    }
+
+                    if ((dragonBallHero.boundingBox.Contains(gravityUpsideDown.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(gravityUpsideDown.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
+                    {
+                        dragonBallHero.gravity = false;
+                    }
+                    if ((dragonBallHero.boundingBox.Contains(gravityRightsideUp.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(gravityRightsideUp.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
+                    {
+                        dragonBallHero.gravity = true;
                     }
                     break;
                 case GameState.PAUSEMENU:
@@ -228,8 +240,11 @@ namespace Lab2
                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, camera.transform);
                     tileMap.Draw(spriteBatch);
                     spriteBatch.DrawString(font, (isCollision == true) ? "We stick together" : "We are apart", new Vector2(100, 20), Color.Black);
+                    gravityUpsideDown.Draw(spriteBatch);
+                    gravityRightsideUp.Draw(spriteBatch);
                     dragonBallHero1.Draw(spriteBatch);
                     dragonBallHero.Draw(spriteBatch);
+                    
                     spriteBatch.End();
                     break;
                 case GameState.PAUSEMENU:
