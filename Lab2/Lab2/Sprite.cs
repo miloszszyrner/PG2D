@@ -92,7 +92,13 @@ namespace Lab2
                 checkCollisions();
                 checkGravitation();
             }
-		}
+
+            if (spriteType == SpriteType.BUTTON)
+            {
+                sourceRectangle = new Rectangle(0, 0, 200, 100);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 200, 100);
+            }
+        }
         public void Draw(SpriteBatch sp)
         {
             sp.Draw(texture, destinationRectangle, sourceRectangle, Color.White,0.0f,Vector2.Zero,flip,0.0f);

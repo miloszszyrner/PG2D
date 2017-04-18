@@ -33,11 +33,14 @@ namespace Lab2
         SpriteBatch spriteBatch;
         Sprite dragonBallHero1;
         Sprite dragonBallHero;
+        Sprite resume, resumeChosen, options, optionsChosen, exit, exitChosen;
+        Sprite gravityUpsideDown, gravityRightsideUp;
         TileMap tileMap;
 
         SoundEffect jumpEffect;
         Song backgroundMusic;
         GameState gameState;
+        PauseMenuChosen pauseMenuChosen = PauseMenuChosen.RESUME;
 
         public TileMap TileMap
         {
@@ -93,8 +96,28 @@ namespace Lab2
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/chodz.png"));
             Texture2D sample2 = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
+
             dragonBallHero1 = new Sprite(1f,sample2, new Vector2(50, 50), SpriteType.BOX);
             dragonBallHero = new Sprite(1f,sample, new Vector2(50, 50), SpriteType.PLAYER);
+
+            Texture2D resumeButtonTexture = Content.Load<Texture2D>("Content/resumeButton");
+            Texture2D resumeButtonChosenTexture = Content.Load<Texture2D>("Content/resumeButtonChosen");
+            Texture2D optionsButtonTexture = Content.Load<Texture2D>("Content/optionsButton");
+            Texture2D optionsButtonChosenTexture = Content.Load<Texture2D>("Content/optionsButtonChosen");
+            Texture2D exitButtonTexture = Content.Load<Texture2D>("Content/exitButton");
+            Texture2D exitButtonChosenTexture = Content.Load<Texture2D>("Content/exitButtonChosen");
+            Texture2D gravityUpsideDownTexture = Content.Load<Texture2D>("Content/gravityUpsideDown");
+            Texture2D gravityRightsideUpTexture = Content.Load<Texture2D>("Content/gravityRightsideUp");
+            
+            resume = new Sprite(1f, resumeButtonTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 300), SpriteType.BUTTON);
+            resumeChosen = new Sprite(1f, resumeButtonChosenTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 300), SpriteType.BUTTON);
+            options = new Sprite(1f, optionsButtonTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 150), SpriteType.BUTTON);
+            optionsChosen = new Sprite(1f, optionsButtonChosenTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 150), SpriteType.BUTTON);
+            exit = new Sprite(1f, exitButtonTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2), SpriteType.BUTTON);
+            exitChosen = new Sprite(1f, exitButtonChosenTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2), SpriteType.BUTTON);
+            gravityUpsideDown = new Sprite(1f, gravityUpsideDownTexture, Vector2.Zero, SpriteType.BUTTON);
+            gravityRightsideUp = new Sprite(1f, gravityRightsideUpTexture, Vector2.Zero, SpriteType.BUTTON);
+
             font = Content.Load<SpriteFont>("Content/Tekst");
             tileMap = new TileMap("Content/level_1.tmx", "Content/spritesheet", Content);
             jumpEffect = Content.Load<SoundEffect>("Content/jump");
@@ -150,7 +173,40 @@ namespace Lab2
                     }
                     break;
                 case GameState.PAUSEMENU:
-                    
+                    resume.Update(gameTime, jumpEffect);
+                    resumeChosen.Update(gameTime, jumpEffect);
+                    options.Update(gameTime, jumpEffect);
+                    optionsChosen.Update(gameTime, jumpEffect);
+                    exit.Update(gameTime, jumpEffect);
+                    exitChosen.Update(gameTime, jumpEffect);
+                    if(inputManger.up)
+                    {
+                        if(pauseMenuChosen != PauseMenuChosen.RESUME)
+                        {
+                            pauseMenuChosen--;
+                        }
+                    }
+                    if(inputManger.down)
+                    {
+                        if (pauseMenuChosen < PauseMenuChosen.EXIT)
+                        {
+                            pauseMenuChosen++;
+                        }
+                    }
+                    if(inputManger.action)
+                    {
+                        switch (pauseMenuChosen)
+                        {
+                            case PauseMenuChosen.RESUME:
+                                inputManger.gameState = true;
+                                break;
+                            case PauseMenuChosen.OPTIONS:
+                                break;
+                            case PauseMenuChosen.EXIT:
+                                Exit();
+                                break;
+                        }
+                    }
                     break;
             }
 
@@ -179,7 +235,23 @@ namespace Lab2
                 case GameState.PAUSEMENU:
                     GraphicsDevice.Clear(Color.CornflowerBlue);
                     spriteBatch.Begin();
-                    spriteBatch.DrawString(font,"PAUSE", new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2), Color.Black);
+
+                    resume.Draw(spriteBatch);
+                    if(pauseMenuChosen == PauseMenuChosen.RESUME)
+                    {
+                        resumeChosen.Draw(spriteBatch);
+                    }
+                    options.Draw(spriteBatch);
+                    if (pauseMenuChosen == PauseMenuChosen.OPTIONS)
+                    {
+                        optionsChosen.Draw(spriteBatch);
+                    }
+                    exit.Draw(spriteBatch);
+                    if (pauseMenuChosen == PauseMenuChosen.EXIT)
+                    {
+                        exitChosen.Draw(spriteBatch);
+                    }
+
                     spriteBatch.End();
                     break;
             }

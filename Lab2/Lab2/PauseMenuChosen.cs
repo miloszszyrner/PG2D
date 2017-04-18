@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace ToA
 {
-    public enum SpriteType
+    public enum PauseMenuChosen
     {
-        PLAYER,
-        TEST,
-        BOX,
-        BUTTON
+        RESUME,
+        OPTIONS,
+        EXIT
     }
 }
