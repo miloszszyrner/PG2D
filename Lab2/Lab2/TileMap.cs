@@ -23,7 +23,7 @@ namespace ToA
         public int mapHeight { get; }
         int tilecount;
         int columns;
-        int tilewidth;
+        public int tilewidth { get; }
         int tileheight;
         String tileSetFileName;
 
