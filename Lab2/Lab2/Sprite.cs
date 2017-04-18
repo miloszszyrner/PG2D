@@ -79,21 +79,14 @@ namespace Lab2
             position += velocity;
 			UpdateBoundingBox();
 			UpdateBoundingSphere();
-
-			if (spriteType == SpriteType.PLAYER)
+            checkCollisions();
+            checkGravitation();
+            if (spriteType == SpriteType.PLAYER)
 			{
-                checkCollisions();
-				movement(effect, pGameTime);
-                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
+                movement(effect, pGameTime);
 			}
-
-            if (spriteType == SpriteType.BOX)
-            {
-                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
-                checkCollisions();
-                checkGravitation();
-            }
-		}
+            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
+        }
         public void Draw(SpriteBatch sp)
         {
             sp.Draw(texture, destinationRectangle, sourceRectangle, Color.White,0.0f,Vector2.Zero,flip,0.0f);
@@ -125,12 +118,28 @@ namespace Lab2
 					}
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.FLOOR_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
 					{
-						hasJumped = false;
-					}
+                        if (boundingBox.Bottom > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Top && boundingBox.Center.X < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.X && Game1.Instance.InputManager.left)
+                        {
+                            position.X = objectPreviousPosition.X;
+                            hasJumped = true;
+                        }
+                        else if (boundingBox.Center.Y < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.Y)
+                            hasJumped = false;
+                        else
+                            hasJumped = true;
+                    }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.FLOOR_RIGHT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
 					{
-						hasJumped = false;
-					}
+                        if (boundingBox.Bottom > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Top && boundingBox.Center.X > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.X && Game1.Instance.InputManager.right)
+                        {
+                            position.X = objectPreviousPosition.X;
+                            hasJumped = true;
+                        }
+                        else if (boundingBox.Center.Y < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.Y)
+                            hasJumped = false;
+                        else
+                            hasJumped = true;
+                    }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.BOTTOM && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie w zmianie grawitacji
 					{
 						isGravity = true;
@@ -147,41 +156,43 @@ namespace Lab2
                     }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na platformie
 					{
-                        if (boundingBox.Center.X < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.X)
+                        if (boundingBox.Bottom > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Top && boundingBox.Center.X < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.X && Game1.Instance.InputManager.left)
                         {
-                            position = objectPreviousPosition;
+                            position.X = objectPreviousPosition.X;
+                            hasJumped = true;
                         }
-                        if (boundingBox.Center.Y < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.Y)
+                        else if (boundingBox.Center.Y < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.Y)
                             hasJumped = false;
                         else
                         {
+                            position.Y = objectPreviousPosition.Y;
                             hasJumped = true;
-                            velocity.Y = -velocity.Y;
                         }
 
-                       
+
                     }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_RIGHT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na platformie
 					{
-                        if (boundingBox.Center.X > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.X)
+                        if (boundingBox.Bottom > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Top && boundingBox.Center.X > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.X && Game1.Instance.InputManager.right)
                         {
-                            position = objectPreviousPosition;
+                            position.X = objectPreviousPosition.X;
+                            hasJumped = true;
                         }
-                        if (boundingBox.Center.Y < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.Y)
+                        else if (boundingBox.Center.Y < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.Y)
                             hasJumped = false;
                         else
                         {
+                            position.Y = objectPreviousPosition.Y;
                             hasJumped = true;
-                            velocity.Y = -velocity.Y;
                         }
                     }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.BASE_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
 					{
-                        position = objectPreviousPosition;
+                        position.X = objectPreviousPosition.X;
                     }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.BASE_RIGHT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
 					{
-                        position = objectPreviousPosition;
+                        position.X = objectPreviousPosition.X;
                     }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.TRAP && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //wpada w polapke
 					{
@@ -203,7 +214,7 @@ namespace Lab2
 			if (Game1.Instance.InputManager.up && gravity && !hasJumped)
 			{
 				position.Y -= 10f;
-				velocity.Y = -5f;
+				velocity.Y = -10f;
 				hasJumped = true;
 				effect.Play(0.1f,0f,0f);
 			}
