@@ -39,6 +39,8 @@ namespace Lab2
 
         private float elapsed;
         private float delay = 100f;
+
+        private int offset = 15;
     
         public float scale
         {
@@ -77,14 +79,15 @@ namespace Lab2
 		{
             objectPreviousPosition = position;
             position += velocity;
-			UpdateBoundingBox();
-			UpdateBoundingSphere();
+            UpdateBoundingBox();
+            UpdateBoundingSphere();
             checkCollisions();
             checkGravitation();
             if (spriteType == SpriteType.PLAYER)
 			{
                 movement(effect, pGameTime);
 			}
+
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
         }
         public void Draw(SpriteBatch sp)
@@ -118,27 +121,17 @@ namespace Lab2
 					}
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.FLOOR_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
 					{
-                        if (boundingBox.Bottom > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Top && boundingBox.Center.X < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.X && Game1.Instance.InputManager.left)
-                        {
+                        if (boundingBox.Bottom - offset > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Top)
                             position.X = objectPreviousPosition.X;
-                            hasJumped = true;
-                        }
                         else if (boundingBox.Center.Y < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.Y)
                             hasJumped = false;
-                        else
-                            hasJumped = true;
                     }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.FLOOR_RIGHT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
 					{
-                        if (boundingBox.Bottom > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Top && boundingBox.Center.X > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.X && Game1.Instance.InputManager.right)
-                        {
+                        if (boundingBox.Bottom - offset > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Top)
                             position.X = objectPreviousPosition.X;
-                            hasJumped = true;
-                        }
-                        else if (boundingBox.Center.Y < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.Y)
+                        else if(boundingBox.Center.Y < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.Y)
                             hasJumped = false;
-                        else
-                            hasJumped = true;
                     }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.BOTTOM && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie w zmianie grawitacji
 					{
@@ -149,42 +142,25 @@ namespace Lab2
                         if(boundingBox.Center.Y < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.Y)
                             hasJumped = false;
                         else
-                        {
-                            hasJumped = true;
                             velocity.Y = -velocity.Y;
-                        }
                     }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na platformie
 					{
-                        if (boundingBox.Bottom > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Top && boundingBox.Center.X < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.X && Game1.Instance.InputManager.left)
-                        {
+                        if (boundingBox.Bottom - offset > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Top)
                             position.X = objectPreviousPosition.X;
-                            hasJumped = true;
-                        }
                         else if (boundingBox.Center.Y < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.Y)
                             hasJumped = false;
                         else
-                        {
-                            position.Y = objectPreviousPosition.Y;
-                            hasJumped = true;
-                        }
-
-
+                            velocity.Y = -velocity.Y;
                     }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.PLATFORM_RIGHT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na platformie
 					{
-                        if (boundingBox.Bottom > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Top && boundingBox.Center.X > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.X && Game1.Instance.InputManager.right)
-                        {
+                        if (boundingBox.Bottom - offset > Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Top)
                             position.X = objectPreviousPosition.X;
-                            hasJumped = true;
-                        }
                         else if (boundingBox.Center.Y < Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox.Center.Y)
                             hasJumped = false;
                         else
-                        {
-                            position.Y = objectPreviousPosition.Y;
-                            hasJumped = true;
-                        }
+                            velocity.Y = -velocity.Y;
                     }
 					if (Game1.Instance.TileMap.getTileAt(i, j).property == TileProperty.BASE_LEFT && boundingBox.Intersects(Game1.Instance.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
 					{
@@ -214,14 +190,14 @@ namespace Lab2
 			if (Game1.Instance.InputManager.up && gravity && !hasJumped)
 			{
 				position.Y -= 10f;
-				velocity.Y = -10f;
+				velocity.Y = -12f;
 				hasJumped = true;
 				effect.Play(0.1f,0f,0f);
 			}
 			if (Game1.Instance.InputManager.up && !gravity && isGravity)
 			{
 				position.Y += 10f;
-				velocity.Y = 5f;
+				velocity.Y = 12f;
 				isGravity = false;
 				effect.Play();
 			}
