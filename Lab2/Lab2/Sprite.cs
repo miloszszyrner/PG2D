@@ -28,8 +28,10 @@ namespace Lab2
 
         private SpriteType spriteType;
         private bool hasJumped;
+
         private bool isGravity;
-        private bool gravity;
+        public bool gravity;
+
 
         private Rectangle sourceRectangle;
         private Rectangle destinationRectangle;
@@ -88,7 +90,20 @@ namespace Lab2
                 movement(effect, pGameTime);
             }
 
+
+            if (spriteType == SpriteType.BUTTON)
+            {
+                sourceRectangle = new Rectangle(0, 0, 200, 100);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 200, 100);
+            }
+            if (spriteType == SpriteType.GRAVITY)
+            {
+                sourceRectangle = new Rectangle(0, 0, 100, 100);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 100, 100);
+            }
+
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
+
         }
         public void Draw(SpriteBatch sp)
         {

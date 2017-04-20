@@ -14,6 +14,7 @@ namespace ToA
         public bool right;
         public bool left;
         public bool up;
+        public bool down;
         public bool back = false;
         public bool changeGravity;
         public bool gameState = true;
@@ -37,7 +38,11 @@ namespace ToA
 				up = true;
 			else
 				up = false;
-			if ((state.IsKeyDown(Keys.Q) && previousstate.IsKeyUp(Keys.Q)) || gamePadState.Buttons.A == ButtonState.Pressed)
+            if (state.IsKeyDown(Keys.S) || gamePadState.DPad.Down == ButtonState.Pressed)
+                down = true;
+            else
+                down = false;
+            if ((state.IsKeyDown(Keys.Q) && previousstate.IsKeyUp(Keys.Q)) || gamePadState.Buttons.A == ButtonState.Pressed)
                 changeGravity = true;
             else
                 changeGravity = false;
