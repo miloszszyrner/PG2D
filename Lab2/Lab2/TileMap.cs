@@ -23,7 +23,7 @@ namespace ToA
         public int mapHeight { get; }
         int tilecount;
         int columns;
-        int tilewidth;
+        public int tilewidth { get; }
         int tileheight;
         String tileSetFileName;
 
@@ -130,7 +130,7 @@ namespace ToA
                 {
 					tileSet[x, y] = new Tile
 					(
-					new Vector2(x * tilewidth, y * tileheight),
+                    new Vector2(x * tilewidth, y * tileheight),
 					sourceTex,
 					new Rectangle((int)sourcePos[intIDs[x, y]-1].X, (int)sourcePos[intIDs[x, y]-1].Y, tilewidth, tileheight),
 					tilePropertyType[intIDs[x, y]]

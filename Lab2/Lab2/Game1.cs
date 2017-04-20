@@ -28,12 +28,13 @@ namespace Lab2
                 return instance;
             }
         }
-
+        Camera camera;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Sprite dragonBallHero1;
         Sprite dragonBallHero;
         TileMap tileMap;
+
         SoundEffect jumpEffect;
         Song backgroundMusic;
         GameState gameState;
@@ -77,6 +78,7 @@ namespace Lab2
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
+            camera = new Camera(GraphicsDevice.Viewport);
             base.Initialize();
         }
 
@@ -90,8 +92,9 @@ namespace Lab2
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/chodz.png"));
-            dragonBallHero1 = new Sprite(1.0f,sample, new Vector2(500, 100),false);
-            dragonBallHero = new Sprite(0.5f,sample, new Vector2(150, 750),true);
+            Texture2D sample2 = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
+            dragonBallHero1 = new Sprite(1f,sample2, new Vector2(50, 50), SpriteType.BOX);
+            dragonBallHero = new Sprite(1f,sample, new Vector2(150, 800), SpriteType.PLAYER);
             font = Content.Load<SpriteFont>("Content/Tekst");
             tileMap = new TileMap("Content/level_1.tmx", "Content/spritesheet", Content);
             jumpEffect = Content.Load<SoundEffect>("Content/jump");
@@ -126,33 +129,34 @@ namespace Lab2
             }
             if (!inputManger.gameState)
             {
-                gameState = GameState.PauseMenu;
+                gameState = GameState.PAUSEMENU;
             }
             if (inputManger.gameState)
             {
-                gameState = GameState.Gameplay;
+                gameState = GameState.GAMEPLAY;
             }
 
             switch (gameState)
             {
-                case GameState.Gameplay:
+                case GameState.GAMEPLAY:
                     dragonBallHero.Update(gameTime, jumpEffect);
                     dragonBallHero1.Update(gameTime, jumpEffect);
 
                     isCollision = false;
-                    if (dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects)
-                    {
-                        isCollision = true;
-                    }
+                    //if ((dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
+                    //{
+                    //    isCollision = true;
+                    //    dragonBallHero1.setPosition(dragonBallHero.position.X, dragonBallHero.position.Y);
+                    //}
                     break;
-                case GameState.PauseMenu:
+                case GameState.PAUSEMENU:
                     
                     break;
             }
 
-            
 
-                base.Update(gameTime);
+            camera.Update(gameTime, dragonBallHero,tileMap);
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -163,20 +167,19 @@ namespace Lab2
         {
             switch(gameState)
             {
-                case GameState.Gameplay:
+                case GameState.GAMEPLAY:
                     GraphicsDevice.Clear(Color.CornflowerBlue);
-                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointWrap);
+                    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, camera.transform);
                     tileMap.Draw(spriteBatch);
                     spriteBatch.DrawString(font, (isCollision == true) ? "We stick together" : "We are apart", new Vector2(100, 20), Color.Black);
-                    //dragonBallHero1.Draw(spriteBatch);
+                    dragonBallHero1.Draw(spriteBatch);
                     dragonBallHero.Draw(spriteBatch);
                     spriteBatch.End();
                     break;
-                case GameState.PauseMenu:
+                case GameState.PAUSEMENU:
                     GraphicsDevice.Clear(Color.CornflowerBlue);
                     spriteBatch.Begin();
                     spriteBatch.DrawString(font,"PAUSE", new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2), Color.Black);
-                    dragonBallHero1.Draw(spriteBatch);
                     spriteBatch.End();
                     break;
             }
