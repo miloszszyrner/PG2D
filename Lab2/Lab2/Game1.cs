@@ -97,8 +97,8 @@ namespace Lab2
             Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/chodz.png"));
             Texture2D sample2 = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
 
-            dragonBallHero1 = new Sprite(1f,sample2, new Vector2(50, 50), SpriteType.BOX);
-            dragonBallHero = new Sprite(1f,sample, new Vector2(50, 50), SpriteType.PLAYER);
+            dragonBallHero1 = new Sprite(1f,sample2, new Vector2(150, 800), SpriteType.BOX);
+            dragonBallHero = new Sprite(1f,sample, new Vector2(150, 800), SpriteType.PLAYER);
 
             Texture2D resumeButtonTexture = Content.Load<Texture2D>("Content/resumeButton");
             Texture2D resumeButtonChosenTexture = Content.Load<Texture2D>("Content/resumeButtonChosen");
@@ -118,7 +118,6 @@ namespace Lab2
 
             gravityUpsideDown = new Sprite(1f, gravityUpsideDownTexture, new Vector2(300,900), SpriteType.GRAVITY);
             gravityRightsideUp = new Sprite(1f, gravityRightsideUpTexture, new Vector2(1400, 200), SpriteType.GRAVITY);
-
             font = Content.Load<SpriteFont>("Content/Tekst");
             tileMap = new TileMap("Content/level_1.tmx", "Content/spritesheet", Content);
             jumpEffect = Content.Load<SoundEffect>("Content/jump");
@@ -183,6 +182,11 @@ namespace Lab2
                     {
                         dragonBallHero.gravity = true;
                     }
+                    //if ((dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
+                    //{
+                    //    isCollision = true;
+                    //    dragonBallHero1.setPosition(dragonBallHero.position.X, dragonBallHero.position.Y);
+                    //}
                     break;
                 case GameState.PAUSEMENU:
                     resume.Update(gameTime, jumpEffect);

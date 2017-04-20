@@ -27,14 +27,13 @@ namespace ToA
             float cameraX = centre.X;
             float cameraWidth = view.Width;
 
-            float worldWidth = tileMap.mapWidth;
-
+            float worldWidth = tileMap.mapWidth * tileMap.tilewidth;
             if (cameraX < 0)
                 cameraX = 0;
             else if (cameraX + cameraWidth > worldWidth)
                 cameraX = worldWidth - cameraWidth;
 
-            transform = Matrix.CreateTranslation(new Vector3(-centre.X, -centre.Y, 0)) * Matrix.CreateScale(new Vector3(Zoom, Zoom, 1));
+            transform = Matrix.CreateTranslation(new Vector3(-cameraX, -centre.Y, 0)) * Matrix.CreateScale(new Vector3(Zoom, Zoom, 1));
 
         }
         public void AdjustZoom(float amount)
