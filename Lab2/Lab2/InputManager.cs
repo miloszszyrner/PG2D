@@ -18,6 +18,7 @@ namespace ToA
         public bool menuUp;
         public bool menuLeft;
         public bool menuRight;
+        public bool menuChoose;
         public bool back = false;
         public bool changeGravity;
         public bool gameState = true;
@@ -69,6 +70,10 @@ namespace ToA
                 menuRight = true;
             else
                 menuRight = false;
+            if (state.IsKeyDown(Keys.Enter) && previousstate.IsKeyUp(Keys.Enter))
+                menuChoose = true;
+            else
+                menuChoose = false;
             previousstate = state;  
 
         }

@@ -228,7 +228,7 @@ namespace Lab2
                         }
                         MediaPlayer.Volume = musicVolume;
                     }
-                    if(inputManger.action)
+                    if(inputManger.menuChoose)
                     {
                         switch (pauseMenuChosen)
                         {
