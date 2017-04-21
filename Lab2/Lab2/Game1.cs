@@ -195,14 +195,14 @@ namespace Lab2
                     optionsChosen.Update(gameTime, jumpEffect);
                     exit.Update(gameTime, jumpEffect);
                     exitChosen.Update(gameTime, jumpEffect);
-                    if(inputManger.up)
+                    if(inputManger.menuUp)
                     {
                         if(pauseMenuChosen != PauseMenuChosen.RESUME)
                         {
                             pauseMenuChosen--;
                         }
                     }
-                    if(inputManger.down)
+                    if(inputManger.menuDown)
                     {
                         if (pauseMenuChosen < PauseMenuChosen.EXIT)
                         {
