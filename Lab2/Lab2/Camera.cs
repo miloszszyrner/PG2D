@@ -25,15 +25,25 @@ namespace ToA
         {
             centre = new Vector2(hero.position.X + (hero.Size.Width / 2) - 900, hero.position.Y / 2);
             float cameraX = centre.X;
+            float cameraY = centre.Y;
+
             float cameraWidth = view.Width;
+            float cameraHeight = view.Height;
 
             float worldWidth = tileMap.mapWidth * tileMap.tilewidth;
+            float worldHeight = tileMap.mapHeight * tileMap.tilewidth;
+
             if (cameraX < 0)
                 cameraX = 0;
             else if (cameraX + cameraWidth > worldWidth)
                 cameraX = worldWidth - cameraWidth;
 
-            transform = Matrix.CreateTranslation(new Vector3(-cameraX, -centre.Y, 0)) * Matrix.CreateScale(new Vector3(Zoom, Zoom, 1));
+            if (cameraY < 0)
+                cameraY = 0;
+            else if (cameraY + cameraHeight > worldHeight)
+                cameraT = worldHeight - cameraHeight;
+
+            transform = Matrix.CreateTranslation(new Vector3(-cameraX, -cameraY, 0)) * Matrix.CreateScale(new Vector3(Zoom, Zoom, 1));
 
         }
         public void AdjustZoom(float amount)
