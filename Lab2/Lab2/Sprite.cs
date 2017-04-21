@@ -84,13 +84,20 @@ namespace Lab2
             UpdateBoundingBox();
             UpdateBoundingSphere();
             checkCollisions();
-            checkGravitation();
+            
             if (spriteType == SpriteType.PLAYER)
             {
+                checkGravitation();
                 movement(effect, pGameTime);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
             }
 
-
+            if (spriteType == SpriteType.BOX)
+            {
+                checkGravitation();
+                sourceRectangle = new Rectangle(0, 0, 95, 157);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
+            }
             if (spriteType == SpriteType.BUTTON)
             {
                 sourceRectangle = new Rectangle(0, 0, 200, 100);
@@ -102,7 +109,7 @@ namespace Lab2
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 100, 100);
             }
 
-            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
+            
 
         }
         public void Draw(SpriteBatch sp)
