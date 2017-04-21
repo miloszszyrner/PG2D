@@ -44,6 +44,8 @@ namespace Lab2
 
         private int offset = 15;
 
+        private int height, width;
+
         public float scale
         {
             get { return ScaleFactor; }
@@ -67,7 +69,7 @@ namespace Lab2
         }
         private void UpdateBoundingBox()
         {
-            boundingBox = new Rectangle((int)position.X, (int)position.Y, 95, 157);
+            boundingBox = new Rectangle((int)position.X, (int)position.Y, width, height);
             //   Console.WriteLine(texture.Height * ScaleFactor);
 
         }
@@ -87,6 +89,8 @@ namespace Lab2
             
             if (spriteType == SpriteType.PLAYER)
             {
+                width = 95;
+                height = 157;
                 checkGravitation();
                 movement(effect, pGameTime);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
@@ -94,17 +98,23 @@ namespace Lab2
 
             if (spriteType == SpriteType.BOX)
             {
+                width = 100;
+                height = 100;
                 checkGravitation();
-                sourceRectangle = new Rectangle(0, 0, 95, 157);
-                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 95, 157);
+                sourceRectangle = new Rectangle(0, 0, 100, 100);
+                destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 100, 100);
             }
             if (spriteType == SpriteType.BUTTON)
             {
+                width = 200;
+                height = 100;
                 sourceRectangle = new Rectangle(0, 0, 200, 100);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 200, 100);
             }
             if (spriteType == SpriteType.GRAVITY)
             {
+                width = 100;
+                height = 100;
                 sourceRectangle = new Rectangle(0, 0, 100, 100);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 100, 100);
             }

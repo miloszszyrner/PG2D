@@ -31,7 +31,7 @@ namespace Lab2
         Camera camera;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Sprite dragonBallHero1;
+        Sprite box;
         Sprite dragonBallHero;
         Sprite resume, resumeChosen, options, optionsChosen, exit, exitChosen;
         Sprite gravityUpsideDown, gravityRightsideUp;
@@ -79,7 +79,7 @@ namespace Lab2
         {
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             graphics.ApplyChanges();
             camera = new Camera(GraphicsDevice.Viewport);
             base.Initialize();
@@ -97,7 +97,7 @@ namespace Lab2
             Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/chodz.png"));
             Texture2D sample2 = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
 
-            dragonBallHero1 = new Sprite(1f,sample2, new Vector2(150, 800), SpriteType.BOX);
+            box = new Sprite(1f,sample2, new Vector2(150, 800), SpriteType.BOX);
             dragonBallHero = new Sprite(1f,sample, new Vector2(150, 800), SpriteType.PLAYER);
 
             Texture2D resumeButtonTexture = Content.Load<Texture2D>("Content/resumeButton");
@@ -163,15 +163,15 @@ namespace Lab2
             {
                 case GameState.GAMEPLAY:
                     dragonBallHero.Update(gameTime, jumpEffect);
-                    dragonBallHero1.Update(gameTime, jumpEffect);
+                    box.Update(gameTime, jumpEffect);
                     gravityUpsideDown.Update(gameTime, jumpEffect);
                     gravityRightsideUp.Update(gameTime, jumpEffect);
 
                     isCollision = false;
-                    if (dragonBallHero.boundingBox.Intersects(dragonBallHero1.boundingBox) && inputManger.action)
+                    if (dragonBallHero.boundingBox.Intersects(box.boundingBox) && inputManger.action)
                     {
                         isCollision = true;
-                        dragonBallHero1.setPosition(dragonBallHero.position.X, dragonBallHero.position.Y);
+                        box.setPosition(dragonBallHero.position.X, dragonBallHero.position.Y);
                     }
 
                     if (dragonBallHero.boundingBox.Intersects(gravityUpsideDown.boundingBox) && inputManger.action)
@@ -246,7 +246,7 @@ namespace Lab2
                     spriteBatch.DrawString(font, (isCollision == true) ? "We stick together" : "We are apart", new Vector2(100, 20), Color.Black);
                     gravityUpsideDown.Draw(spriteBatch);
                     gravityRightsideUp.Draw(spriteBatch);
-                    dragonBallHero1.Draw(spriteBatch);
+                    box.Draw(spriteBatch);
                     dragonBallHero.Draw(spriteBatch);
                     
                     spriteBatch.End();
