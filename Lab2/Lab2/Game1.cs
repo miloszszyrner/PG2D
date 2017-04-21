@@ -210,6 +210,24 @@ namespace Lab2
                             pauseMenuChosen++;
                         }
                     }
+                    if(pauseMenuChosen == PauseMenuChosen.OPTIONS)
+                    {
+                        if (inputManger.menuLeft)
+                        {
+                            if (musicVolume > 0)
+                            {
+                                musicVolume -= 0.1f;
+                            }
+                        }
+                        if (inputManger.menuRight)
+                        {
+                            if (musicVolume < 1.0f)
+                            {
+                                musicVolume += 0.1f;
+                            }
+                        }
+                        MediaPlayer.Volume = musicVolume;
+                    }
                     if(inputManger.action)
                     {
                         switch (pauseMenuChosen)
@@ -218,27 +236,10 @@ namespace Lab2
                                 inputManger.gameState = true;
                                 break;
                             case PauseMenuChosen.OPTIONS:
-                                gameState = GameState.OPTIONMENU;
                                 break;
                             case PauseMenuChosen.EXIT:
                                 Exit();
                                 break;
-                        }
-                    }
-                    break;
-                case GameState.OPTIONMENU:
-                    if(inputManger.menuLeft)
-                    {
-                        if(musicVolume > 0)
-                        {
-                            musicVolume -= 0.1f;
-                        }   
-                    }
-                    if (inputManger.menuRight)
-                    {
-                        if (musicVolume < 1.0f)
-                        {
-                            musicVolume += 0.1f;
                         }
                     }
                     break;

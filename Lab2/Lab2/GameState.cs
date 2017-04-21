@@ -10,6 +10,5 @@ namespace ToA
     {
         GAMEPLAY,
         PAUSEMENU,
-        OPTIONMENU
     }
 }
