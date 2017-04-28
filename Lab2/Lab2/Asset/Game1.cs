@@ -31,7 +31,7 @@ namespace Lab2
         Camera camera;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Sprite box;
+        Sprite dragonBallHero1;
         Sprite dragonBallHero;
         Sprite resume, resumeChosen, options, optionsChosen, exit, exitChosen;
         Sprite gravityUpsideDown, gravityRightsideUp;
@@ -39,7 +39,6 @@ namespace Lab2
 
         SoundEffect jumpEffect;
         Song backgroundMusic;
-        private float musicVolume = 0.1f;
         GameState gameState;
         PauseMenuChosen pauseMenuChosen = PauseMenuChosen.RESUME;
 
@@ -98,7 +97,7 @@ namespace Lab2
             Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/chodz.png"));
             Texture2D sample2 = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
 
-            box = new Sprite(1f,sample2, new Vector2(150, 800), SpriteType.BOX);
+            dragonBallHero1 = new Sprite(1f,sample2, new Vector2(150, 800), SpriteType.BOX);
             dragonBallHero = new Sprite(1f,sample, new Vector2(150, 800), SpriteType.PLAYER);
 
             Texture2D resumeButtonTexture = Content.Load<Texture2D>("Content/resumeButton");
@@ -164,26 +163,24 @@ namespace Lab2
             {
                 case GameState.GAMEPLAY:
                     dragonBallHero.Update(gameTime, jumpEffect);
-                    box.Update(gameTime, jumpEffect);
+                    dragonBallHero1.Update(gameTime, jumpEffect);
                     gravityUpsideDown.Update(gameTime, jumpEffect);
                     gravityRightsideUp.Update(gameTime, jumpEffect);
 
                     isCollision = false;
-                    if (dragonBallHero.boundingBox.Intersects(box.boundingBox) && inputManger.action)
+                    if (dragonBallHero.boundingBox.Intersects(dragonBallHero1.boundingBox) && inputManger.action)
                     {
                         isCollision = true;
-                        box.setPosition(dragonBallHero.position.X, dragonBallHero.position.Y);
+                        dragonBallHero1.setPosition(dragonBallHero.position.X, dragonBallHero.position.Y);
                     }
 
                     if (dragonBallHero.boundingBox.Intersects(gravityUpsideDown.boundingBox) && inputManger.action)
                     {
                         dragonBallHero.gravity = false;
-                        box.gravity = false;
                     }
                     if (dragonBallHero.boundingBox.Intersects(gravityRightsideUp.boundingBox) && inputManger.action)
                     {
                         dragonBallHero.gravity = true;
-                        box.gravity = true;
                     }
                     //if ((dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
                     //{
@@ -198,57 +195,21 @@ namespace Lab2
                     optionsChosen.Update(gameTime, jumpEffect);
                     exit.Update(gameTime, jumpEffect);
                     exitChosen.Update(gameTime, jumpEffect);
-                    if(inputManger.menuUp)
+                    if(inputManger.up)
                     {
                         if(pauseMenuChosen != PauseMenuChosen.RESUME)
                         {
                             pauseMenuChosen--;
                         }
                     }
-                    if(inputManger.menuDown)
+                    if(inputManger.down)
                     {
                         if (pauseMenuChosen < PauseMenuChosen.EXIT)
                         {
                             pauseMenuChosen++;
                         }
                     }
-                    if(pauseMenuChosen == PauseMenuChosen.BACKGROUND_MUSIC_VOLUME)
-                    {
-                        if (inputManger.menuLeft)
-                        {
-                            if (musicVolume > 0)
-                            {
-                                musicVolume -= 0.1f;
-                            }
-                        }
-                        if (inputManger.menuRight)
-                        {
-                            if (musicVolume < 1.0f)
-                            {
-                                musicVolume += 0.1f;
-                            }
-                        }
-                        MediaPlayer.Volume = musicVolume;
-                    }
-                    /*if (pauseMenuChosen == PauseMenuChosen.SOUNDEFFECTS_VOLUME)
-                    {
-                        if (inputManger.menuLeft)
-                        {
-                            if (dragonBallHero.soundEffectVolume > 0)
-                            {
-                                dragonBallHero.soundEffectVolume -= 0.1f;
-                            }
-                        }
-                        if (inputManger.menuRight)
-                        {
-                            if (dragonBallHero.soundEffectVolume < 1.0f)
-                            {
-                                dragonBallHero.soundEffectVolume += 0.1f;
-                            }
-                        }
-                        
-                    }*/
-                    if (inputManger.menuChoose)
+                    if(inputManger.action)
                     {
                         switch (pauseMenuChosen)
                         {
@@ -285,7 +246,7 @@ namespace Lab2
                     spriteBatch.DrawString(font, (isCollision == true) ? "We stick together" : "We are apart", new Vector2(100, 20), Color.Black);
                     gravityUpsideDown.Draw(spriteBatch);
                     gravityRightsideUp.Draw(spriteBatch);
-                    box.Draw(spriteBatch);
+                    dragonBallHero1.Draw(spriteBatch);
                     dragonBallHero.Draw(spriteBatch);
                     
                     spriteBatch.End();

@@ -27,6 +27,8 @@ namespace Lab2
         public Rectangle Size;
         private SpriteEffects flip = SpriteEffects.None;
 
+        public float soundEffectVolume = 0.1f;
+
         private SpriteType spriteType;
         private bool hasJumped;
 
@@ -225,7 +227,7 @@ namespace Lab2
                 position.Y -= 10f;
                 velocity.Y = -12f;
                 hasJumped = true;
-                effect.Play(0.1f, 0f, 0f);
+                effect.Play(1f, 0f, 0f);
             }
             if (Game1.Instance.InputManager.up && !gravity && isGravity)
             {
