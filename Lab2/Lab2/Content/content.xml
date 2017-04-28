@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <Game>
-    <Level id = "1">
+    <Level>
+		<LevelId>1</LevelId>
         <SpriteCount>4</SpriteCount>
-        <Sprite name = "Content/chodz.png">
+        <Sprite>
+			<Name>Content/chodz.png</Name>
             <SpriteType>SpriteType.PLAYER</SpriteType>
             <Position>
                 <X>150</X>
@@ -14,28 +16,29 @@
                 <Frames>13</Frames>
             </Animation>
         </Sprite>
-        <Sprite name = "Content/mario.png">
+        <Sprite>
+		<Name>Content/mario.png</Name>
             <SpriteType>SpriteType.BOX</SpriteType>
             <Position>
                 <X>150</X>
                 <Y>800</Y>
             </Position>            
         </Sprite>
-        <Sprite name = "Content/gravityRightsideUp.png">
+        <Sprite>
+			<Name>Content/gravityRightsideUp.png</Name>
             <SpriteType>SpriteType.GRAVITY</SpriteType>
             <Position>
                 <X>150</X>
                 <Y>800</Y>
             </Position>            
         </Sprite>
-        <Sprite name = "Content/gravityUpsideDown.png">
+        <Sprite>\
+			<Name>Content/gravityUpsideDown.png</Name>
             <SpriteType>SpriteType.GRAVITY</SpriteType>
             <Position>
                 <X>150</X>
                 <Y>800</Y>
             </Position>            
-        </Sprite>
-        
+        </Sprite> 
     </Level>     
-  </Employee>
 </Game>

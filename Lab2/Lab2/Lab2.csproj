@@ -57,7 +57,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
-    <Compile Include="ContentManager.cs" />
+    <Compile Include="Manager.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="InputManager.cs" />
@@ -86,6 +86,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\chodz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\content.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\dragonball.png">

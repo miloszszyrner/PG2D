@@ -36,6 +36,7 @@ namespace Lab2
         Sprite resume, resumeChosen, options, optionsChosen, exit, exitChosen;
         Sprite gravityUpsideDown, gravityRightsideUp;
         TileMap tileMap;
+        Manager manager;
 
         SoundEffect jumpEffect;
         Song backgroundMusic;
@@ -67,6 +68,7 @@ namespace Lab2
         {
             graphics = new GraphicsDeviceManager(this);
             inputManger = new InputManager();
+            manager = new Manager("Content/content.xml", GraphicsDevice);
         }
 
         /// <summary>
