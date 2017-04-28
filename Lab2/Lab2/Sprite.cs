@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
@@ -250,18 +251,7 @@ namespace Lab2
 
             checkGravitation();
 
-            if (gravity)
-            {
-                flip = SpriteEffects.None;
-                UpdateBoundingBox();
-                UpdateBoundingSphere();
-            }
-            else
-            {
-                flip = SpriteEffects.FlipVertically;
-                UpdateBoundingBox();
-                UpdateBoundingSphere();
-            }
+            
         }
         private void Animate(GameTime pGameTime, int row)
         {
@@ -294,6 +284,18 @@ namespace Lab2
             }
             if (isGravity && !gravity)
                 velocity.Y = 0f;
+            if (gravity)
+            {
+                flip = SpriteEffects.None;
+                UpdateBoundingBox();
+                UpdateBoundingSphere();
+            }
+            else
+            {
+                flip = SpriteEffects.FlipVertically;
+                UpdateBoundingBox();
+                UpdateBoundingSphere();
+            }
         }
     }
 }

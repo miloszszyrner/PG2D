@@ -80,7 +80,7 @@ namespace Lab2
         {
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             camera = new Camera(GraphicsDevice.Viewport);
             base.Initialize();
@@ -178,10 +178,12 @@ namespace Lab2
                     if (dragonBallHero.boundingBox.Intersects(gravityUpsideDown.boundingBox) && inputManger.action)
                     {
                         dragonBallHero.gravity = false;
+                        box.gravity = false;
                     }
                     if (dragonBallHero.boundingBox.Intersects(gravityRightsideUp.boundingBox) && inputManger.action)
                     {
                         dragonBallHero.gravity = true;
+                        box.gravity = true;
                     }
                     //if ((dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
                     //{
