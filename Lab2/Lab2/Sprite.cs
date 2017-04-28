@@ -69,6 +69,7 @@ namespace Lab2
             this.position = position;
             this.spriteType = spriteType;
             this.gravity = true;
+            SoundEffect.MasterVolume = 1.0f;
         }
         private void UpdateBoundingBox()
         {
@@ -227,14 +228,14 @@ namespace Lab2
                 position.Y -= 10f;
                 velocity.Y = -12f;
                 hasJumped = true;
-                effect.Play(1f, 0f, 0f);
+                effect.Play(soundEffectVolume, 0f, 0f);
             }
             if (Game1.Instance.InputManager.up && !gravity && isGravity)
             {
                 position.Y += 10f;
                 velocity.Y = 12f;
                 isGravity = false;
-                effect.Play();
+                effect.Play(soundEffectVolume, 0f, 0f);
             }
             if (Game1.Instance.InputManager.right)
             {

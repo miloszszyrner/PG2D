@@ -212,7 +212,7 @@ namespace Lab2
                             pauseMenuChosen++;
                         }
                     }
-                    if(pauseMenuChosen == PauseMenuChosen.BACKGROUND_MUSIC_VOLUME)
+                    if (pauseMenuChosen == PauseMenuChosen.BACKGROUND_MUSIC_VOLUME)
                     {
                         if (inputManger.menuLeft)
                         {
@@ -230,7 +230,7 @@ namespace Lab2
                         }
                         MediaPlayer.Volume = musicVolume;
                     }
-                    /*if (pauseMenuChosen == PauseMenuChosen.SOUNDEFFECTS_VOLUME)
+                    if (pauseMenuChosen == PauseMenuChosen.SOUNDEFFECTS_VOLUME)
                     {
                         if (inputManger.menuLeft)
                         {
@@ -246,8 +246,8 @@ namespace Lab2
                                 dragonBallHero.soundEffectVolume += 0.1f;
                             }
                         }
-                        
-                    }*/
+                        SoundEffect.MasterVolume = dragonBallHero.soundEffectVolume;   
+                    }
                     if (inputManger.menuChoose)
                     {
                         switch (pauseMenuChosen)
@@ -294,6 +294,9 @@ namespace Lab2
                     GraphicsDevice.Clear(Color.CornflowerBlue);
                     spriteBatch.Begin();
 
+                    options.setPosition(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 150);
+                    optionsChosen.setPosition(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 150);
+
                     resume.Draw(spriteBatch);
                     if(pauseMenuChosen == PauseMenuChosen.RESUME)
                     {
@@ -303,6 +306,20 @@ namespace Lab2
                     if (pauseMenuChosen == PauseMenuChosen.OPTIONS)
                     {
                         optionsChosen.Draw(spriteBatch);
+                    }
+                    if(pauseMenuChosen == PauseMenuChosen.BACKGROUND_MUSIC_VOLUME)
+                    {
+                        options.setPosition(Window.ClientBounds.Width / 2 - 70, Window.ClientBounds.Height / 2 - 150);
+                        optionsChosen.setPosition(Window.ClientBounds.Width / 2 - 70, Window.ClientBounds.Height / 2 - 150);
+                        optionsChosen.Draw(spriteBatch);
+                        
+                    }
+                    if (pauseMenuChosen == PauseMenuChosen.SOUNDEFFECTS_VOLUME)
+                    {
+                        options.setPosition(Window.ClientBounds.Width / 2 - 70, Window.ClientBounds.Height / 2 - 150);
+                        optionsChosen.setPosition(Window.ClientBounds.Width / 2 - 70, Window.ClientBounds.Height / 2 - 150);
+                        optionsChosen.Draw(spriteBatch);
+
                     }
                     exit.Draw(spriteBatch);
                     if (pauseMenuChosen == PauseMenuChosen.EXIT)
