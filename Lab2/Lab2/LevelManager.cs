@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace ToA
 {
-    public class Manager
+    public class LevelManager
     {
         private GraphicsDevice graphicsDevice;
         private ContentManager content;
@@ -22,7 +22,6 @@ namespace ToA
         private Song backgroundMusic;
         private SoundEffect jumpEffect;
         private int spriteCountPerLevel;
-        private int levelId;
         private Camera camera;
         String tileSetFileName;
         String tileMapFileName;
@@ -44,18 +43,19 @@ namespace ToA
             }
         }
 
-        public Manager(String filename, GraphicsDevice graphicsDevice, ContentManager content)
+        public LevelManager(String filename, GraphicsDevice graphicsDevice, ContentManager content)
         {
             xDoc = XElement.Load(filename);
             this.graphicsDevice = graphicsDevice;
             this.content = content;
            
             camera = new Camera(graphicsDevice.Viewport);
-            parseXML(1);
+            loadLevel(Game1.Instance.levelNumber);
         }
 
-        public void parseXML(int levelId)
+        public void loadLevel(int levelId)
         {
+            content.Unload();
             IEnumerable<XElement> game = xDoc.Elements();
             foreach (var level in game)
             {

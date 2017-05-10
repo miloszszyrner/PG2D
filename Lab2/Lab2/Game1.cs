@@ -36,7 +36,7 @@ namespace Lab2
         Sprite resume, resumeChosen, options, optionsChosen, exit, exitChosen;
         //Sprite gravityUpsideDown, gravityRightsideUp;
         LevelManager manager;
-
+        public int levelNumber { get; set; } = 1;
         public LevelManager Manager
         {
             get
@@ -46,7 +46,7 @@ namespace Lab2
         }
 
         SoundEffect jumpEffect;
-        Song backgroundMusic;
+        //Song backgroundMusic;
         GameState gameState;
         PauseMenuChosen pauseMenuChosen = PauseMenuChosen.RESUME;
 
