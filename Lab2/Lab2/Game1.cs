@@ -35,9 +35,9 @@ namespace Lab2
         //Sprite dragonBallHero;
         Sprite resume, resumeChosen, options, optionsChosen, exit, exitChosen;
         //Sprite gravityUpsideDown, gravityRightsideUp;
-        Manager manager;
+        LevelManager manager;
 
-        public Manager Manager
+        public LevelManager Manager
         {
             get
             {
@@ -77,7 +77,7 @@ namespace Lab2
         /// </summary>
         protected override void Initialize()
         {
-            manager = new Manager("Content/content.xml", GraphicsDevice, Content);
+            manager = new LevelManager("Content/content.xml", GraphicsDevice, Content);
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
             graphics.IsFullScreen = true;
@@ -107,8 +107,8 @@ namespace Lab2
             Texture2D optionsButtonChosenTexture = Content.Load<Texture2D>("Content/optionsButtonChosen");
             Texture2D exitButtonTexture = Content.Load<Texture2D>("Content/exitButton");
             Texture2D exitButtonChosenTexture = Content.Load<Texture2D>("Content/exitButtonChosen");
-            Texture2D gravityUpsideDownTexture = Content.Load<Texture2D>("Content/gravityUpsideDown");
-            Texture2D gravityRightsideUpTexture = Content.Load<Texture2D>("Content/gravityRightsideUp");
+            //Texture2D gravityUpsideDownTexture = Content.Load<Texture2D>("Content/gravityUpsideDown");
+            //Texture2D gravityRightsideUpTexture = Content.Load<Texture2D>("Content/gravityRightsideUp");
             
             resume = new Sprite(1f, resumeButtonTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 300), SpriteType.BUTTON);
             resumeChosen = new Sprite(1f, resumeButtonChosenTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 300), SpriteType.BUTTON);
@@ -165,6 +165,7 @@ namespace Lab2
                     //gravityRightsideUp.Update(gameTime, jumpEffect);
 
                     isCollision = false;
+                    //Michal do przeniesienia gdzie indziej
                     //if (dragonBallHero.boundingBox.Intersects(dragonBallHero1.boundingBox) && inputManger.action)
                     //{
                     //    isCollision = true;
