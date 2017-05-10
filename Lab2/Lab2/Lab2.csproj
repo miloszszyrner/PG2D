@@ -85,9 +85,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\chodz.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Content\chodz.png" />
     <Content Include="Content\content.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -98,9 +96,7 @@
     <Content Include="Content\exitButtonChosen.png" />
     <Content Include="Content\gravityRightsideUp.png" />
     <Content Include="Content\gravityUpsideDown.png" />
-    <Content Include="Content\mario.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Content\mario.png" />
     <Content Include="Content\optionsButton.png" />
     <Content Include="Content\optionsButtonChosen.png" />
     <Content Include="Content\resumeButton.png" />

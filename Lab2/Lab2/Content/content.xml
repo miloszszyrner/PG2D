@@ -4,7 +4,7 @@
 		<LevelId>1</LevelId>
         <SpriteCount>4</SpriteCount>
         <Sprite>
-			<Name>Content/chodz.png</Name>
+			<Name>Content/chodz</Name>
             <SpriteType>SpriteType.PLAYER</SpriteType>
             <Position>
                 <X>150</X>
@@ -17,7 +17,7 @@
             </Animation>
         </Sprite>
         <Sprite>
-		<Name>Content/mario.png</Name>
+		<Name>Content/mario</Name>
             <SpriteType>SpriteType.BOX</SpriteType>
             <Position>
                 <X>150</X>
@@ -25,7 +25,7 @@
             </Position>            
         </Sprite>
         <Sprite>
-			<Name>Content/gravityRightsideUp.png</Name>
+			<Name>Content/gravityRightsideUp</Name>
             <SpriteType>SpriteType.GRAVITY</SpriteType>
             <Position>
                 <X>150</X>
@@ -33,12 +33,16 @@
             </Position>            
         </Sprite>
         <Sprite>\
-			<Name>Content/gravityUpsideDown.png</Name>
+			<Name>Content/gravityUpsideDown</Name>
             <SpriteType>SpriteType.GRAVITY</SpriteType>
             <Position>
                 <X>150</X>
                 <Y>800</Y>
             </Position>            
         </Sprite> 
+		<TileMap>
+			<FileName>Content/level_1.tmx</FileName>
+			<FileSet>Content/spritesheet</FileSet>
+		</TileMap>
     </Level>     
 </Game>

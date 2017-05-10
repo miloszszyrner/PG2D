@@ -26,7 +26,6 @@ namespace ToA
         public int tilewidth { get; }
         int tileheight;
         String tileSetFileName;
-
         ContentManager content;
 
         public TileMap(String tileMapFileName, String tileSetFileName, ContentManager content)
