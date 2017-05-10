@@ -1,6 +1,7 @@
 ﻿using Lab2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.Screens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,17 +24,23 @@ namespace ToA
         }
         public void Update(GameTime gameTime, Sprite hero, TileMap tileMap)
         {
-            centre = new Vector2(hero.position.X + (hero.Size.Width / 2) - 900, hero.position.Y / 2);
+            centre = new Vector2(hero.position.X - (view.Bounds.Width / 2), hero.position.Y / 2);
             float cameraX = centre.X;
-            float cameraWidth = view.Width;
+            float cameraY = centre.Y;
 
             float worldWidth = tileMap.mapWidth * tileMap.tilewidth;
+            float worldHeight = tileMap.mapHeight * tileMap.tilewidth;
+
             if (cameraX < 0)
                 cameraX = 0;
-            else if (cameraX + cameraWidth > worldWidth)
-                cameraX = worldWidth - cameraWidth;
+            else if (cameraX + view.Width > worldWidth)
+                cameraX = worldWidth - view.Width;
 
-            transform = Matrix.CreateTranslation(new Vector3(-cameraX, -centre.Y, 0)) * Matrix.CreateScale(new Vector3(Zoom, Zoom, 1));
+            if (cameraY < 0)
+                cameraY = 0;
+            else if (cameraY + view.Height > worldHeight)
+                cameraY = worldHeight - view.Height;
+            transform = Matrix.CreateTranslation(new Vector3(-cameraX, -cameraY, 0)) * Matrix.CreateScale(new Vector3(Zoom, Zoom, 1));
 
         }
         public void AdjustZoom(float amount)
