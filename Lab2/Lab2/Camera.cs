@@ -40,6 +40,7 @@ namespace ToA
                 cameraY = 0;
             else if (cameraY + view.Height > worldHeight)
                 cameraY = worldHeight - view.Height;
+
             transform = Matrix.CreateTranslation(new Vector3(-cameraX, -cameraY, 0)) * Matrix.CreateScale(new Vector3(Zoom, Zoom, 1));
 
         }
