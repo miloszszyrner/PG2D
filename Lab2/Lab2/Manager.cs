@@ -19,8 +19,8 @@ namespace ToA
         private List<Sprite> spriteList;
         private TileMap tileMap;
         private XElement xDoc;
-        private Song song;
-        private SoundEffect soundEffect;
+        private Song backgroundMusic;
+        private SoundEffect jumpEffect;
         private int spriteCountPerLevel;
         private int levelId;
         private Camera camera;
@@ -86,17 +86,22 @@ namespace ToA
                     tileMapFileName = (from animation in level.Descendants("TileMap") select animation.Element("FileName")).First().Value;
                     tileSetFileName = (from animation in level.Descendants("TileMap") select animation.Element("FileSet")).First().Value;
                     tileMap = new TileMap(tileMapFileName, tileSetFileName, content);
+                    jumpEffect = content.Load<SoundEffect>(level.Element("SoundEffect").Value);
+                    backgroundMusic = content.Load<Song>(level.Element("Song").Value);
 
+                    MediaPlayer.Play(backgroundMusic);
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.Volume = 0.1f;
                 }
                 
             }
         }
 
-        public void Update(GameTime gameTime, SoundEffect effect)
+        public void Update(GameTime gameTime)
         {
             foreach (Sprite sprite in spriteList)
             {
-                sprite.Update(gameTime,effect);
+                sprite.Update(gameTime, jumpEffect);
                 if(sprite.spriteType == SpriteType.PLAYER)
                     camera.Update(gameTime, sprite, tileMap);
             }

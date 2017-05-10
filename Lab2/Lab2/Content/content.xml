@@ -44,5 +44,7 @@
 			<FileName>Content/level_1.tmx</FileName>
 			<FileSet>Content/spritesheet</FileSet>
 		</TileMap>
+		<SoundEffect>Content/jump</SoundEffect>
+		<Song>Content/backgroundMusic</Song>
     </Level>     
 </Game>

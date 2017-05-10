@@ -121,12 +121,7 @@ namespace Lab2
             //gravityRightsideUp = new Sprite(1f, gravityRightsideUpTexture, new Vector2(1400, 200), SpriteType.GRAVITY);
             font = Content.Load<SpriteFont>("Content/Tekst");
            
-            jumpEffect = Content.Load<SoundEffect>("Content/jump");
-            backgroundMusic = Content.Load<Song>("Content/backgroundMusic");
-		
-            MediaPlayer.Play(backgroundMusic);
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 0.1f;
+
         }
 
         /// <summary>
@@ -163,7 +158,7 @@ namespace Lab2
             switch (gameState)
             {
                 case GameState.GAMEPLAY:
-                    manager.Update(gameTime, jumpEffect);
+                    manager.Update(gameTime);
                     //dragonBallHero.Update(gameTime, jumpEffect);
                     //dragonBallHero1.Update(gameTime, jumpEffect);
                     //gravityUpsideDown.Update(gameTime, jumpEffect);
