@@ -26,7 +26,6 @@ namespace ToA
         String tileSetFileName;
         String tileMapFileName;
 
-
         public Camera Camera
         {
             get
@@ -66,8 +65,7 @@ namespace ToA
                         Texture2D textureToLoad = content.Load <Texture2D>(sprite.Element("Name").Value);
                         int positionX = Convert.ToInt32((from position in sprite.Descendants("Position") select position.Element("X")).First().Value);
                         int positionY = Convert.ToInt32((from position in sprite.Descendants("Position") select position.Element("Y")).First().Value);
-                        SpriteType type;
-                        Enum.TryParse(sprite.Element("SpriteType").Value, true, out type);
+                        SpriteType type = (SpriteType)Enum.Parse(typeof(SpriteType), sprite.Element("SpriteType").Value);
                         if (sprite.Descendants("Animation").Any())
                         {
                             int animationX = Convert.ToInt32((from animation in sprite.Descendants("Animation") select animation.Element("SizeX")).First().Value);
@@ -103,8 +101,6 @@ namespace ToA
                 if (sprite.spriteType == SpriteType.PLAYER)
                     camera.Update(gameTime, sprite, tileMap);
             }
-
-
         }
         public void Draw(SpriteBatch sp)
         {
@@ -112,8 +108,7 @@ namespace ToA
             foreach (Sprite sprite in spriteList)
             {
                 sprite.Draw(sp);
-            }
-            
+            }          
         }
     }
 }

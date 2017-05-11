@@ -4,42 +4,43 @@
 		<LevelId>1</LevelId>
         <SpriteCount>4</SpriteCount>
         <Sprite>
-			<Name>Content/chodz</Name>
-            <SpriteType>SpriteType.PLAYER</SpriteType>
-            <Position>
-                <X>150</X>
-                <Y>800</Y>
-            </Position>            
-            <Animation>
-                <SizeX>95</SizeX>
-                <SizeY>157</SizeY>
-                <Frames>13</Frames>
-            </Animation>
-        </Sprite>
-        <Sprite>
-		<Name>Content/mario</Name>
-            <SpriteType>SpriteType.BOX</SpriteType>
-            <Position>
-                <X>150</X>
-                <Y>800</Y>
-            </Position>            
-        </Sprite>
-        <Sprite>
 			<Name>Content/gravityRightsideUp</Name>
-            <SpriteType>SpriteType.GRAVITY</SpriteType>
+            <SpriteType>GRAVITY</SpriteType>
             <Position>
-                <X>150</X>
-                <Y>800</Y>
+                <X>1400</X>
+                <Y>200</Y>
             </Position>            
         </Sprite>
-        <Sprite>\
+        <Sprite>
 			<Name>Content/gravityUpsideDown</Name>
-            <SpriteType>SpriteType.GRAVITY</SpriteType>
+            <SpriteType>GRAVITY</SpriteType>
             <Position>
-                <X>150</X>
-                <Y>800</Y>
+              <X>300</X>
+                <Y>900</Y>
             </Position>            
-        </Sprite> 
+        </Sprite>
+
+      <Sprite>
+        <Name>Content/mario</Name>
+        <SpriteType>BOX</SpriteType>
+        <Position>
+          <X>150</X>
+          <Y>800</Y>
+        </Position>
+      </Sprite>
+    <Sprite>
+      <Name>Content/chodz</Name>
+      <SpriteType>PLAYER</SpriteType>
+      <Position>
+        <X>150</X>
+        <Y>800</Y>
+      </Position>
+      <Animation>
+        <SizeX>95</SizeX>
+        <SizeY>157</SizeY>
+        <Frames>13</Frames>
+      </Animation>
+      </Sprite>
 		<TileMap>
 			<FileName>Content/level_1.tmx</FileName>
 			<FileSet>Content/spritesheet</FileSet>
