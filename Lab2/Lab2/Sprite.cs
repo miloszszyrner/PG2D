@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToA;
+using System.Threading;
 
 namespace Lab2
 {
@@ -211,9 +212,17 @@ namespace Lab2
                     {
                         position = new Vector2(150, 800);
                     }
-                    if ((Game1.Instance.Manager.TileMap.getTileAt(i, j).property == TileProperty.STAIRS_PART1 || Game1.Instance.Manager.TileMap.getTileAt(i, j).property == TileProperty.STAIRS_PART2 || Game1.Instance.Manager.TileMap.getTileAt(i, j).property == TileProperty.STAIRS_PART3 || Game1.Instance.Manager.TileMap.getTileAt(i, j).property == TileProperty.STAIRS_PART4) && boundingBox.Intersects(Game1.Instance.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //przejscie do kolejnego poziomu
+                    if (boundingBox.Intersects(Game1.Instance.Manager.TileMap.getNextLevelBoundingRectangle))  //przejscie do kolejnego poziomu
                     {
-                        Game1.Instance.Manager.loadLevel(Game1.Instance.levelNumber++);
+                        Game1.Instance.isFinishing = true;
+                        if (Game1.Instance.InputManager.enter)
+                        {
+                            Game1.Instance.Manager.loadLevel(Game1.Instance.levelNumber++);
+                            Game1.Instance.isFinishing = false;
+                        }
+                    } else
+                    {
+                        Game1.Instance.isFinishing = false;
                     }
 
 

@@ -60,7 +60,8 @@ namespace Lab2
             }
         }
 
-        private SpriteFont font;
+        //private SpriteFont font;
+        public bool isFinishing = false;
         private bool isCollision = false;
 
         public Game1()
@@ -123,7 +124,7 @@ namespace Lab2
 
             //gravityUpsideDown = new Sprite(1f, gravityUpsideDownTexture, new Vector2(300,900), SpriteType.GRAVITY);
             //gravityRightsideUp = new Sprite(1f, gravityRightsideUpTexture, new Vector2(1400, 200), SpriteType.GRAVITY);
-            font = Content.Load<SpriteFont>("Content/Tekst");
+            //font = Content.Load<SpriteFont>("Content/Tekst");
             manager = new LevelManager("Content/content.xml", GraphicsDevice, Content);
 
         }
@@ -244,7 +245,7 @@ namespace Lab2
                     GraphicsDevice.Clear(Color.CornflowerBlue);
                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, manager.Camera.transform);
                    // tileMap.Draw(spriteBatch);
-                    spriteBatch.DrawString(font, (isCollision == true) ? "We stick together" : "We are apart", new Vector2(100, 20), Color.Black);
+                   
                     //gravityUpsideDown.Draw(spriteBatch);
                     //gravityRightsideUp.Draw(spriteBatch);
                     //dragonBallHero1.Draw(spriteBatch);

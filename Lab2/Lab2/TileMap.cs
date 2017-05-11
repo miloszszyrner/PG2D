@@ -27,6 +27,14 @@ namespace ToA
         int tileheight;
         String tileSetFileName;
         ContentManager content;
+        private Rectangle nextLevelBoundingRectangle;
+        public Rectangle getNextLevelBoundingRectangle
+        {
+            get
+            {
+                return nextLevelBoundingRectangle;
+            }
+        }
 
         public TileMap(String tileMapFileName, String tileSetFileName, ContentManager content)
         {
@@ -93,9 +101,10 @@ namespace ToA
 						break;
 					case "Foreground":
 						getTileSet(layer.Element("data").Value.Split(','), foreground);
-						break;
+                        break;
 				}
 			}
+            createNextLevelBoundingBox();
         }
 
         private void getTileSet(string[] splitArray, Tile[,] tileSet)
@@ -136,6 +145,25 @@ namespace ToA
 					);
 				}
             }
+        }
+        private void createNextLevelBoundingBox()
+        {
+            int[] positionX = new int[4];
+            int[] positionY = new int[4];
+            int i = 0;
+            for (int x = 0; x < mapWidth; x++)
+            {
+                for (int y = 0; y < mapHeight; y++)
+                {
+                    if(foreground[x,y].property == TileProperty.STAIRS_PART1 || foreground[x, y].property == TileProperty.STAIRS_PART2 || foreground[x, y].property == TileProperty.STAIRS_PART3 || foreground[x, y].property == TileProperty.STAIRS_PART4)
+                    {
+                        positionX[i] = foreground[x, y].boundingRectangle.X;
+                        positionY[i] = foreground[x, y].boundingRectangle.Y;
+                        i++;
+                    }
+                }
+            }
+            nextLevelBoundingRectangle =  new Rectangle(positionX.Min(), positionY.Min(), 2 * tilewidth, 2 * tileheight);
         }
         public Tile getTileAt(int x, int y)
         {

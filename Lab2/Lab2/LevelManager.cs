@@ -23,6 +23,7 @@ namespace ToA
         private SoundEffect jumpEffect;
         private int spriteCountPerLevel;
         private Camera camera;
+        private SpriteFont font;
         String tileSetFileName;
         String tileMapFileName;
 
@@ -52,7 +53,8 @@ namespace ToA
 
         public void loadLevel(int levelId)
         {
-            content.Unload();
+            Game1.Instance.InputManager.enter = false;
+            content.Unload(); 
             IEnumerable<XElement> game = xDoc.Elements();
             foreach (var level in game)
             {
@@ -84,7 +86,7 @@ namespace ToA
                     tileMap = new TileMap(tileMapFileName, tileSetFileName, content);
                     jumpEffect = content.Load<SoundEffect>(level.Element("SoundEffect").Value);
                     backgroundMusic = content.Load<Song>(level.Element("Song").Value);
-
+                    font = content.Load<SpriteFont>("Content/Tekst");
                     MediaPlayer.Play(backgroundMusic);
                     MediaPlayer.IsRepeating = true;
                     MediaPlayer.Volume = 0.1f;
@@ -106,9 +108,10 @@ namespace ToA
         {
             tileMap.Draw(sp);
             foreach (Sprite sprite in spriteList)
-            {
+            {   
                 sprite.Draw(sp);
-            }          
+            }
+            sp.DrawString(font, (Game1.Instance.isFinishing == true) ? "Press Enter to reach next level" : "", tileMap.getNextLevelBoundingRectangle.Center.ToVector2(), Color.White);
         }
     }
 }
