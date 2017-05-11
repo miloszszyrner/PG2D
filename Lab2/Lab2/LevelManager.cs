@@ -48,8 +48,6 @@ namespace ToA
             xDoc = XElement.Load(filename);
             this.graphicsDevice = graphicsDevice;
             this.content = content;
-           
-            camera = new Camera(graphicsDevice.Viewport);
             loadLevel(Game1.Instance.levelNumber);
         }
 
@@ -83,8 +81,8 @@ namespace ToA
                         }
                     }
 
-                    tileMapFileName = (from animation in level.Descendants("TileMap") select animation.Element("FileName")).First().Value;
-                    tileSetFileName = (from animation in level.Descendants("TileMap") select animation.Element("FileSet")).First().Value;
+                    tileMapFileName = (from tile in level.Descendants("TileMap") select tile.Element("FileName")).First().Value;
+                    tileSetFileName = (from tile in level.Descendants("TileMap") select tile.Element("FileSet")).First().Value;
                     tileMap = new TileMap(tileMapFileName, tileSetFileName, content);
                     jumpEffect = content.Load<SoundEffect>(level.Element("SoundEffect").Value);
                     backgroundMusic = content.Load<Song>(level.Element("Song").Value);
@@ -93,20 +91,20 @@ namespace ToA
                     MediaPlayer.IsRepeating = true;
                     MediaPlayer.Volume = 0.1f;
                 }
-                
             }
+            camera = new Camera(graphicsDevice.Viewport);
         }
 
         public void Update(GameTime gameTime)
         {
             foreach (Sprite sprite in spriteList)
-            {
+            {  
                 sprite.Update(gameTime, jumpEffect);
-                if(sprite.spriteType == SpriteType.PLAYER)
+                if (sprite.spriteType == SpriteType.PLAYER)
                     camera.Update(gameTime, sprite, tileMap);
             }
 
-            
+
         }
         public void Draw(SpriteBatch sp)
         {

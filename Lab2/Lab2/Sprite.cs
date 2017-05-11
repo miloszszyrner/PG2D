@@ -215,7 +215,7 @@ namespace Lab2
                     {
                         Game1.Instance.Manager.loadLevel(Game1.Instance.levelNumber++);
                     }
-                 
+
 
                 }
         }

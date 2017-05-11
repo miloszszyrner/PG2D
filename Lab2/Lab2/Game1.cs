@@ -67,6 +67,7 @@ namespace Lab2
         {
             graphics = new GraphicsDeviceManager(this);
             inputManger = new InputManager();
+            
         }
 
         /// <summary>
@@ -77,12 +78,13 @@ namespace Lab2
         /// </summary>
         protected override void Initialize()
         {
-            manager = new LevelManager("Content/content.xml", GraphicsDevice, Content);
+            
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             //camera = new Camera(GraphicsDevice.Viewport);
+            
             base.Initialize();
         }
 
@@ -94,13 +96,15 @@ namespace Lab2
         /// </summary>
         protected override void LoadContent()
         {
+          
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            
             //Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/chodz.png"));
             //Texture2D sample2 = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
 
             //dragonBallHero1 = new Sprite(1f,sample2, new Vector2(150, 800), SpriteType.BOX);
             //dragonBallHero = new Sprite(1f,sample, new Vector2(150, 800), SpriteType.PLAYER);
-            
+
             Texture2D resumeButtonTexture = Content.Load<Texture2D>("Content/resumeButton");
             Texture2D resumeButtonChosenTexture = Content.Load<Texture2D>("Content/resumeButtonChosen");
             Texture2D optionsButtonTexture = Content.Load<Texture2D>("Content/optionsButton");
@@ -120,7 +124,7 @@ namespace Lab2
             //gravityUpsideDown = new Sprite(1f, gravityUpsideDownTexture, new Vector2(300,900), SpriteType.GRAVITY);
             //gravityRightsideUp = new Sprite(1f, gravityRightsideUpTexture, new Vector2(1400, 200), SpriteType.GRAVITY);
             font = Content.Load<SpriteFont>("Content/Tekst");
-           
+            manager = new LevelManager("Content/content.xml", GraphicsDevice, Content);
 
         }
 
@@ -223,7 +227,6 @@ namespace Lab2
                     }
                     break;
             }
-
 
             //camera.Update(gameTime, dragonBallHero,tileMap);
             base.Update(gameTime);
