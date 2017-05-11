@@ -217,7 +217,7 @@ namespace Lab2
                         Game1.Instance.isFinishing = true;
                         if (Game1.Instance.InputManager.enter)
                         {
-                            Game1.Instance.Manager.loadLevel(Game1.Instance.levelNumber++);
+                            Game1.Instance.Manager.loadLevel(++Game1.Instance.levelNumber);
                             Game1.Instance.isFinishing = false;
                         }
                     } else
