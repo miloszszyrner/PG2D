@@ -108,9 +108,9 @@ namespace Lab2
             spriteBatch = new SpriteBatch(GraphicsDevice);
             
             //Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/chodz.png"));
-            //Texture2D sample2 = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
+            Texture2D sample2 = Content.Load<Texture2D>("Content/mario");
             
-            //dragonBallHero1 = new Sprite(1f,sample2, new Vector2(150, 800), SpriteType.BOX);
+            box = new Sprite(1f,sample2, new Vector2(150, 800), SpriteType.BOX);
             //dragonBallHero = new Sprite(1f,sample, new Vector2(150, 800), SpriteType.PLAYER);
 
             Texture2D resumeButtonTexture = Content.Load<Texture2D>("Content/resumeButton");
@@ -178,25 +178,20 @@ namespace Lab2
 
                     isCollision = false;
                     //Michal do przeniesienia gdzie indziej
-                    //if (dragonBallHero.boundingBox.Intersects(dragonBallHero1.boundingBox) && inputManger.action)
-                    //{
-                    //    isCollision = true;
-                    //    dragonBallHero1.setPosition(dragonBallHero.position.X, dragonBallHero.position.Y);
-                    //}
 
-                    //if (dragonBallHero.boundingBox.Intersects(gravityUpsideDown.boundingBox) && inputManger.action)
-                    //{
-                    //    dragonBallHero.gravity = false;
-                    //}
-                    //if (dragonBallHero.boundingBox.Intersects(gravityRightsideUp.boundingBox) && inputManger.action)
-                    //{
-                    //    dragonBallHero.gravity = true;
-                    //}
-                    //if ((dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
-                    //{
-                    //    isCollision = true;
-                    //    dragonBallHero1.setPosition(dragonBallHero.position.X, dragonBallHero.position.Y);
-                    //}
+                    /*if (dragonBallHero.boundingBox.Intersects(gravityUpsideDown.boundingBox) && inputManger.action)
+                    {
+                        dragonBallHero.gravity = false;
+                    }
+                    if (dragonBallHero.boundingBox.Intersects(gravityRightsideUp.boundingBox) && inputManger.action)
+                    {
+                        dragonBallHero.gravity = true;
+                    }
+                    if ((dragonBallHero.boundingBox.Contains(box.boundingBox) || dragonBallHero.boundingSphere.Contains(box.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
+                    {
+                        isCollision = true;
+                        dragonBallHero.setPosition(dragonBallHero.position.X, dragonBallHero.position.Y);
+                    }*/
                     break;
                 case GameState.PAUSEMENU:
                     resume.Update(gameTime, jumpEffect);
@@ -291,7 +286,7 @@ namespace Lab2
                    
                     //gravityUpsideDown.Draw(spriteBatch);
                     //gravityRightsideUp.Draw(spriteBatch);
-                    //dragonBallHero1.Draw(spriteBatch);
+                    //box.Draw(spriteBatch);
                     //dragonBallHero.Draw(spriteBatch);
                     manager.Draw(spriteBatch);
                     spriteBatch.End();
