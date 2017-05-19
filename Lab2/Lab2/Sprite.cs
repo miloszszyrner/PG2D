@@ -110,6 +110,7 @@ namespace Lab2
 
             if (spriteType == SpriteType.BOX)
             {
+      
                 checkGravitation();
                 sourceRectangle = new Rectangle(0, 0, animationX, animationY);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, animationX, animationY);
