@@ -60,7 +60,7 @@ namespace Lab2
             }
         }
 
-        //private SpriteFont font;
+        private SpriteFont font;
         public bool isFinishing = false;
         private bool isCollision = false;
 
@@ -82,7 +82,7 @@ namespace Lab2
             
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             graphics.ApplyChanges();
             //camera = new Camera(GraphicsDevice.Viewport);
             
@@ -99,13 +99,13 @@ namespace Lab2
         {
           
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
             //Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/chodz.png"));
             //Texture2D sample2 = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/mario.png"));
 
             //dragonBallHero1 = new Sprite(1f,sample2, new Vector2(150, 800), SpriteType.BOX);
             //dragonBallHero = new Sprite(1f,sample, new Vector2(150, 800), SpriteType.PLAYER);
-
+            manager = new LevelManager("Content/content.xml", GraphicsDevice, Content);
             Texture2D resumeButtonTexture = Content.Load<Texture2D>("Content/resumeButton");
             Texture2D resumeButtonChosenTexture = Content.Load<Texture2D>("Content/resumeButtonChosen");
             Texture2D optionsButtonTexture = Content.Load<Texture2D>("Content/optionsButton");
@@ -124,8 +124,8 @@ namespace Lab2
 
             //gravityUpsideDown = new Sprite(1f, gravityUpsideDownTexture, new Vector2(300,900), SpriteType.GRAVITY);
             //gravityRightsideUp = new Sprite(1f, gravityRightsideUpTexture, new Vector2(1400, 200), SpriteType.GRAVITY);
-            //font = Content.Load<SpriteFont>("Content/Tekst");
-            manager = new LevelManager("Content/content.xml", GraphicsDevice, Content);
+            font = Content.Load<SpriteFont>("Content/Tekst");
+           
 
         }
 
@@ -244,8 +244,8 @@ namespace Lab2
                 case GameState.GAMEPLAY:
                     GraphicsDevice.Clear(Color.CornflowerBlue);
                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, manager.Camera.transform);
-                   // tileMap.Draw(spriteBatch);
-                   
+                    // tileMap.Draw(spriteBatch);
+                    
                     //gravityUpsideDown.Draw(spriteBatch);
                     //gravityRightsideUp.Draw(spriteBatch);
                     //dragonBallHero1.Draw(spriteBatch);
@@ -255,7 +255,7 @@ namespace Lab2
                     break;
                 case GameState.PAUSEMENU:
                     GraphicsDevice.Clear(Color.CornflowerBlue);
-                    spriteBatch.Begin();
+                    spriteBatch.Begin(SpriteSortMode.Immediate);
 
                     resume.Draw(spriteBatch);
                     if(pauseMenuChosen == PauseMenuChosen.RESUME)

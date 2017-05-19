@@ -24,6 +24,7 @@ namespace ToA
         private int spriteCountPerLevel;
         private Camera camera;
         private SpriteFont font;
+        private SpriteBatch sp;
         String tileSetFileName;
         String tileMapFileName;
 
@@ -54,17 +55,18 @@ namespace ToA
         public void loadLevel(int levelId)
         {
             Game1.Instance.InputManager.enter = false;
-            content.Unload(); 
+            //if (spriteList != null)
+            //    unloadTextures();
             IEnumerable<XElement> game = xDoc.Elements();
             foreach (var level in game)
             {
-                if(Convert.ToInt32(level.Element("LevelId").Value) == levelId)
+                if (Convert.ToInt32(level.Element("LevelId").Value) == levelId)
                 {
                     spriteCountPerLevel = Convert.ToInt32(level.Element("SpriteCount").Value);
                     spriteList = new List<Sprite>(spriteCountPerLevel);
-                    foreach(var sprite in level.Descendants("Sprite"))
+                    foreach (var sprite in level.Descendants("Sprite"))
                     {
-                        Texture2D textureToLoad = content.Load <Texture2D>(sprite.Element("Name").Value);
+                        Texture2D textureToLoad = content.Load<Texture2D>(sprite.Element("Name").Value);
                         int positionX = Convert.ToInt32((from position in sprite.Descendants("Position") select position.Element("X")).First().Value);
                         int positionY = Convert.ToInt32((from position in sprite.Descendants("Position") select position.Element("Y")).First().Value);
                         SpriteType type = (SpriteType)Enum.Parse(typeof(SpriteType), sprite.Element("SpriteType").Value);
@@ -73,7 +75,7 @@ namespace ToA
                             int animationX = Convert.ToInt32((from animation in sprite.Descendants("Animation") select animation.Element("SizeX")).First().Value);
                             int animationY = Convert.ToInt32((from animation in sprite.Descendants("Animation") select animation.Element("SizeY")).First().Value);
                             int frames = Convert.ToInt32((from animation in sprite.Descendants("Animation") select animation.Element("Frames")).First().Value);
-                            spriteList.Add(new Sprite(animationX, animationY, frames,1f, textureToLoad, new Vector2(positionX, positionY), type));
+                            spriteList.Add(new Sprite(animationX, animationY, frames, 1f, textureToLoad, new Vector2(positionX, positionY), type));
                         }
                         else
                         {
@@ -94,7 +96,17 @@ namespace ToA
             }
             camera = new Camera(graphicsDevice.Viewport);
         }
-
+        private void unloadTextures()
+        {
+            foreach(Sprite sprite in spriteList)
+                sprite.texture.Dispose();
+            foreach (Tile tile in TileMap.background)
+                tile.texture.Dispose();
+            foreach (Tile tile in TileMap.foreground)
+                tile.texture.Dispose();
+            foreach (Tile tile in TileMap.decorations)
+                tile.texture.Dispose();
+        }
         public void Update(GameTime gameTime)
         {
             foreach (Sprite sprite in spriteList)
@@ -106,6 +118,7 @@ namespace ToA
         }
         public void Draw(SpriteBatch sp)
         {
+            this.sp = sp;
             tileMap.Draw(sp);
             foreach (Sprite sprite in spriteList)
             {   

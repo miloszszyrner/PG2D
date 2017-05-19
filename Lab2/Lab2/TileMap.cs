@@ -14,10 +14,10 @@ namespace ToA
 {
     public class TileMap
     {
-        Tile[,] background;
-		Tile[,] decorations;
-		Tile[,] foreground;
-		XDocument xDoc;
+        public Tile[,] background { get; }
+		public Tile[,] decorations { get; }
+        public Tile[,] foreground { get; }
+        XDocument xDoc;
         public Dictionary<int, TileProperty> tilePropertyType;
         public int mapWidth { get; }
         public int mapHeight { get; }
