@@ -225,7 +225,29 @@ namespace Lab2
                     {
                         Game1.Instance.isFinishing = false;
                     }
+                    if(spriteType == SpriteType.PLAYER)
+                    {
+                        if (boundingBox.Intersects(dragonBallHero1.boundingBox) && Game1.Instance.InputManager.action)
+                        {
+                            isCollision = true;
+                            dragonBallHero1.setPosition(position.X, position.Y);
+                        }
 
+                        if (boundingBox.Intersects(gravityUpsideDown.boundingBox) && Game1.Instance.InputManager.action)
+                        {
+                            gravity = false;
+                        }
+                        if (boundingBox.Intersects(gravityRightsideUp.boundingBox) && Game1.Instance.InputManager.action)
+                        {
+                            gravity = true;
+                        }
+                        if ((boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
+                        {
+                            isCollision = true;
+                            dragonBallHero1.setPosition(position.X, position.Y);
+                        }
+                    }
+                    
 
                 }
         }
