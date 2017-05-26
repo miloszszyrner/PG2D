@@ -8,11 +8,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Xml.Linq;
 
 namespace ToA
 {
-    public class LevelManager
+    [Serializable()]
+    public class LevelManager : ISerializable
     {
         private GraphicsDevice graphicsDevice;
         private ContentManager content;
@@ -125,6 +127,11 @@ namespace ToA
                 sprite.Draw(sp);
             }
             sp.DrawString(font, (Game1.Instance.isFinishing == true) ? "Press Enter to reach next level" : "", tileMap.getNextLevelBoundingRectangle.Center.ToVector2(), Color.White);
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            throw new NotImplementedException();
         }
     }
 }
