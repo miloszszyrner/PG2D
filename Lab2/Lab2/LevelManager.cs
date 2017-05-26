@@ -12,7 +12,8 @@ using System.Xml.Linq;
 
 namespace ToA
 {
-    public class LevelManager
+    [Serializable()]
+    public class LevelManager : ISerializable
     {
         private GraphicsDevice graphicsDevice;
         private ContentManager content;
