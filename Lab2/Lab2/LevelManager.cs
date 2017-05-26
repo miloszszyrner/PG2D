@@ -48,13 +48,14 @@ namespace ToA
             xDoc = XElement.Load(filename);
             this.graphicsDevice = graphicsDevice;
             this.content = content;
+            Console.WriteLine("konstruktor");
             loadLevel(Game1.Instance.levelNumber);
         }
 
         public void loadLevel(int levelId)
         {
+            Console.WriteLine("loadLevel");
             Game1.Instance.InputManager.enter = false;
-            content.Unload(); 
             IEnumerable<XElement> game = xDoc.Elements();
             foreach (var level in game)
             {
@@ -98,7 +99,8 @@ namespace ToA
         public void Update(GameTime gameTime)
         {
             foreach (Sprite sprite in spriteList)
-            {  
+            {
+                Console.WriteLine("Update");
                 sprite.Update(gameTime, jumpEffect);
                 if (sprite.spriteType == SpriteType.PLAYER)
                     camera.Update(gameTime, sprite, tileMap);

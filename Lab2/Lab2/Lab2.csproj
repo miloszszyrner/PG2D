@@ -57,6 +57,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
+    <Compile Include="DisplayManger.cs" />
     <Compile Include="LevelManager.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameState.cs" />
