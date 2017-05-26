@@ -12,6 +12,7 @@ namespace ToA
         TEST,
         BOX,
         BUTTON,
-        GRAVITY
+        GRAVITY_UP,
+        GRAVITY_DOWN
     }
 }

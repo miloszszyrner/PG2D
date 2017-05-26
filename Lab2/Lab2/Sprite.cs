@@ -103,6 +103,7 @@ namespace Lab2
             
             if (spriteType == SpriteType.PLAYER)
             {
+                checkPlayerLevelToolsCollision();
                 checkGravitation();
                 movement(effect, pGameTime);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, animationX, animationY);
@@ -110,7 +111,6 @@ namespace Lab2
 
             if (spriteType == SpriteType.BOX)
             {
-      
                 checkGravitation();
                 sourceRectangle = new Rectangle(0, 0, animationX, animationY);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, animationX, animationY);
@@ -120,7 +120,7 @@ namespace Lab2
                 sourceRectangle = new Rectangle(0, 0, 200, 100);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 200, 100);
             }
-            if (spriteType == SpriteType.GRAVITY)
+            if (spriteType == SpriteType.GRAVITY_UP || spriteType == SpriteType.GRAVITY_DOWN)
             {
                 sourceRectangle = new Rectangle(0, 0, 100, 100);
                 destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 100, 100);
@@ -225,33 +225,42 @@ namespace Lab2
                     {
                         Game1.Instance.isFinishing = false;
                     }
-                    if(spriteType == SpriteType.PLAYER)
-                    {
-                        if (boundingBox.Intersects(dragonBallHero1.boundingBox) && Game1.Instance.InputManager.action)
-                        {
-                            isCollision = true;
-                            dragonBallHero1.setPosition(position.X, position.Y);
-                        }
-
-                        if (boundingBox.Intersects(gravityUpsideDown.boundingBox) && Game1.Instance.InputManager.action)
-                        {
-                            gravity = false;
-                        }
-                        if (boundingBox.Intersects(gravityRightsideUp.boundingBox) && Game1.Instance.InputManager.action)
-                        {
-                            gravity = true;
-                        }
-                        if ((boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects) && inputManger.action)
-                        {
-                            isCollision = true;
-                            dragonBallHero1.setPosition(position.X, position.Y);
-                        }
-                    }
-                    
-
+                   
                 }
         }
+        private void checkPlayerLevelToolsCollision()
+        {
+            foreach (Sprite sprite in Game1.Instance.Manager.spriteList)
+            {
+                if (sprite.spriteType == SpriteType.GRAVITY_DOWN)
+                {
+                    if (boundingBox.Intersects(sprite.boundingBox) && Game1.Instance.InputManager.action)
+                    {
+                        gravity = false;
+                    }
+                }
+                if (sprite.spriteType == SpriteType.GRAVITY_UP)
+                {
+                    if (boundingBox.Intersects(sprite.boundingBox) && Game1.Instance.InputManager.action)
+                    {
+                        gravity = true;
+                    }
+                }
+                if (sprite.spriteType == SpriteType.BOX)
+                {
+                    sprite.gravity = gravity;
+                    if (boundingBox.Intersects(sprite.boundingBox) && Game1.Instance.InputManager.action)
+                    {
+                        sprite.setPosition(position.X, position.Y);
+                    }
+                    if ((boundingBox.Contains(sprite.boundingBox) || boundingSphere.Contains(sprite.boundingSphere) == ContainmentType.Intersects) && Game1.Instance.InputManager.action)
+                    {
+                        sprite.setPosition(position.X, position.Y);
+                    }
+                }
 
+            }
+        }
         private void movement(SoundEffect effect, GameTime pGameTime)
         {
             if (Game1.Instance.InputManager.changeGravity)
@@ -321,6 +330,7 @@ namespace Lab2
         }
         private void checkGravitation()
         {
+            
             if (hasJumped && gravity)
             {
                 float i = 1;

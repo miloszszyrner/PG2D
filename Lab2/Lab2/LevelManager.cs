@@ -16,7 +16,7 @@ namespace ToA
     {
         private GraphicsDevice graphicsDevice;
         private ContentManager content;
-        private List<Sprite> spriteList;
+        public List<Sprite> spriteList;
         private TileMap tileMap;
         private XElement xDoc;
         private Song backgroundMusic;
