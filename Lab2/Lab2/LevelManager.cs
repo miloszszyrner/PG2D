@@ -77,11 +77,31 @@ namespace ToA
                             int animationX = Convert.ToInt32((from animation in sprite.Descendants("Animation") select animation.Element("SizeX")).First().Value);
                             int animationY = Convert.ToInt32((from animation in sprite.Descendants("Animation") select animation.Element("SizeY")).First().Value);
                             int frames = Convert.ToInt32((from animation in sprite.Descendants("Animation") select animation.Element("Frames")).First().Value);
-                            spriteList.Add(new Sprite(animationX, animationY, frames, 1f, textureToLoad, new Vector2(positionX, positionY), type));
+                            switch (type)
+                            {
+                                case SpriteType.PLAYER:
+                                    spriteList.Add(new Player(animationX, animationY, frames, 1f, textureToLoad, new Vector2(positionX, positionY), type));
+                                    break;
+                                case SpriteType.BOX:
+                                    spriteList.Add(new Player(animationX, animationY, frames, 1f, textureToLoad, new Vector2(positionX, positionY), type));
+                                    break;
+                            }
                         }
                         else
                         {
-                            spriteList.Add(new Sprite(1f, textureToLoad, new Vector2(positionX, positionY), type));
+                            switch (type)
+                            {
+                                case SpriteType.GRAVITY_UP:
+                                    spriteList.Add(new GravitySprite(1f, textureToLoad, new Vector2(positionX, positionY), type));
+                                    break;
+                                case SpriteType.GRAVITY_DOWN:
+                                    spriteList.Add(new GravitySprite(1f, textureToLoad, new Vector2(positionX, positionY), type));
+                                    break;
+                                case SpriteType.BUTTON:
+                                    spriteList.Add(new Button(1f, textureToLoad, new Vector2(positionX, positionY), type));
+                                    break;
+
+                            }
                         }
                     }
 
