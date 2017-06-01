@@ -19,7 +19,6 @@ namespace ToA
         private GameWindow Window;
         Sprite resume, resumeChosen, options, optionsChosen, exit, exitChosen;
         GameState gameState;
-        InputManager inputManger;
         LevelManager manager;
         PauseMenuChosen pauseMenuChosen = PauseMenuChosen.RESUME;
         SoundEffect jumpEffect;
@@ -39,7 +38,6 @@ namespace ToA
             this.graphicsDevice = graphicsDevice;
             this.content = content;
             this.Window = Window;
-            inputManger = new InputManager();
             manager = new LevelManager("Content/content.xml", graphicsDevice, content);
         }
 
@@ -62,17 +60,17 @@ namespace ToA
 
         public void Update(GameTime gameTime)
         {
-            inputManger.Update();
+            Game1.Instance.InputManager.Update();
 
-            if (inputManger.back)
+            if (Game1.Instance.InputManager.back)
             {
                 Game1.Instance.Quit();
             }
-            if (!inputManger.gameState)
+            if (!Game1.Instance.InputManager.gameState)
             {
                 gameState = GameState.PAUSEMENU;
             }
-            if (inputManger.gameState)
+            if (Game1.Instance.InputManager.gameState)
             {
                 gameState = GameState.GAMEPLAY;
             }
@@ -89,14 +87,14 @@ namespace ToA
                     optionsChosen.Update(gameTime, jumpEffect);
                     exit.Update(gameTime, jumpEffect);
                     exitChosen.Update(gameTime, jumpEffect);
-                    if (inputManger.menuUp)
+                    if (Game1.Instance.InputManager.menuUp)
                     {
                         if (pauseMenuChosen != PauseMenuChosen.RESUME)
                         {
                             pauseMenuChosen--;
                         }
                     }
-                    if (inputManger.menuDown)
+                    if (Game1.Instance.InputManager.menuDown)
                     {
                         if (pauseMenuChosen < PauseMenuChosen.EXIT)
                         {
@@ -105,14 +103,14 @@ namespace ToA
                     }
                     if (pauseMenuChosen == PauseMenuChosen.BACKGROUND_MUSIC_VOLUME)
                     {
-                        if (inputManger.menuLeft)
+                        if (Game1.Instance.InputManager.menuLeft)
                         {
                             if (musicVolume > 0)
                             {
                                 musicVolume -= 0.1f;
                             }
                         }
-                        if (inputManger.menuRight)
+                        if (Game1.Instance.InputManager.menuRight)
                         {
                             if (musicVolume < 1.0f)
                             {
@@ -123,14 +121,14 @@ namespace ToA
                     }
                     /*if (pauseMenuChosen == PauseMenuChosen.SOUNDEFFECTS_VOLUME)
                     {
-                        if (inputManger.menuLeft)
+                        if (Game1.Instance.InputManager.menuLeft)
                         {
                             if (dragonBallHero.soundEffectVolume > 0)
                             {
                                 dragonBallHero.soundEffectVolume -= 0.1f;
                             }
                         }
-                        if (inputManger.menuRight)
+                        if (Game1.Instance.InputManager.menuRight)
                         {
                             if (dragonBallHero.soundEffectVolume < 1.0f)
                             {
@@ -139,12 +137,12 @@ namespace ToA
                         }
                         SoundEffect.MasterVolume = dragonBallHero.soundEffectVolume;
                     }*/
-                    if (inputManger.menuChoose)
+                    if (Game1.Instance.InputManager.menuChoose)
                     {
                         switch (pauseMenuChosen)
                         {
                             case PauseMenuChosen.RESUME:
-                                inputManger.gameState = true;
+                                Game1.Instance.InputManager.gameState = true;
                                 break;
                             case PauseMenuChosen.OPTIONS:
                                 break;
