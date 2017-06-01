@@ -9,6 +9,7 @@ namespace ToA
     public enum SpriteType
     {
         PLAYER,
+        ENEMY,
         TEST,
         BOX,
         BUTTON,

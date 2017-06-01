@@ -18,8 +18,6 @@ namespace ToA
         public override void Update(GameTime pGameTime, SoundEffect effect)
         {
             base.Update(pGameTime, effect);
-            sourceRectangle = new Rectangle(0, 0, 200, 100);
-            destinationRectangle = new Rectangle((int)position.X, (int)position.Y, 200, 100);
         }
     }
 }

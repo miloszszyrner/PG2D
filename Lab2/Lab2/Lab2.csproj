@@ -59,11 +59,13 @@
     <Compile Include="Box.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Button.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="GravitySprite.cs" />
     <Compile Include="LevelManager.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="InputManager.cs" />
+    <Compile Include="MovingSprite.cs" />
     <Compile Include="PauseMenuChosen.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />

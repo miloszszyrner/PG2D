@@ -22,9 +22,9 @@
 
       <Sprite>
         <Name>Content/mario</Name>
-        <SpriteType>BOX</SpriteType>
+        <SpriteType>ENEMY</SpriteType>
         <Position>
-          <X>150</X>
+          <X>300</X>
           <Y>800</Y>
         </Position>
 		<Animation>
@@ -77,9 +77,14 @@
         <Name>Content/mario</Name>
         <SpriteType>BOX</SpriteType>
         <Position>
-          <X>150</X>
+          <X>300</X>
           <Y>800</Y>
         </Position>
+		<Animation>
+			<SizeX>100</SizeX>
+			<SizeY>100</SizeY>
+			<Frames>1</Frames>
+      </Animation>
       </Sprite>
     <Sprite>
       <Name>Content/chodz</Name>
