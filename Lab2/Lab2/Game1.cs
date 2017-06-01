@@ -166,7 +166,7 @@ namespace Lab2
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //inputManger.Update();
+            inputManger.Update();
 
             //if (inputManger.back) 
             //{

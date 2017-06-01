@@ -60,7 +60,7 @@ namespace ToA
 
         public void Update(GameTime gameTime)
         {
-            Game1.Instance.InputManager.Update();
+            //Game1.Instance.InputManager.Update();
 
             if (Game1.Instance.InputManager.back)
             {
