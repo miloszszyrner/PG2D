@@ -11,7 +11,7 @@ namespace ToA
     public class Tile
     {
         Vector2 position;
-        Texture2D texture;
+        public Texture2D texture { get; }
         Rectangle sourceRectangle;
         public Rectangle boundingRectangle { get; }
         public TileProperty property { get; }

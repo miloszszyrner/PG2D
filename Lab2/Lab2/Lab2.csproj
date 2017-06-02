@@ -56,11 +56,19 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Box.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="Button.cs" />
+    <Compile Include="Enemy.cs" />
+    <Compile Include="GravitySprite.cs" />
+    <Compile Include="DisplayManger.cs" />
+    <Compile Include="LevelManager.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="InputManager.cs" />
+    <Compile Include="MovingSprite.cs" />
     <Compile Include="PauseMenuChosen.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprite.cs" />
@@ -84,7 +92,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\chodz.png">
+    <Content Include="Content\chodz.png" />
+    <Content Include="Content\content.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\dragonball.png">
@@ -94,9 +103,7 @@
     <Content Include="Content\exitButtonChosen.png" />
     <Content Include="Content\gravityRightsideUp.png" />
     <Content Include="Content\gravityUpsideDown.png" />
-    <Content Include="Content\mario.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Content\mario.png" />
     <Content Include="Content\optionsButton.png" />
     <Content Include="Content\optionsButtonChosen.png" />
     <Content Include="Content\resumeButton.png" />
@@ -113,6 +120,10 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
     <None Include="Content\level_1.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Content\level_2.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Content\tilemap.tmx">
