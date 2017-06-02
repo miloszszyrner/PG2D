@@ -81,7 +81,7 @@ namespace ToA
     }
         private void checkPlayerLevelToolsCollision()
         {
-            foreach (Sprite sprite in Game1.Instance.Manager.spriteList)
+            foreach (Sprite sprite in Game1.Instance.DisplayManager.Manager.spriteList)
             {
                 if (sprite.spriteType == SpriteType.GRAVITY_DOWN)
                 {
@@ -120,27 +120,27 @@ namespace ToA
         {
             base.checkCollisions();
            
-            for (int i = 0; i < Game1.Instance.Manager.TileMap.mapWidth; i++)
-                for (int j = 0; j < Game1.Instance.Manager.TileMap.mapHeight; j++)
+            for (int i = 0; i < Game1.Instance.DisplayManager.Manager.TileMap.mapWidth; i++)
+                for (int j = 0; j < Game1.Instance.DisplayManager.Manager.TileMap.mapHeight; j++)
                 {
-                    if (Game1.Instance.Manager.TileMap.getTileAt(i, j).property == TileProperty.BASE_LEFT && boundingBox.Intersects(Game1.Instance.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
+                    if (Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).property == TileProperty.BASE_LEFT && boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
                     {
                         position.X = objectPreviousPosition.X;
                     }
-                    if (Game1.Instance.Manager.TileMap.getTileAt(i, j).property == TileProperty.BASE_RIGHT && boundingBox.Intersects(Game1.Instance.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
+                    if (Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).property == TileProperty.BASE_RIGHT && boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
                     {
                         position.X = objectPreviousPosition.X;
                     }
-                    if (Game1.Instance.Manager.TileMap.getTileAt(i, j).property == TileProperty.TRAP && boundingBox.Intersects(Game1.Instance.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //wpada w polapke
+                    if (Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).property == TileProperty.TRAP && boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //wpada w polapke
                     {
                         position = new Vector2(150, 800);
                     }
-                    if (boundingBox.Intersects(Game1.Instance.Manager.TileMap.getNextLevelBoundingRectangle))  //przejscie do kolejnego poziomu
+                    if (boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getNextLevelBoundingRectangle))  //przejscie do kolejnego poziomu
                     {
                         Game1.Instance.isFinishing = true;
                         if (Game1.Instance.InputManager.enter)
                         {
-                            Game1.Instance.Manager.loadLevel(++Game1.Instance.levelNumber);
+                            Game1.Instance.DisplayManager.Manager.loadLevel(++Game1.Instance.levelNumber);
                             Game1.Instance.isFinishing = false;
                         }
                     }

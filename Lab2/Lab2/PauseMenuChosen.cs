@@ -10,6 +10,8 @@ namespace ToA
     {
         RESUME,
         OPTIONS,
+        BACKGROUND_MUSIC_VOLUME,
+        SOUNDEFFECTS_VOLUME,
         EXIT
     }
 }
