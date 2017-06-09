@@ -21,7 +21,7 @@ namespace ToA
         public bool menuChoose;
         public bool back = false;
         public bool changeGravity;
-        public bool gameState = true;
+        public bool pause = false;
         public bool action;
         public bool enter = false;
 
@@ -52,7 +52,7 @@ namespace ToA
             if (state.IsKeyDown(Keys.Enter))
                 enter = true;
             if (state.IsKeyDown(Keys.P) && previousstate.IsKeyUp(Keys.P))
-                gameState = !gameState;
+                pause = !pause;
             if (state.IsKeyDown(Keys.E) || gamePadState.Buttons.B == ButtonState.Pressed)
                 action = true;
             else

@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace ToA
 {
-    enum GameState
+    public enum StartMenuChosen
     {
-        GAMEPLAY,
-        PAUSEMENU,
-        STARTMENU
+        START,
+        LOAD,
+        BACKGROUND_MUSIC_VOLUME,
+        SOUNDEFFECTS_VOLUME,
+        QUIT
     }
 }

@@ -9,7 +9,7 @@ namespace ToA
     public enum PauseMenuChosen
     {
         RESUME,
-        OPTIONS,
+        SAVE,
         BACKGROUND_MUSIC_VOLUME,
         SOUNDEFFECTS_VOLUME,
         EXIT
