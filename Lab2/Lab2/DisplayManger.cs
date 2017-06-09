@@ -17,7 +17,7 @@ namespace ToA
         private GraphicsDevice graphicsDevice;
         private ContentManager content;
         private GameWindow Window;
-        Sprite resume, resumeChosen, options, optionsChosen, exit, exitChosen;
+        Sprite resume, resumeChosen, options, optionsChosen, exit, exitChosen, background, volumeLvlOn, volumeLvlOff;
         GameState gameState;
         LevelManager manager;
         PauseMenuChosen pauseMenuChosen = PauseMenuChosen.RESUME;
@@ -43,25 +43,31 @@ namespace ToA
 
         public void Load()
         {
-            Texture2D resumeButtonTexture = content.Load<Texture2D>("Content/resumeButton");
-            Texture2D resumeButtonChosenTexture = content.Load<Texture2D>("Content/resumeButtonChosen");
-            Texture2D optionsButtonTexture = content.Load<Texture2D>("Content/optionsButton");
-            Texture2D optionsButtonChosenTexture = content.Load<Texture2D>("Content/optionsButtonChosen");
-            Texture2D exitButtonTexture = content.Load<Texture2D>("Content/exitButton");
-            Texture2D exitButtonChosenTexture = content.Load<Texture2D>("Content/exitButtonChosen");
+            Texture2D backgroundTexture = content.Load<Texture2D>("Content/main_menu2");
 
-            resume = new Button(1f, resumeButtonTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 300), SpriteType.BUTTON);
-            resumeChosen = new Button(1f, resumeButtonChosenTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 300), SpriteType.BUTTON);
-            options = new Button(1f, optionsButtonTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 150), SpriteType.BUTTON);
-            optionsChosen = new Button(1f, optionsButtonChosenTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 150), SpriteType.BUTTON);
-            exit = new Button(1f, exitButtonTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2), SpriteType.BUTTON);
-            exitChosen = new Button(1f, exitButtonChosenTexture, new Vector2(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2), SpriteType.BUTTON);
+            Texture2D resumeButtonTexture = content.Load<Texture2D>("Content/button_resume");
+            Texture2D resumeButtonChosenTexture = content.Load<Texture2D>("Content/button_resume_hover");
+            Texture2D optionsButtonTexture = content.Load<Texture2D>("Content/button_options");
+            Texture2D optionsButtonChosenTexture = content.Load<Texture2D>("Content/button_options_hover");
+            Texture2D exitButtonTexture = content.Load<Texture2D>("Content/button_quit");
+            Texture2D exitButtonChosenTexture = content.Load<Texture2D>("Content/button_quit_hover");
+            Texture2D volumeLevelOnTexture = content.Load<Texture2D>("Content/volume_level_texture_on");
+            Texture2D volumeLevelOffTexture = content.Load<Texture2D>("Content/volume_level_texture_off");
+
+            background = new Button(1f, backgroundTexture, Vector2.Zero , SpriteType.BUTTON);
+
+            resume = new Button(1f, resumeButtonTexture, Vector2.Zero, SpriteType.BUTTON);
+            resumeChosen = new Button(1f, resumeButtonChosenTexture, Vector2.Zero, SpriteType.BUTTON);
+            options = new Button(1f, optionsButtonTexture, Vector2.Zero, SpriteType.BUTTON);
+            optionsChosen = new Button(1f, optionsButtonChosenTexture, Vector2.Zero, SpriteType.BUTTON);
+            exit = new Button(1f, exitButtonTexture, Vector2.Zero, SpriteType.BUTTON);
+            exitChosen = new Button(1f, exitButtonChosenTexture, Vector2.Zero, SpriteType.BUTTON);
+            volumeLvlOn = new Button(1f, volumeLevelOnTexture, Vector2.Zero, SpriteType.BUTTON);
+            volumeLvlOff = new Button(1f, volumeLevelOffTexture, Vector2.Zero, SpriteType.BUTTON);
         }
 
         public void Update(GameTime gameTime)
         {
-            //Game1.Instance.InputManager.Update();
-
             if (Game1.Instance.InputManager.back)
             {
                 Game1.Instance.Quit();
@@ -81,12 +87,6 @@ namespace ToA
                     manager.Update(gameTime);
                     break;
                 case GameState.PAUSEMENU:
-                    resume.Update(gameTime, jumpEffect);
-                    resumeChosen.Update(gameTime, jumpEffect);
-                    options.Update(gameTime, jumpEffect);
-                    optionsChosen.Update(gameTime, jumpEffect);
-                    exit.Update(gameTime, jumpEffect);
-                    exitChosen.Update(gameTime, jumpEffect);
                     if (Game1.Instance.InputManager.menuUp)
                     {
                         if (pauseMenuChosen != PauseMenuChosen.RESUME)
@@ -169,36 +169,48 @@ namespace ToA
                     graphicsDevice.Clear(Color.CornflowerBlue);
                     spriteBatch.Begin();
 
-                    options.setPosition(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 150);
-                    optionsChosen.setPosition(Window.ClientBounds.Width / 2 - 100, Window.ClientBounds.Height / 2 - 150);
+                    background.Draw(spriteBatch);
 
+                    resume.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 - 300);
                     resume.Draw(spriteBatch);
                     if (pauseMenuChosen == PauseMenuChosen.RESUME)
                     {
+                        resumeChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 - 300);
                         resumeChosen.Draw(spriteBatch);
                     }
+                    options.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 - 100);
                     options.Draw(spriteBatch);
                     if (pauseMenuChosen == PauseMenuChosen.OPTIONS)
                     {
+                        optionsChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 - 100);
                         optionsChosen.Draw(spriteBatch);
                     }
                     if (pauseMenuChosen == PauseMenuChosen.BACKGROUND_MUSIC_VOLUME)
                     {
-                        options.setPosition(Window.ClientBounds.Width / 2 - 70, Window.ClientBounds.Height / 2 - 150);
-                        optionsChosen.setPosition(Window.ClientBounds.Width / 2 - 70, Window.ClientBounds.Height / 2 - 150);
+                        optionsChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 - 100);
                         optionsChosen.Draw(spriteBatch);
+                        for(int i = 0; i < 10; i++)
+                        {
+                            volumeLvlOff.setPosition(Window.ClientBounds.Width / 4 + 300 + i * 50, Window.ClientBounds.Height / 2 - 75);
+                            volumeLvlOff.Draw(spriteBatch);
+                        }
+                        for (int i = 0; i < (int) (musicVolume * 10); i++)
+                        {
+                            volumeLvlOn.setPosition(Window.ClientBounds.Width / 4 + 300 + i * 50, Window.ClientBounds.Height / 2 - 75);
+                            volumeLvlOn.Draw(spriteBatch);
+                        }
 
                     }
                     if (pauseMenuChosen == PauseMenuChosen.SOUNDEFFECTS_VOLUME)
                     {
-                        options.setPosition(Window.ClientBounds.Width / 2 - 70, Window.ClientBounds.Height / 2 - 150);
-                        optionsChosen.setPosition(Window.ClientBounds.Width / 2 - 70, Window.ClientBounds.Height / 2 - 150);
+                        optionsChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 - 100);
                         optionsChosen.Draw(spriteBatch);
-
                     }
+                    exit.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 + 100);
                     exit.Draw(spriteBatch);
                     if (pauseMenuChosen == PauseMenuChosen.EXIT)
                     {
+                        exitChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 + 100);
                         exitChosen.Draw(spriteBatch);
                     }
 
