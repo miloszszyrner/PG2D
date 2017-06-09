@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ToA
 {
-    enum GameState
+    public enum GameState
     {
         GAMEPLAY,
         PAUSEMENU,

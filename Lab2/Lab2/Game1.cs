@@ -37,6 +37,7 @@ namespace Lab2
 
         InputManager inputManger;
         DisplayManger displayManager;
+        public float musicVolume = 0.1f;
 
         public InputManager InputManager
         {
