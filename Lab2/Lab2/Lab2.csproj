@@ -108,6 +108,12 @@
     <Content Include="Content\exitButtonChosen.png" />
     <Content Include="Content\gravityRightsideUp.png" />
     <Content Include="Content\gravityUpsideDown.png" />
+    <Content Include="Content\gravity_normal.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\gravity_upsidedown.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\mario.png" />
     <Content Include="Content\optionsButton.png" />
     <Content Include="Content\optionsButtonChosen.png" />

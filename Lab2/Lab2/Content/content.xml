@@ -4,7 +4,7 @@
 		<LevelId>1</LevelId>
         <SpriteCount>4</SpriteCount>
         <Sprite>
-			<Name>Content/gravityRightsideUp</Name>
+			<Name>Content/gravity_normal</Name>
             <SpriteType>GRAVITY_UP</SpriteType>
             <Position>
                 <X>1400</X>
@@ -12,7 +12,7 @@
             </Position>            
         </Sprite>
         <Sprite>
-			<Name>Content/gravityUpsideDown</Name>
+			<Name>Content/gravity_upsidedown</Name>
             <SpriteType>GRAVITY_DOWN</SpriteType>
             <Position>
               <X>300</X>
@@ -57,7 +57,7 @@
     <LevelId>2</LevelId>
         <SpriteCount>4</SpriteCount>
         <Sprite>
-			<Name>Content/gravityRightsideUp</Name>
+			<Name>Content/gravity_normal</Name>
             <SpriteType>GRAVITY_UP</SpriteType>
             <Position>
                 <X>1400</X>
@@ -65,7 +65,7 @@
             </Position>            
         </Sprite>
         <Sprite>
-			<Name>Content/gravityUpsideDown</Name>
+			<Name>Content/gravity_upsidedown</Name>
             <SpriteType>GRAVITY_DOWN</SpriteType>
             <Position>
               <X>300</X>
