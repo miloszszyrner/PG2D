@@ -115,6 +115,20 @@ namespace ToA
                     {
                         sprite.setPosition(boundingBox.Left - 100, sprite.position.Y);
                     }
+                    for (int i = 0; i < Game1.Instance.DisplayManager.Manager.TileMap.mapWidth; i++)
+                        for (int j = 0; j < Game1.Instance.DisplayManager.Manager.TileMap.mapHeight; j++)
+                        {
+                            if (Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).property == TileProperty.BASE_LEFT && sprite.boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).getBoundingBox) && boundingBox.Intersects(sprite.boundingBox))  //uderzenie o sciane
+                            {
+                                sprite.position.X = objectPreviousPosition.X + (boundingBox.Right - boundingBox.Left);
+                                position.X = objectPreviousPosition.X;
+                            }
+                            if (Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).property == TileProperty.BASE_RIGHT && sprite.boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).getBoundingBox) && boundingBox.Intersects(sprite.boundingBox))  //uderzenie o sciane
+                            {
+                                sprite.position.X = objectPreviousPosition.X - (sprite.boundingBox.Right - sprite.boundingBox.Left);
+                                position.X = objectPreviousPosition.X;
+                            }
+                        }
                 }
 
             }
