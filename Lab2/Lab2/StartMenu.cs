@@ -88,6 +88,7 @@ namespace ToA
                         Game1.Instance.DisplayManager.gameState = GameState.GAMEPLAY;
                         break;
                     case StartMenuChosen.LOAD:
+                        //Milosz tu masz akcje wczytywania
                         break;
                     case StartMenuChosen.QUIT:
                         Game1.Instance.Quit();

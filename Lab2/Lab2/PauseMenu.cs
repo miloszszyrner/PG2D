@@ -114,6 +114,7 @@ namespace ToA
                         Game1.Instance.DisplayManager.gameState = GameState.GAMEPLAY;
                         break;
                     case PauseMenuChosen.SAVE:
+                        //Milosz tu masz akcje zapisywania
                         break;
                     case PauseMenuChosen.EXIT:
                         Game1.Instance.DisplayManager.gameState = GameState.STARTMENU;
