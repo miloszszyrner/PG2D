@@ -90,6 +90,7 @@ namespace ToA
                 {
                     case StartMenuChosen.START:
                         Game1.Instance.DisplayManager.gameState = GameState.GAMEPLAY;
+                        MediaPlayer.Play(Game1.Instance.SoundManager.Songs["BackgroundMusic"]);
                         break;
                     case StartMenuChosen.LOAD:
                         XElement xDoc = XElement.Load("save.xml");
@@ -106,6 +107,7 @@ namespace ToA
                         }
                         i = 0;
                         Game1.Instance.DisplayManager.gameState = GameState.GAMEPLAY;
+                        MediaPlayer.Play(Game1.Instance.SoundManager.Songs["BackgroundMusic"]);
                         break;
                     case StartMenuChosen.QUIT:
                         Game1.Instance.Quit();

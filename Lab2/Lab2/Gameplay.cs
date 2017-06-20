@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
 
 namespace ToA
 {
@@ -27,6 +28,7 @@ namespace ToA
             {
                 Game1.Instance.DisplayManager.gameState = GameState.PAUSEMENU;
                 Game1.Instance.InputManager.pause = false;
+                MediaPlayer.Play(Game1.Instance.SoundManager.Songs["GameMenuMusic"]);
             }
         }
     }

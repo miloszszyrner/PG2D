@@ -53,6 +53,7 @@ namespace ToA
             {
                 Game1.Instance.DisplayManager.gameState = GameState.GAMEPLAY;
                 Game1.Instance.InputManager.pause = false;
+                MediaPlayer.Play(Game1.Instance.SoundManager.Songs["BackgroundMusic"]);
             }
             if (Game1.Instance.InputManager.menuUp)
             {
@@ -110,6 +111,7 @@ namespace ToA
                 {
                     case PauseMenuChosen.RESUME:
                         Game1.Instance.DisplayManager.gameState = GameState.GAMEPLAY;
+                        MediaPlayer.Play(Game1.Instance.SoundManager.Songs["BackgroundMusic"]);
                         break;
                     case PauseMenuChosen.SAVE:
                         XDocument save = new XDocument();
