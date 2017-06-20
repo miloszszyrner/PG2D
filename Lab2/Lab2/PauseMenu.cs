@@ -1,5 +1,6 @@
 ﻿using Lab2;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
@@ -85,24 +86,24 @@ namespace ToA
                 }
                 MediaPlayer.Volume = Game1.Instance.musicVolume;
             }
-            /*if (pauseMenuChosen == PauseMenuChosen.SOUNDEFFECTS_VOLUME)
+            if (pauseMenuChosen == PauseMenuChosen.SOUNDEFFECTS_VOLUME)
             {
                 if (Game1.Instance.InputManager.menuLeft)
                 {
-                    if (dragonBallHero.soundEffectVolume > 0)
+                    if (Game1.Instance.spriteEffectVolume > 0)
                     {
-                        dragonBallHero.soundEffectVolume -= 0.1f;
+                        Game1.Instance.spriteEffectVolume -= 0.1f;
                     }
                 }
                 if (Game1.Instance.InputManager.menuRight)
                 {
-                    if (dragonBallHero.soundEffectVolume < 1.0f)
+                    if (Game1.Instance.spriteEffectVolume < 1.0f)
                     {
-                        dragonBallHero.soundEffectVolume += 0.1f;
+                        Game1.Instance.spriteEffectVolume += 0.1f;
                     }
                 }
-                SoundEffect.MasterVolume = dragonBallHero.soundEffectVolume;
-            }*/
+                SoundEffect.MasterVolume = Game1.Instance.spriteEffectVolume;
+            }
             if (Game1.Instance.InputManager.menuChoose)
             {
                 switch (pauseMenuChosen)

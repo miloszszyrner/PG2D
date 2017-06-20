@@ -50,7 +50,7 @@ namespace Lab2
             boundingBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
         }
 
-        public virtual void Update(GameTime pGameTime, SoundEffect effect)
+        public virtual void Update(GameTime pGameTime)
         {
             UpdateBoundingBox();
         }

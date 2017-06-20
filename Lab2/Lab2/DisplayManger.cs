@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Lab2;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
 
 namespace ToA
 {
@@ -41,6 +42,10 @@ namespace ToA
             pauseMenu.Load();
             startMenu = new StartMenu(content);
             startMenu.Load();
+            MediaPlayer.Play(Game1.Instance.SoundManager.Songs["GameMenuMusic"]);
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 0.1f;
+
         }
 
         public void Update(GameTime gameTime)

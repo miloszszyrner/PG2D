@@ -50,8 +50,16 @@
 			<FileName>Content/level_1.tmx</FileName>
 			<FileSet>Content/spritesheet</FileSet>
 		</TileMap>
-		<SoundEffect>Content/jump</SoundEffect>
-		<Song>Content/backgroundMusic</Song>
+<Sounds>
+		<Jump>Content/Sounds/jump</Jump>
+		<Death>Content/Sounds/death</Death>
+		<InteriorDoorUnlock>Content/Sounds/interior-Door_Unlock</InteriorDoorUnlock>
+		<Gravity>Content/Sounds/gravity</Gravity>
+	</Sounds>
+	<Music>
+		<BackgroundMusic>Content/Music/background_music</BackgroundMusic>
+		<GameMenuMusic>Content/Music/Surreal-Game-Menu_Looping</GameMenuMusic>
+	</Music>
     </Level>
   <Level>
     <LevelId>2</LevelId>
@@ -103,8 +111,16 @@
 			<FileName>Content/level_2.tmx</FileName>
 			<FileSet>Content/spritesheet</FileSet>
 		</TileMap>
-		<SoundEffect>Content/jump</SoundEffect>
-		<Song>Content/backgroundMusic</Song>
+<Sounds>
+		<Jump>Content/Sounds/jump</Jump>
+		<Death>Content/Sounds/death</Death>
+		<InteriorDoorUnlock>Content/Sounds/interior-Door_Unlock</InteriorDoorUnlock>
+		<Gravity>Content/Sounds/gravity</Gravity>
+	</Sounds>
+	<Music>
+		<BackgroundMusic>Content/Music/background_music</BackgroundMusic>
+		<GameMenuMusic>Content/Music/Surreal-Game-Menu_Looping</GameMenuMusic>
+	</Music>
     </Level>
 	<Level>
     <LevelId>1</LevelId>
@@ -140,7 +156,15 @@
 			<FileName>Content/level_3.tmx</FileName>
 			<FileSet>Content/spritesheet</FileSet>
 		</TileMap>
-		<SoundEffect>Content/jump</SoundEffect>
-		<Song>Content/backgroundMusic</Song>
+	<Sounds>
+		<Jump>Content/Sounds/jump</Jump>
+		<Death>Content/Sounds/death</Death>
+		<InteriorDoorUnlock>Content/Sounds/interior-Door_Unlock</InteriorDoorUnlock>
+		<Gravity>Content/Sounds/gravity</Gravity>
+	</Sounds>
+	<Music>
+		<BackgroundMusic>Content/Music/background_music</BackgroundMusic>
+		<GameMenuMusic>Content/Music/Surreal-Game-Menu_Looping</GameMenuMusic>
+	</Music>
     </Level>
 </Game>

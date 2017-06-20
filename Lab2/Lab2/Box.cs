@@ -17,11 +17,11 @@ namespace ToA
             velocity.X = 0f;
         }
 
-        public override void Update(GameTime pGameTime, SoundEffect effect)
+        public override void Update(GameTime pGameTime)
         {
             objectPreviousPosition = position;
             position += velocity;
-            base.Update(pGameTime, effect);
+            base.Update(pGameTime);
         }
         public override void checkCollisions()
         {

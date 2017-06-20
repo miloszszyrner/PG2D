@@ -40,9 +40,9 @@ namespace ToA
         {
             boundingBox = new Rectangle((int)position.X, (int)position.Y, animationX, animationY);
         }
-        public override void Update(GameTime pGameTime, SoundEffect effect)
+        public override void Update(GameTime pGameTime)
         {
-            base.Update(pGameTime, effect);
+            base.Update(pGameTime);
             checkCollisions();
             checkGravitation();
         }

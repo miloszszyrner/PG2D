@@ -37,7 +37,9 @@ namespace Lab2
 
         InputManager inputManger;
         DisplayManger displayManager;
+        SoundManager soundManager;
         public float musicVolume = 0.1f;
+        public float spriteEffectVolume = 0.1f;
 
         public InputManager InputManager
         {
@@ -54,12 +56,21 @@ namespace Lab2
             }
         }
 
+        public SoundManager SoundManager
+        {
+            get
+            {
+                return soundManager;
+            }
+        }
+
         public bool isFinishing = false;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             inputManger = new InputManager();
+            soundManager = new SoundManager();
             
         }
 
