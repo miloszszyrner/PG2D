@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,8 +14,7 @@ using System.Xml.Linq;
 
 namespace ToA
 {
-    [Serializable()]
-    public class LevelManager : ISerializable
+    public class LevelManager 
     {
         private GraphicsDevice graphicsDevice;
         private ContentManager content;
@@ -83,7 +83,7 @@ namespace ToA
                                     spriteList.Add(new Player(animationX, animationY, frames, 1f, textureToLoad, new Vector2(positionX, positionY), type));
                                     break;
                                 case SpriteType.BOX:
-                                    spriteList.Add(new Player(animationX, animationY, frames, 1f, textureToLoad, new Vector2(positionX, positionY), type));
+                                    spriteList.Add(new Box(animationX, animationY, frames, 1f, textureToLoad, new Vector2(positionX, positionY), type));
                                     break;
                                 case SpriteType.ENEMY:
                                     spriteList.Add(new Enemy(animationX, animationY, frames, 1f, textureToLoad, new Vector2(positionX, positionY), type));
@@ -111,8 +111,18 @@ namespace ToA
                     tileMapFileName = (from tile in level.Descendants("TileMap") select tile.Element("FileName")).First().Value;
                     tileSetFileName = (from tile in level.Descendants("TileMap") select tile.Element("FileSet")).First().Value;
                     tileMap = new TileMap(tileMapFileName, tileSetFileName, content);
-                    jumpEffect = content.Load<SoundEffect>(level.Element("SoundEffect").Value);
-                    backgroundMusic = content.Load<Song>(level.Element("Song").Value);
+                    if (level.Descendants("Sounds").Any() && Game1.Instance.SoundManager.Sounds.Count == 0)
+                    {
+                        Game1.Instance.SoundManager.Sounds.Add("Jump", content.Load<SoundEffect>((from animation in level.Descendants("Sounds") select animation.Element("Jump")).First().Value));
+                        Game1.Instance.SoundManager.Sounds.Add("Death", content.Load<SoundEffect>((from animation in level.Descendants("Sounds") select animation.Element("Death")).First().Value));
+                        Game1.Instance.SoundManager.Sounds.Add("InteriorDoorUnlock", content.Load<SoundEffect>((from animation in level.Descendants("Sounds") select animation.Element("InteriorDoorUnlock")).First().Value));
+                        Game1.Instance.SoundManager.Sounds.Add("Gravity", content.Load<SoundEffect>((from animation in level.Descendants("Sounds") select animation.Element("Gravity")).First().Value));
+                    }
+                    if (level.Descendants("Music").Any() && Game1.Instance.SoundManager.Songs.Count == 0)
+                    {
+                        Game1.Instance.SoundManager.Songs.Add("BackgroundMusic", content.Load<Song>((from animation in level.Descendants("Music") select animation.Element("BackgroundMusic")).First().Value));
+                        Game1.Instance.SoundManager.Songs.Add("GameMenuMusic", content.Load<Song>((from animation in level.Descendants("Music") select animation.Element("GameMenuMusic")).First().Value));
+                    }
                     font = content.Load<SpriteFont>("Content/Tekst");
                     MediaPlayer.Play(backgroundMusic);
                     MediaPlayer.IsRepeating = true;
@@ -136,7 +146,7 @@ namespace ToA
         {
             foreach (Sprite sprite in spriteList)
             {  
-                sprite.Update(gameTime, jumpEffect);
+                sprite.Update(gameTime);
                 if (sprite.spriteType == SpriteType.PLAYER)
                     camera.Update(gameTime, sprite, tileMap);
             }
@@ -152,9 +162,5 @@ namespace ToA
             sp.DrawString(font, (Game1.Instance.isFinishing == true) ? "Press Enter to reach next level" : "", tileMap.getNextLevelBoundingRectangle.Center.ToVector2(), Color.White);
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

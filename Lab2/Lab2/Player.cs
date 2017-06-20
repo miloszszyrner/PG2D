@@ -17,7 +17,7 @@ namespace ToA
         public Player(int animationX, int animationY, int totalFrames, float scale, Texture2D texture, Vector2 position, SpriteType spriteType = SpriteType.TEST) : base(animationX, animationY, totalFrames, scale, texture, position, spriteType)
         {
         }
-        private void movement(SoundEffect effect, GameTime pGameTime)
+        private void movement(GameTime pGameTime)
         {
             if (Game1.Instance.InputManager.changeGravity)
             {
@@ -31,14 +31,14 @@ namespace ToA
                 position.Y -= 10f;
                 velocity.Y = -12f;
                 hasJumped = true;
-                effect.Play(0.1f, 0f, 0f);
+                Game1.Instance.SoundManager.Sounds["Jump"].Play(Game1.Instance.spriteEffectVolume, 0f, 0f);
             }
             if (Game1.Instance.InputManager.up && !gravity && isGravity)
             {
                 position.Y += 10f;
                 velocity.Y = 12f;
                 isGravity = false;
-                effect.Play();
+                Game1.Instance.SoundManager.Sounds["Jump"].Play(Game1.Instance.spriteEffectVolume, 0f, 0f);
             }
             if (Game1.Instance.InputManager.right)
             {
@@ -69,14 +69,13 @@ namespace ToA
             }
         }
         
-    public override void Update(GameTime pGameTime, SoundEffect effect)
+    public override void Update(GameTime pGameTime)
         {
             objectPreviousPosition = position;
             position += velocity;
-            base.Update(pGameTime, effect);
+            base.Update(pGameTime);
             checkPlayerLevelToolsCollision();
-            checkGravitation();
-            movement(effect, pGameTime);
+            movement(pGameTime);
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, animationX, animationY);   
     }
         private void checkPlayerLevelToolsCollision()
@@ -88,6 +87,7 @@ namespace ToA
                     if (boundingBox.Intersects(sprite.boundingBox) && Game1.Instance.InputManager.action)
                     {
                         gravity = false;
+                        Game1.Instance.SoundManager.Sounds["Gravity"].Play(Game1.Instance.spriteEffectVolume, 0f, 0f);
                     }
                 }
                 if (sprite.spriteType == SpriteType.GRAVITY_UP)
@@ -95,18 +95,25 @@ namespace ToA
                     if (boundingBox.Intersects(sprite.boundingBox) && Game1.Instance.InputManager.action)
                     {
                         gravity = true;
+                        Game1.Instance.SoundManager.Sounds["Gravity"].Play(Game1.Instance.spriteEffectVolume, 0f, 0f);
                     }
                 }
                 if (sprite.spriteType == SpriteType.BOX)
                 {
                     sprite.gravity = gravity;
-                    if (boundingBox.Intersects(sprite.boundingBox) && Game1.Instance.InputManager.action)
+
+                    if (boundingBox.Bottom > sprite.boundingBox.Top && boundingBox.Bottom < sprite.boundingBox.Bottom && boundingBox.Intersects(sprite.boundingBox))
                     {
-                        sprite.setPosition(position.X, position.Y);
+                        position.Y = objectPreviousPosition.Y;
+                        hasJumped = false;
                     }
-                    if (boundingBox.Contains(sprite.boundingBox) && Game1.Instance.InputManager.action)
+                    else if (boundingBox.Right > sprite.boundingBox.Left && boundingBox.Right < sprite.boundingBox.Right && boundingBox.Bottom > sprite.boundingBox.Top)
                     {
-                        sprite.setPosition(position.X, position.Y);
+                        sprite.setPosition(boundingBox.Right, sprite.position.Y);
+                    }
+                    else if (boundingBox.Left < sprite.boundingBox.Right && boundingBox.Right > sprite.boundingBox.Right && boundingBox.Bottom > sprite.boundingBox.Top)
+                    {
+                        sprite.setPosition(boundingBox.Left - 100, sprite.position.Y);
                     }
                 }
 
@@ -123,23 +130,18 @@ namespace ToA
             for (int i = 0; i < Game1.Instance.DisplayManager.Manager.TileMap.mapWidth; i++)
                 for (int j = 0; j < Game1.Instance.DisplayManager.Manager.TileMap.mapHeight; j++)
                 {
-                    if (Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).property == TileProperty.BASE_LEFT && boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
-                    {
-                        position.X = objectPreviousPosition.X;
-                    }
-                    if (Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).property == TileProperty.BASE_RIGHT && boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
-                    {
-                        position.X = objectPreviousPosition.X;
-                    }
                     if (Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).property == TileProperty.TRAP && boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //wpada w polapke
                     {
-                        position = new Vector2(150, 800);
+                        Game1.Instance.SoundManager.Sounds["Death"].Play(Game1.Instance.spriteEffectVolume, 0f, 0f);
+                        Game1.Instance.DisplayManager.Manager.loadLevel(Game1.Instance.levelNumber);
+
                     }
                     if (boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getNextLevelBoundingRectangle))  //przejscie do kolejnego poziomu
                     {
                         Game1.Instance.isFinishing = true;
                         if (Game1.Instance.InputManager.enter)
                         {
+                            Game1.Instance.SoundManager.Sounds["InteriorDoorUnlock"].Play(Game1.Instance.spriteEffectVolume, 0f, 0f);
                             Game1.Instance.DisplayManager.Manager.loadLevel(++Game1.Instance.levelNumber);
                             Game1.Instance.isFinishing = false;
                         }

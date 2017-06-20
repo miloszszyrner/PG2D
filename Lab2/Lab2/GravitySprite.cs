@@ -15,9 +15,9 @@ namespace ToA
         public GravitySprite(float scale, Texture2D texture, Vector2 position, SpriteType spriteType = SpriteType.TEST) : base(scale, texture, position, spriteType)
         {
         }
-        public override void Update(GameTime pGameTime, SoundEffect effect)
+        public override void Update(GameTime pGameTime)
         {
-            base.Update(pGameTime, effect);
+            base.Update(pGameTime);
         }
     }
 }

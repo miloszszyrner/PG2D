@@ -16,11 +16,10 @@ namespace ToA
             this.sourcePosition = position;
             velocity.X = 1f;
         }
-        public override void Update(GameTime pGameTime, SoundEffect effect)
+        public override void Update(GameTime pGameTime)
         {
             position += velocity;
-            base.Update(pGameTime, effect);
-            checkGravitation();
+            base.Update(pGameTime);
             
             if (position.X > sourcePosition.X + deviation)
             {

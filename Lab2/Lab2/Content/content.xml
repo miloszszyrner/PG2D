@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <Game>
     <Level>
-		<LevelId>1</LevelId>
+		<LevelId>3</LevelId>
         <SpriteCount>4</SpriteCount>
         <Sprite>
-			<Name>Content/gravityRightsideUp</Name>
+			<Name>Content/gravity_normal</Name>
             <SpriteType>GRAVITY_UP</SpriteType>
             <Position>
                 <X>1400</X>
@@ -12,7 +12,7 @@
             </Position>            
         </Sprite>
         <Sprite>
-			<Name>Content/gravityUpsideDown</Name>
+			<Name>Content/gravity_upsidedown</Name>
             <SpriteType>GRAVITY_DOWN</SpriteType>
             <Position>
               <X>300</X>
@@ -50,14 +50,22 @@
 			<FileName>Content/level_1.tmx</FileName>
 			<FileSet>Content/spritesheet</FileSet>
 		</TileMap>
-		<SoundEffect>Content/jump</SoundEffect>
-		<Song>Content/backgroundMusic</Song>
+<Sounds>
+		<Jump>Content/Sounds/jump</Jump>
+		<Death>Content/Sounds/death</Death>
+		<InteriorDoorUnlock>Content/Sounds/interior-Door_Unlock</InteriorDoorUnlock>
+		<Gravity>Content/Sounds/gravity</Gravity>
+	</Sounds>
+	<Music>
+		<BackgroundMusic>Content/Music/background_music</BackgroundMusic>
+		<GameMenuMusic>Content/Music/Surreal-Game-Menu_Looping</GameMenuMusic>
+	</Music>
     </Level>
   <Level>
     <LevelId>2</LevelId>
         <SpriteCount>4</SpriteCount>
         <Sprite>
-			<Name>Content/gravityRightsideUp</Name>
+			<Name>Content/gravity_normal</Name>
             <SpriteType>GRAVITY_UP</SpriteType>
             <Position>
                 <X>1400</X>
@@ -65,7 +73,7 @@
             </Position>            
         </Sprite>
         <Sprite>
-			<Name>Content/gravityUpsideDown</Name>
+			<Name>Content/gravity_upsidedown</Name>
             <SpriteType>GRAVITY_DOWN</SpriteType>
             <Position>
               <X>300</X>
@@ -74,11 +82,11 @@
         </Sprite>
 
       <Sprite>
-        <Name>Content/mario</Name>
+        <Name>Content/Box</Name>
         <SpriteType>BOX</SpriteType>
         <Position>
           <X>300</X>
-          <Y>800</Y>
+          <Y>850</Y>
         </Position>
 		<Animation>
 			<SizeX>100</SizeX>
@@ -98,12 +106,65 @@
         <SizeY>157</SizeY>
         <Frames>13</Frames>
       </Animation>
-      </Sprite>
+    </Sprite>
 		<TileMap>
 			<FileName>Content/level_2.tmx</FileName>
 			<FileSet>Content/spritesheet</FileSet>
 		</TileMap>
-		<SoundEffect>Content/jump</SoundEffect>
-		<Song>Content/backgroundMusic</Song>
+<Sounds>
+		<Jump>Content/Sounds/jump</Jump>
+		<Death>Content/Sounds/death</Death>
+		<InteriorDoorUnlock>Content/Sounds/interior-Door_Unlock</InteriorDoorUnlock>
+		<Gravity>Content/Sounds/gravity</Gravity>
+	</Sounds>
+	<Music>
+		<BackgroundMusic>Content/Music/background_music</BackgroundMusic>
+		<GameMenuMusic>Content/Music/Surreal-Game-Menu_Looping</GameMenuMusic>
+	</Music>
+    </Level>
+	<Level>
+    <LevelId>1</LevelId>
+        <SpriteCount>2</SpriteCount>
+
+      <Sprite>
+        <Name>Content/Box</Name>
+        <SpriteType>BOX</SpriteType>
+        <Position>
+          <X>250</X>
+          <Y>850</Y>
+        </Position>
+		<Animation>
+			<SizeX>100</SizeX>
+			<SizeY>100</SizeY>
+			<Frames>1</Frames>
+      </Animation>
+      </Sprite>
+    <Sprite>
+      <Name>Content/chodz</Name>
+      <SpriteType>PLAYER</SpriteType>
+      <Position>
+        <X>400</X>
+        <Y>800</Y>
+      </Position>
+      <Animation>
+        <SizeX>95</SizeX>
+        <SizeY>157</SizeY>
+        <Frames>13</Frames>
+      </Animation>
+    </Sprite>
+		<TileMap>
+			<FileName>Content/level_3.tmx</FileName>
+			<FileSet>Content/spritesheet</FileSet>
+		</TileMap>
+	<Sounds>
+		<Jump>Content/Sounds/jump</Jump>
+		<Death>Content/Sounds/death</Death>
+		<InteriorDoorUnlock>Content/Sounds/interior-Door_Unlock</InteriorDoorUnlock>
+		<Gravity>Content/Sounds/gravity</Gravity>
+	</Sounds>
+	<Music>
+		<BackgroundMusic>Content/Music/background_music</BackgroundMusic>
+		<GameMenuMusic>Content/Music/Surreal-Game-Menu_Looping</GameMenuMusic>
+	</Music>
     </Level>
 </Game>
