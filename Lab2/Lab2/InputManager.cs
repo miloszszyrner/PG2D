@@ -51,6 +51,8 @@ namespace ToA
                 back = true;
             if (state.IsKeyDown(Keys.Enter))
                 enter = true;
+            else
+                enter = false;
             if (state.IsKeyDown(Keys.P) && previousstate.IsKeyUp(Keys.P))
                 pause = !pause;
             if (state.IsKeyDown(Keys.E) || gamePadState.Buttons.B == ButtonState.Pressed)

@@ -97,6 +97,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Box.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\chodz.png" />
     <Content Include="Content\content.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -136,6 +139,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Content\level_2.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\level_3.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Content\tilemap.tmx">

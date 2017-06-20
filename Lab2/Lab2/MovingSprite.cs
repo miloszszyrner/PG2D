@@ -44,6 +44,7 @@ namespace ToA
         {
             base.Update(pGameTime, effect);
             checkCollisions();
+            checkGravitation();
         }
         public virtual void checkCollisions()
         {
@@ -66,6 +67,7 @@ namespace ToA
             for (int i = 0; i < Game1.Instance.DisplayManager.Manager.TileMap.mapWidth; i++)
                 for (int j = 0; j < Game1.Instance.DisplayManager.Manager.TileMap.mapHeight; j++)
                 {
+
                     if (Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).property == TileProperty.FLOOR && boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //utrzymywanie sie na powierzchni
                     {
                         hasJumped = false;
@@ -112,6 +114,14 @@ namespace ToA
                             hasJumped = false;
                         else
                             velocity.Y = -velocity.Y;
+                    }
+                    if (Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).property == TileProperty.BASE_LEFT && boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
+                    {
+                        position.X = objectPreviousPosition.X;
+                    }
+                    if (Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).property == TileProperty.BASE_RIGHT && boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
+                    {
+                        position.X = objectPreviousPosition.X;
                     }
                 }
 

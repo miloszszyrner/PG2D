@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Game>
     <Level>
-		<LevelId>1</LevelId>
+		<LevelId>3</LevelId>
         <SpriteCount>4</SpriteCount>
         <Sprite>
 			<Name>Content/gravity_normal</Name>
@@ -74,11 +74,11 @@
         </Sprite>
 
       <Sprite>
-        <Name>Content/mario</Name>
+        <Name>Content/Box</Name>
         <SpriteType>BOX</SpriteType>
         <Position>
           <X>300</X>
-          <Y>800</Y>
+          <Y>850</Y>
         </Position>
 		<Animation>
 			<SizeX>100</SizeX>
@@ -98,9 +98,46 @@
         <SizeY>157</SizeY>
         <Frames>13</Frames>
       </Animation>
-      </Sprite>
+    </Sprite>
 		<TileMap>
 			<FileName>Content/level_2.tmx</FileName>
+			<FileSet>Content/spritesheet</FileSet>
+		</TileMap>
+		<SoundEffect>Content/jump</SoundEffect>
+		<Song>Content/backgroundMusic</Song>
+    </Level>
+	<Level>
+    <LevelId>1</LevelId>
+        <SpriteCount>2</SpriteCount>
+
+      <Sprite>
+        <Name>Content/Box</Name>
+        <SpriteType>BOX</SpriteType>
+        <Position>
+          <X>250</X>
+          <Y>850</Y>
+        </Position>
+		<Animation>
+			<SizeX>100</SizeX>
+			<SizeY>100</SizeY>
+			<Frames>1</Frames>
+      </Animation>
+      </Sprite>
+    <Sprite>
+      <Name>Content/chodz</Name>
+      <SpriteType>PLAYER</SpriteType>
+      <Position>
+        <X>400</X>
+        <Y>800</Y>
+      </Position>
+      <Animation>
+        <SizeX>95</SizeX>
+        <SizeY>157</SizeY>
+        <Frames>13</Frames>
+      </Animation>
+    </Sprite>
+		<TileMap>
+			<FileName>Content/level_3.tmx</FileName>
 			<FileSet>Content/spritesheet</FileSet>
 		</TileMap>
 		<SoundEffect>Content/jump</SoundEffect>

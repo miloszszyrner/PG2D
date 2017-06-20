@@ -83,7 +83,7 @@ namespace ToA
                                     spriteList.Add(new Player(animationX, animationY, frames, 1f, textureToLoad, new Vector2(positionX, positionY), type));
                                     break;
                                 case SpriteType.BOX:
-                                    spriteList.Add(new Player(animationX, animationY, frames, 1f, textureToLoad, new Vector2(positionX, positionY), type));
+                                    spriteList.Add(new Box(animationX, animationY, frames, 1f, textureToLoad, new Vector2(positionX, positionY), type));
                                     break;
                                 case SpriteType.ENEMY:
                                     spriteList.Add(new Enemy(animationX, animationY, frames, 1f, textureToLoad, new Vector2(positionX, positionY), type));

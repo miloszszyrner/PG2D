@@ -20,7 +20,6 @@ namespace ToA
         {
             position += velocity;
             base.Update(pGameTime, effect);
-            checkGravitation();
             
             if (position.X > sourcePosition.X + deviation)
             {

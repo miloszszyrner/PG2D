@@ -75,7 +75,6 @@ namespace ToA
             position += velocity;
             base.Update(pGameTime, effect);
             checkPlayerLevelToolsCollision();
-            checkGravitation();
             movement(effect, pGameTime);
             destinationRectangle = new Rectangle((int)position.X, (int)position.Y, animationX, animationY);   
     }
@@ -100,13 +99,19 @@ namespace ToA
                 if (sprite.spriteType == SpriteType.BOX)
                 {
                     sprite.gravity = gravity;
-                    if (boundingBox.Intersects(sprite.boundingBox) && Game1.Instance.InputManager.action)
+
+                    if (boundingBox.Bottom > sprite.boundingBox.Top && boundingBox.Bottom < sprite.boundingBox.Bottom && boundingBox.Intersects(sprite.boundingBox))
                     {
-                        sprite.setPosition(position.X, position.Y);
+                        position.Y = objectPreviousPosition.Y;
+                        hasJumped = false;
                     }
-                    if (boundingBox.Contains(sprite.boundingBox) && Game1.Instance.InputManager.action)
+                    else if (boundingBox.Right > sprite.boundingBox.Left && boundingBox.Right < sprite.boundingBox.Right && boundingBox.Bottom > sprite.boundingBox.Top)
                     {
-                        sprite.setPosition(position.X, position.Y);
+                        sprite.setPosition(boundingBox.Right, sprite.position.Y);
+                    }
+                    else if (boundingBox.Left < sprite.boundingBox.Right && boundingBox.Right > sprite.boundingBox.Right && boundingBox.Bottom > sprite.boundingBox.Top)
+                    {
+                        sprite.setPosition(boundingBox.Left - 100, sprite.position.Y);
                     }
                 }
 
@@ -123,17 +128,10 @@ namespace ToA
             for (int i = 0; i < Game1.Instance.DisplayManager.Manager.TileMap.mapWidth; i++)
                 for (int j = 0; j < Game1.Instance.DisplayManager.Manager.TileMap.mapHeight; j++)
                 {
-                    if (Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).property == TileProperty.BASE_LEFT && boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
-                    {
-                        position.X = objectPreviousPosition.X;
-                    }
-                    if (Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).property == TileProperty.BASE_RIGHT && boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //uderzenie o sciane
-                    {
-                        position.X = objectPreviousPosition.X;
-                    }
                     if (Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).property == TileProperty.TRAP && boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getTileAt(i, j).getBoundingBox))  //wpada w polapke
                     {
-                        position = new Vector2(150, 800);
+                        Game1.Instance.DisplayManager.Manager.loadLevel(Game1.Instance.levelNumber);
+
                     }
                     if (boundingBox.Intersects(Game1.Instance.DisplayManager.Manager.TileMap.getNextLevelBoundingRectangle))  //przejscie do kolejnego poziomu
                     {
