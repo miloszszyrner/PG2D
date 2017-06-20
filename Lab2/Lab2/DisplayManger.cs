@@ -21,7 +21,7 @@ namespace ToA
         {
             get
             {
-                return manager;
+                return this.manager;
             }
         }
 

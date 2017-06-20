@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,8 +14,7 @@ using System.Xml.Linq;
 
 namespace ToA
 {
-    [Serializable()]
-    public class LevelManager : ISerializable
+    public class LevelManager 
     {
         private GraphicsDevice graphicsDevice;
         private ContentManager content;
@@ -152,9 +152,5 @@ namespace ToA
             sp.DrawString(font, (Game1.Instance.isFinishing == true) ? "Press Enter to reach next level" : "", tileMap.getNextLevelBoundingRectangle.Center.ToVector2(), Color.White);
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

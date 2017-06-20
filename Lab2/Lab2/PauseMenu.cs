@@ -3,14 +3,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ToA
 {
+
     class PauseMenu : Display
     {
 
@@ -114,6 +111,22 @@ namespace ToA
                         Game1.Instance.DisplayManager.gameState = GameState.GAMEPLAY;
                         break;
                     case PauseMenuChosen.SAVE:
+                        XDocument save = new XDocument();
+                        XElement game = new XElement("Game");
+                        XElement saveChild = new XElement("Save");
+                        
+                        saveChild.Add(new XElement("LevelId", Game1.Instance.levelNumber));
+                        foreach(Sprite sprite in Game1.Instance.DisplayManager.Manager.spriteList)
+                        {
+                            XElement spr = new XElement("Sprite");
+                            spr.Add(new XElement("X", sprite.position.X));
+                            spr.Add(new XElement("Y", sprite.position.Y));
+                            saveChild.Add(spr);
+                        }
+                        game.Add(saveChild);
+                        save.Add(game);
+                        save.Save("save.xml");
+
                         break;
                     case PauseMenuChosen.EXIT:
                         Game1.Instance.DisplayManager.gameState = GameState.STARTMENU;
