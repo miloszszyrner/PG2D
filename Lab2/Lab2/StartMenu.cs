@@ -1,5 +1,6 @@
 ﻿using Lab2;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
@@ -84,6 +85,24 @@ namespace ToA
                 }
                 MediaPlayer.Volume = Game1.Instance.musicVolume;
             }
+            if (startMenuChosen == StartMenuChosen.SOUNDEFFECTS_VOLUME)
+            {
+                if (Game1.Instance.InputManager.menuLeft)
+                {
+                    if (Game1.Instance.spriteEffectVolume > 0)
+                    {
+                        Game1.Instance.spriteEffectVolume -= 0.1f;
+                    }
+                }
+                if (Game1.Instance.InputManager.menuRight)
+                {
+                    if (Game1.Instance.spriteEffectVolume < 1.0f)
+                    {
+                        Game1.Instance.spriteEffectVolume += 0.1f;
+                    }
+                }
+                SoundEffect.MasterVolume = Game1.Instance.spriteEffectVolume;
+            }
             if (Game1.Instance.InputManager.menuChoose)
             {
                 switch (startMenuChosen)
@@ -160,6 +179,16 @@ namespace ToA
             {
                 optionsChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2);
                 optionsChosen.Draw(spriteBatch);
+                for (int i = 0; i < 10; i++)
+                {
+                    volumeLvlOff.setPosition(Window.ClientBounds.Width / 4 + 300 + i * 50, Window.ClientBounds.Height / 2 + 25);
+                    volumeLvlOff.Draw(spriteBatch);
+                }
+                for (int i = 0; i < (int)(Game1.Instance.spriteEffectVolume * 10); i++)
+                {
+                    volumeLvlOn.setPosition(Window.ClientBounds.Width / 4 + 300 + i * 50, Window.ClientBounds.Height / 2 + 25);
+                    volumeLvlOn.Draw(spriteBatch);
+                }
             }
             quit.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 + 200);
             quit.Draw(spriteBatch);

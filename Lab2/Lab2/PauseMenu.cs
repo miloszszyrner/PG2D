@@ -181,6 +181,16 @@ namespace ToA
             {
                 optionsChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2);
                 optionsChosen.Draw(spriteBatch);
+                for (int i = 0; i < 10; i++)
+                {
+                    volumeLvlOff.setPosition(Window.ClientBounds.Width / 4 + 300 + i * 50, Window.ClientBounds.Height / 2 + 25);
+                    volumeLvlOff.Draw(spriteBatch);
+                }
+                for (int i = 0; i < (int)(Game1.Instance.spriteEffectVolume * 10); i++)
+                {
+                    volumeLvlOn.setPosition(Window.ClientBounds.Width / 4 + 300 + i * 50, Window.ClientBounds.Height / 2 + 25);
+                    volumeLvlOn.Draw(spriteBatch);
+                }
             }
             exit.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 + 200);
             exit.Draw(spriteBatch);
