@@ -112,21 +112,24 @@ namespace ToA
                         MediaPlayer.Play(Game1.Instance.SoundManager.Songs["BackgroundMusic"]);
                         break;
                     case StartMenuChosen.LOAD:
-                        XElement xDoc = XElement.Load("save.xml");
-                        IEnumerable<XElement> game = xDoc.Elements();
-                        int i = 0;
-                        foreach (var save in game)
+                        if (File.Exists("save.xml"))
                         {
-                            Game1.Instance.DisplayManager.Manager.loadLevel(Convert.ToInt32(save.Element("LevelId").Value));
-                            foreach (var sprite in save.Descendants("Sprite"))
+                            XElement xDoc = XElement.Load("save.xml");
+                            IEnumerable<XElement> game = xDoc.Elements();
+                            int i = 0;
+                            foreach (var save in game)
                             {
-                                Game1.Instance.DisplayManager.Manager.spriteList[i].setPosition(float.Parse(sprite.Element("X").Value, CultureInfo.InvariantCulture), float.Parse(sprite.Element("Y").Value, CultureInfo.InvariantCulture));
-                                i++;
+                                Game1.Instance.DisplayManager.Manager.loadLevel(Convert.ToInt32(save.Element("LevelId").Value));
+                                foreach (var sprite in save.Descendants("Sprite"))
+                                {
+                                    Game1.Instance.DisplayManager.Manager.spriteList[i].setPosition(float.Parse(sprite.Element("X").Value, CultureInfo.InvariantCulture), float.Parse(sprite.Element("Y").Value, CultureInfo.InvariantCulture));
+                                    i++;
+                                }
                             }
+                            i = 0;
+                            Game1.Instance.DisplayManager.gameState = GameState.GAMEPLAY;
+                            MediaPlayer.Play(Game1.Instance.SoundManager.Songs["BackgroundMusic"]);
                         }
-                        i = 0;
-                        Game1.Instance.DisplayManager.gameState = GameState.GAMEPLAY;
-                        MediaPlayer.Play(Game1.Instance.SoundManager.Songs["BackgroundMusic"]);
                         break;
                     case StartMenuChosen.QUIT:
                         Game1.Instance.Quit();
