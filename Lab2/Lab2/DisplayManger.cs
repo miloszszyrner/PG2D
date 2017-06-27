@@ -42,9 +42,9 @@ namespace ToA
             pauseMenu.Load();
             startMenu = new StartMenu(content);
             startMenu.Load();
-            MediaPlayer.Play(Game1.Instance.SoundManager.Songs["GameMenuMusic"]);
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 0.1f;
+            //MediaPlayer.Play(Game1.Instance.SoundManager.Songs["GameMenuMusic"]);
+            //MediaPlayer.IsRepeating = true;
+           // MediaPlayer.Volume = 0.1f;
 
         }
 

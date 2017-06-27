@@ -30,6 +30,7 @@ namespace ToA
 		COLUMN_MIDDLE_RIGHT,
 		COLUMN_TOP_LEFT,
 		COLUMN_TOP_RIGHT,
+        SIGN,
 
 		//Warstwa: foreground (są różne kolizje)
 

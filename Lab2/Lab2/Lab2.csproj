@@ -101,6 +101,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\background_1.png" />
     <Content Include="Content\Box.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -121,6 +122,7 @@
     <Content Include="Content\gravity_upsidedown.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\logotype.png" />
     <Content Include="Content\mario.png" />
     <Content Include="Content\optionsButton.png" />
     <Content Include="Content\optionsButtonChosen.png" />
@@ -129,6 +131,7 @@
     <Content Include="Content\spritesheet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\stylesheet.xml" />
     <Content Include="Content\Tileset.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
