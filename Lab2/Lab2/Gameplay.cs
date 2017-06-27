@@ -30,7 +30,7 @@ namespace ToA
             {
                 for (int i = 0; i < credits.Length; i++)
                 {
-                    spriteBatch.DrawString(font, credits[i], new Vector2(Window.ClientBounds.Width / 2 - font.MeasureString(credits[i]).Length() / 2, position + i * 20), Color.White);
+                    spriteBatch.DrawString(font, credits[i], new Vector2(Window.ClientBounds.Width / 2 - font.MeasureString(credits[i]).Length() / 2, position + i * font.MeasureString(credits[0]).Y), Color.White);
                 }
             }
         }
