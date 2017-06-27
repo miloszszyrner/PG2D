@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -6,18 +8,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToA;
+using System.Threading;
 
 namespace Lab2
 {
-    class Sprite
+    public abstract class Sprite
     {
+        public Texture2D texture { get; }
+        public Vector2 position;
+        public Rectangle boundingBox { get; set; }
+
         public float ScaleFactor;
         public Rectangle Size;
-        public BoundingBox boundingBox { get; set; }
-        public Vector2 position;
-        public Texture2D texture { get; }
-        public BoundingSphere boundingSphere { get; set; }
-        public bool isPlayerControlled;
+
+        public SpriteType spriteType;
+        public bool gravity;
+
         public float scale
         {
             get { return ScaleFactor; }
@@ -31,55 +37,26 @@ namespace Lab2
         {
             position = new Vector2(x, y);
         }
-        public Sprite(float scale,Texture2D texture, Vector2 position, bool isPlayerControlled = false)
+        public Sprite(float scale, Texture2D texture, Vector2 position, SpriteType spriteType = SpriteType.TEST)
         {
             this.ScaleFactor = scale;
             this.texture = texture;
             this.position = position;
-            this.isPlayerControlled = isPlayerControlled;
+            this.spriteType = spriteType;
+            this.gravity = true;
         }
-        private void UpdateBoundingBox()
+        public virtual void UpdateBoundingBox()
         {
-            boundingBox = new BoundingBox(new Vector3(position, 0), new Vector3(position.X + (texture.Height * ScaleFactor), position.Y + (texture.Width * ScaleFactor), 0));
-         //   Console.WriteLine(texture.Height * ScaleFactor);
-         
-        }
-        
-        private void UpdateBoundingSphere()
-        {
-            //boundingSphere = new BoundingSphere(new Vector3(position.X + (texture.Width / 2), position.Y + (texture.Height / 2), 0), (float)Math.Sqrt(Math.Pow((position.X + texture.Width) - (position.X + (texture.Width / 2)), 2) + Math.Pow((position.Y + texture.Height) - (position.Y + (texture.Height / 2)), 2)));
-            boundingSphere = new BoundingSphere(new Vector3(position.X + ((texture.Width * ScaleFactor) / 2), position.Y + ((texture.Height * ScaleFactor) / 2), 0), Math.Max((texture.Height * ScaleFactor) / 2, (texture.Width * ScaleFactor) / 2));
+            boundingBox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
         }
 
-        public void Update(GameTime pGameTime)
+        public virtual void Update(GameTime pGameTime)
         {
             UpdateBoundingBox();
-            UpdateBoundingSphere();
-           
-            if(isPlayerControlled)
-            {
-                if (Game1.Instance.InputManager.Pressed(Input.Up))
-                {
-                    position.Y -= 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
-                }
-                if (Game1.Instance.InputManager.Pressed(Input.Down))
-                {
-                    position.Y += 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
-                }
-                if (Game1.Instance.InputManager.Pressed(Input.Left))
-                {
-                    position.X -= 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
-                }
-                if (Game1.Instance.InputManager.Pressed(Input.Right))
-                {
-                    position.X += 100 * pGameTime.ElapsedGameTime.Milliseconds / 1000F;
-                }
-            }
-            
         }
-        public void Draw(SpriteBatch sp)
+        public virtual void Draw(SpriteBatch sp)
         {
-            sp.Draw(texture, position, null, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            sp.Draw(texture, position, null, Color.White);
         }
     }
 }

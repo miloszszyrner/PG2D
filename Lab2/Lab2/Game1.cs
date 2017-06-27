@@ -1,15 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.IO;
+using System.Xml.Linq;
 using ToA;
+
 
 namespace Lab2
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
+    /// 
     public class Game1 : Game
     {
         private static Game1 instance;
@@ -24,13 +29,17 @@ namespace Lab2
                 return instance;
             }
         }
-
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Sprite dragonBallHero1;
-        Sprite dragonBallHero;
+
+        public TileMap TileMap;
+        public int levelNumber { get; set; } = 1;
 
         InputManager inputManger;
+        DisplayManger displayManager;
+        SoundManager soundManager;
+        public float musicVolume = 0.1f;
+        public float spriteEffectVolume = 0.1f;
 
         public InputManager InputManager
         {
@@ -39,15 +48,36 @@ namespace Lab2
                 return inputManger;
             }
         }
+        public DisplayManger DisplayManager
+        {
+            get
+            {
+                return displayManager;
+            }
+        }
 
-        private SpriteFont font;
-        private bool isCollision = false;
+        public SoundManager SoundManager
+        {
+            get
+            {
+                return soundManager;
+            }
+        }
+
+        public bool isFinishing = false;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            inputManger = new InputManager(true);
+            inputManger = new InputManager();
+            soundManager = new SoundManager();
+            
         }
 
+        public void Quit()
+        {
+            this.Exit();
+        }
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -56,10 +86,16 @@ namespace Lab2
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.IsFullScreen = false;
+            graphics.ApplyChanges();
+            
             base.Initialize();
         }
+
+        
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -67,12 +103,12 @@ namespace Lab2
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
+          
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Texture2D sample = Texture2D.FromStream(GraphicsDevice, File.OpenRead("Content/dragonball.png"));
-            dragonBallHero1 = new Sprite(1.0f,sample, new Vector2(500, 100),false);
-            dragonBallHero = new Sprite(0.5f,sample, new Vector2(50, 50),true);
-            font = Content.Load<SpriteFont>("Content/Tekst");
+
+            displayManager = new DisplayManger(GraphicsDevice, Content, Window );
+            displayManager.Load();
+
         }
 
         /// <summary>
@@ -93,36 +129,17 @@ namespace Lab2
         {
             inputManger.Update();
 
-            if (inputManger.Pressed(Input.Back)) 
-            {
-                Exit();
-            }
-
-            dragonBallHero.Update(gameTime);
-            dragonBallHero1.Update(gameTime);
-
-            isCollision = false;
-            if (dragonBallHero.boundingBox.Contains(dragonBallHero1.boundingBox) == ContainmentType.Intersects || dragonBallHero.boundingSphere.Contains(dragonBallHero1.boundingSphere) == ContainmentType.Intersects)
-            {
-                isCollision = true;
-            }
-
-                base.Update(gameTime);
+            displayManager.Update(gameTime);
+            base.Update(gameTime);
         }
-
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointWrap);
-            spriteBatch.DrawString(font, (isCollision == true) ? "We stick together" : "We are apart", new Vector2(100, 20), Color.Black);
-            dragonBallHero1.Draw(spriteBatch);
-            dragonBallHero.Draw(spriteBatch);
-            spriteBatch.End();
+            displayManager.Draw(spriteBatch);
+            
             base.Draw(gameTime);
         }
     }

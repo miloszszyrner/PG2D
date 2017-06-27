@@ -11,73 +11,76 @@ namespace ToA
 {
     public class InputManager
     {
-        public Dictionary<Keys, Input> keyBindingsKeyboard;
-        public Dictionary<Buttons, Input> keyBindingsGamepad;
+        public bool right;
+        public bool left;
+        public bool up;
+        public bool menuDown;
+        public bool menuUp;
+        public bool menuLeft;
+        public bool menuRight;
+        public bool menuChoose;
+        public bool back = false;
+        public bool changeGravity;
+        public bool pause = false;
+        public bool action;
+        public bool enter = false;
 
-        private bool isUsingKeyboard;
-
-        private int playerInput;
-        public InputManager(bool pIsUsingKeyboard = true)
-        {
-            isUsingKeyboard = pIsUsingKeyboard;
-
-            keyBindingsKeyboard = new Dictionary<Keys, Input>
-            {
-                {Keys.W, Input.Up },
-                {Keys.A, Input.Left },
-                {Keys.S, Input.Down },
-                {Keys.D, Input.Right },
-                {Keys.Escape, Input.Back }
-            };
-
-            keyBindingsGamepad = new Dictionary<Buttons, Input>
-            {
-                {Buttons.LeftThumbstickUp, Input.Up },
-                {Buttons.LeftThumbstickLeft, Input.Left },
-                {Buttons.LeftThumbstickDown, Input.Down },
-                {Buttons.LeftThumbstickRight, Input.Right },
-                {Buttons.Back, Input.Back }
-            };
-        }
-
+        KeyboardState previousstate = Keyboard.GetState();
         public void Update(PlayerIndex pPlayer = PlayerIndex.One) //PLAYER INDEX domyślnie na One
         {
-            playerInput = 0;
-            if(isUsingKeyboard)
-            {
-                Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
+            KeyboardState state = Keyboard.GetState();    
+            var gamePadState = GamePad.GetState(pPlayer);
 
-                foreach(Keys key in pressedKeys)
-                {
-                    if (keyBindingsKeyboard.ContainsKey(key))
-                    {
-                        playerInput |= (int)keyBindingsKeyboard[key];
-                    }
-                }
-            }
+            if (state.IsKeyDown(Keys.A) || gamePadState.DPad.Left == ButtonState.Pressed || gamePadState.ThumbSticks.Left.X < 0.0f)
+                right = true;
             else
-            {
-                var gamepadState = GamePad.GetState(pPlayer);
-                foreach(var kvp in keyBindingsGamepad)
-                {
-                    if (gamepadState.IsButtonDown(kvp.Key))
-                    {
-                        playerInput |= (int)kvp.Value;
-                    }
-                }
-            }
-        }
+                right = false;
+            if (state.IsKeyDown(Keys.D) || gamePadState.DPad.Right == ButtonState.Pressed || gamePadState.ThumbSticks.Left.X > 0.0f)
+                left = true;
+            else
+                left = false;
+			if (state.IsKeyDown(Keys.W) || gamePadState.DPad.Up == ButtonState.Pressed || gamePadState.ThumbSticks.Left.Y > 0.5f)
+				up = true;
+			else
+				up = false;
+            if ((state.IsKeyDown(Keys.Q) && previousstate.IsKeyUp(Keys.Q)) || gamePadState.Buttons.A == ButtonState.Pressed)
+                changeGravity = true;
+            else
+                changeGravity = false;
+            if (state.IsKeyDown(Keys.Escape))
+                back = true;
+            if (state.IsKeyDown(Keys.Enter))
+                enter = true;
+            else
+                enter = false;
+            if (state.IsKeyDown(Keys.P) && previousstate.IsKeyUp(Keys.P))
+                pause = !pause;
+            if (state.IsKeyDown(Keys.E) || gamePadState.Buttons.B == ButtonState.Pressed)
+                action = true;
+            else
+                action = false;
+            if (state.IsKeyDown(Keys.Up) && previousstate.IsKeyUp(Keys.Up))
+                menuUp = true;
+            else
+                menuUp = false;
+            if (state.IsKeyDown(Keys.Down) && previousstate.IsKeyUp(Keys.Down))
+                menuDown = true;
+            else
+                menuDown = false;
+            if (state.IsKeyDown(Keys.Left) && previousstate.IsKeyUp(Keys.Left))
+                menuLeft = true;
+            else
+                menuLeft = false;
+            if (state.IsKeyDown(Keys.Right) && previousstate.IsKeyUp(Keys.Right))
+                menuRight = true;
+            else
+                menuRight = false;
+            if (state.IsKeyDown(Keys.Enter) && previousstate.IsKeyUp(Keys.Enter))
+                menuChoose = true;
+            else
+                menuChoose = false;
+            previousstate = state;  
 
-        public bool Pressed(params Input[] pInputs)
-        {
-            int n = 0;
-            
-            foreach(var pInput in pInputs)
-            {
-                n |= (int)pInput;
-            }
-
-            return playerInput == n;
         }
     }
 }

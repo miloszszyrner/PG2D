@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace ToA
 {
-    [Flags]
-    public enum Input
+    public enum PauseMenuChosen
     {
-        Up = 1,
-        Left = 2,
-        Down = 4,
-        Right = 8,
-        Back = 16   
+        RESUME,
+        SAVE,
+        BACKGROUND_MUSIC_VOLUME,
+        SOUNDEFFECTS_VOLUME,
+        EXIT
     }
 }
