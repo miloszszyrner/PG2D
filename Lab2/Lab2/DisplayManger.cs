@@ -36,8 +36,7 @@ namespace ToA
 
         public void Load()
         {
-
-            gameplay = new Gameplay();
+            gameplay = new Gameplay(content, Window);
             pauseMenu = new PauseMenu(content);
             pauseMenu.Load();
             startMenu = new StartMenu(content);
@@ -77,6 +76,7 @@ namespace ToA
                     graphicsDevice.Clear(Color.CornflowerBlue);
                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, manager.Camera.transform);
                     manager.Draw(spriteBatch);
+                    gameplay.Draw(spriteBatch, Window);
                     spriteBatch.End();
                     break;
                 case GameState.PAUSEMENU:

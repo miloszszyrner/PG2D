@@ -124,7 +124,7 @@ namespace ToA
                         Game1.Instance.SoundManager.Songs.Add("GameMenuMusic", content.Load<Song>((from animation in level.Descendants("Music") select animation.Element("GameMenuMusic")).First().Value));
                     }
                     font = content.Load<SpriteFont>("Content/Tekst");
-                    MediaPlayer.Play(backgroundMusic);
+                    MediaPlayer.Play(Game1.Instance.SoundManager.Songs["BackgroundMusic"]);
                     MediaPlayer.IsRepeating = true;
                     MediaPlayer.Volume = 0.1f;
                 }
