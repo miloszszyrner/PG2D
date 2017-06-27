@@ -52,7 +52,7 @@ namespace ToA
             this.content = content;
             tilePropertyType = new Dictionary<int, TileProperty>
             {
-                {1, TileProperty.EARTH},
+                {1, TileProperty.BACKGROUND},
                 {2, TileProperty.TRAP }, //kolce
                 {3, TileProperty.BACKGROUND  }, //tlo
                 {4, TileProperty.COLUMN_DOWN_LEFT },
@@ -64,9 +64,9 @@ namespace ToA
                 {10, TileProperty.COLUMN_MIDDLE_RIGHT },
                 {11, TileProperty.COLUMN_TOP_LEFT },
                 {12, TileProperty.COLUMN_TOP_RIGHT },
-				//13 - nieużyta
-				{14, TileProperty.WINDOW_DOWN_RIGHT }, 
-				//15 - nieużyta
+               // {13, TileProperty.BACKGROUND },//13 - nieużyta
+				{14, TileProperty.WINDOW_DOWN_RIGHT },
+                //{15, TileProperty.BACKGROUND },//15 - nieużyta
 				{16, TileProperty.SIGN },
                 {17, TileProperty.SIGN },
                 {18, TileProperty.PLATFORM_CENTER },
@@ -93,7 +93,7 @@ namespace ToA
                 {39, TileProperty.FLOOR },
                 {40, TileProperty.FLOOR_RIGHT },
                 {41, TileProperty.FLOOR_LEFT },
-                {42, TileProperty.WINDOW_UP_RIGHT }
+                {42, TileProperty.WINDOW_UP_RIGHT },
             };
 			foreach (XElement layer in xDoc.Root.Descendants("layer"))
 			{

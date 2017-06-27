@@ -123,7 +123,7 @@
     </Level>
 	<Level>
 			<LevelId>1</LevelId>
-				<SpriteCount>4</SpriteCount>
+				<SpriteCount>2</SpriteCount>
 
 			  <Sprite>
 				<Name>Content/Box</Name>

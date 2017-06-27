@@ -4,7 +4,7 @@
     <image source="spritesheet.png" width="700" height="600"/>
   </tileset>
  <imagelayer name="Background_Image">
-  <image source="C:/Users/Patrycja/Desktop/palety/background_1.png" width="2200" height="1500"/>
+ 
  </imagelayer>
  <layer name="Background" width="22" height="15">
   <data encoding="csv">
