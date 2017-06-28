@@ -7,7 +7,7 @@ using System;
 using System.IO;
 using System.Xml.Linq;
 using ToA;
-
+using System.Threading;
 
 namespace Lab2
 {
@@ -39,6 +39,17 @@ namespace Lab2
         InputManager inputManger;
         DisplayManger displayManager;
         SoundManager soundManager;
+
+        Thread savingThread = null;
+
+        public Thread SavingThread
+        {
+            get
+            {
+                return savingThread;
+            }
+        }
+
         public float musicVolume = 0.1f;
         public float spriteEffectVolume = 0.1f;
 
@@ -120,7 +131,24 @@ namespace Lab2
         {
             // TODO: Unload any non ContentManager content here
         }
+        public void saveGameState()
+        {
+            XDocument save = new XDocument();
+            XElement game = new XElement("Game");
+            XElement saveChild = new XElement("Save");
 
+            saveChild.Add(new XElement("LevelId", Game1.Instance.levelNumber));
+            foreach (Sprite sprite in Game1.Instance.DisplayManager.Manager.spriteList)
+            {
+                XElement spr = new XElement("Sprite");
+                spr.Add(new XElement("X", sprite.position.X));
+                spr.Add(new XElement("Y", sprite.position.Y));
+                saveChild.Add(spr);
+            }
+            game.Add(saveChild);
+            save.Add(game);
+            save.Save("save.xml");
+        }
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.

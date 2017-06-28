@@ -124,21 +124,7 @@ namespace ToA
                         MediaPlayer.Play(Game1.Instance.SoundManager.Songs["BackgroundMusic"]);
                         break;
                     case PauseMenuChosen.SAVE:
-                        XDocument save = new XDocument();
-                        XElement game = new XElement("Game");
-                        XElement saveChild = new XElement("Save");
-                        
-                        saveChild.Add(new XElement("LevelId", Game1.Instance.levelNumber));
-                        foreach(Sprite sprite in Game1.Instance.DisplayManager.Manager.spriteList)
-                        {
-                            XElement spr = new XElement("Sprite");
-                            spr.Add(new XElement("X", sprite.position.X));
-                            spr.Add(new XElement("Y", sprite.position.Y));
-                            saveChild.Add(spr);
-                        }
-                        game.Add(saveChild);
-                        save.Add(game);
-                        save.Save("save.xml");
+                        Game1.Instance.saveGameState();
                         break;
                     case PauseMenuChosen.EXIT:
                         Game1.Instance.DisplayManager.gameState = GameState.STARTMENU;
@@ -146,6 +132,8 @@ namespace ToA
                 }
             }
         }
+
+       
 
         public void Draw(SpriteBatch spriteBatch, GameWindow Window)
         {

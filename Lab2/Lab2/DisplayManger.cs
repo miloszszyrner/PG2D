@@ -82,6 +82,7 @@ namespace ToA
                     spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, null, null, manager.Camera.transform);
                     manager.Draw(spriteBatch);
                     gameplay.Draw(spriteBatch, Window);
+
                     spriteBatch.End();
                     break;
                 case GameState.PAUSEMENU:
