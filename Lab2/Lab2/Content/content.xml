@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Game>
     <Level>
-		<LevelId>3</LevelId>
+		<LevelId>1</LevelId>
         <SpriteCount>4</SpriteCount>
         <Sprite>
 			    <Name>Content/gravity_normal</Name>
@@ -37,7 +37,7 @@
         <SpriteType>PLAYER</SpriteType>
         <Position>
           <X>150</X>
-          <Y>800</Y>
+          <Y>600</Y>
         </Position>
         <Animation>
           <SizeX>95</SizeX>
@@ -61,7 +61,7 @@
 	  </Music>
   </Level>
   <Level>
-			<LevelId>2</LevelId>
+    <LevelId>2</LevelId>
 				<SpriteCount>4</SpriteCount>
 				<Sprite>
 					<Name>Content/gravity_normal</Name>
@@ -97,8 +97,8 @@
 			  <Name>Content/chodz</Name>
 			  <SpriteType>PLAYER</SpriteType>
 			  <Position>
-				<X>150</X>
-				<Y>800</Y>
+				<X>200</X>
+				<Y>1200</Y>
 			  </Position>
 			  <Animation>
 				<SizeX>95</SizeX>
@@ -122,7 +122,7 @@
 			</Music>
     </Level>
 	<Level>
-			<LevelId>1</LevelId>
+			<LevelId>3</LevelId>
 				<SpriteCount>2</SpriteCount>
 
 			  <Sprite>
@@ -142,8 +142,8 @@
 			  <Name>Content/chodz</Name>
 			  <SpriteType>PLAYER</SpriteType>
 			  <Position>
-				<X>400</X>
-				<Y>800</Y>
+				<X>200</X>
+				<Y>1200</Y>
 			  </Position>
 			  <Animation>
 				<SizeX>95</SizeX>
