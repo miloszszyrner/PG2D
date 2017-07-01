@@ -34,6 +34,7 @@ namespace Lab2
 
         public TileMap TileMap;
         public int levelNumber { get; set; } = 1;
+        public int NumberOfLevels { get; set; } = 0;
 
         InputManager inputManger;
         DisplayManger displayManager;

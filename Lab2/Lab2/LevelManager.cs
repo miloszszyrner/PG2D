@@ -51,6 +51,12 @@ namespace ToA
             xDoc = XElement.Load(filename);
             this.graphicsDevice = graphicsDevice;
             this.content = content;
+            IEnumerable<XElement> game = xDoc.Elements();
+            foreach (var level in game)
+            {
+                Game1.Instance.NumberOfLevels++;
+                Console.WriteLine(Game1.Instance.NumberOfLevels);
+            }
             loadLevel(Game1.Instance.levelNumber);
         }
 

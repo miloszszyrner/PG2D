@@ -25,7 +25,7 @@ namespace ToA
 
         public void Draw(SpriteBatch spriteBatch, GameWindow Window)
         {
-            if (Game1.Instance.levelNumber == 3)
+            if (Game1.Instance.levelNumber == Game1.Instance.NumberOfLevels)
             {
                 for (int i = 0; i < credits.Length; i++)
                 {
@@ -47,7 +47,7 @@ namespace ToA
                 Game1.Instance.InputManager.pause = false;
                 MediaPlayer.Play(Game1.Instance.SoundManager.Songs["GameMenuMusic"]);
             }
-            if (Game1.Instance.levelNumber == 3)
+            if (Game1.Instance.levelNumber == Game1.Instance.NumberOfLevels)
             {
                 position--;
                 if (position < 0)
