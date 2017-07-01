@@ -572,3 +572,10 @@
 /processorParam:Quality=Best
 /build:Sounds/wispy_wind_3.ogg
 
+#begin CreditsFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:CreditsFont.spritefont
+

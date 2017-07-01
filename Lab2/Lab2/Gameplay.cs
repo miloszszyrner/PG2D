@@ -20,7 +20,7 @@ namespace ToA
         public Gameplay(ContentManager content, GameWindow Window)
         {
             position = Window.ClientBounds.Height;
-            font = content.Load<SpriteFont>("Content/Tekst");
+            font = content.Load<SpriteFont>("Content/CreditsFont");
         }
 
         public void Draw(SpriteBatch spriteBatch, GameWindow Window)
