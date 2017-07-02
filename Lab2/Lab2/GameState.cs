@@ -10,6 +10,7 @@ namespace ToA
     {
         GAMEPLAY,
         PAUSEMENU,
-        STARTMENU
+        STARTMENU,
+        STORY
     }
 }

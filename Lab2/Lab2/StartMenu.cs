@@ -108,7 +108,7 @@ namespace ToA
                 switch (startMenuChosen)
                 {
                     case StartMenuChosen.START:
-                        Game1.Instance.DisplayManager.gameState = GameState.GAMEPLAY;
+                        Game1.Instance.DisplayManager.gameState = GameState.STORY;
                         MediaPlayer.Play(Game1.Instance.SoundManager.Songs["BackgroundMusic"]);
                         break;
                     case StartMenuChosen.LOAD:

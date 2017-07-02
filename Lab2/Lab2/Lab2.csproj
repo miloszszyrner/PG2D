@@ -79,6 +79,7 @@
     <Compile Include="SpriteType.cs" />
     <Compile Include="StartMenu.cs" />
     <Compile Include="StartMenuChosen.cs" />
+    <Compile Include="Story.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="TileMap.cs" />
     <Compile Include="TileProperty.cs" />

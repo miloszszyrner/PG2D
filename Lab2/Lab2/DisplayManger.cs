@@ -17,6 +17,7 @@ namespace ToA
         Gameplay gameplay;
         PauseMenu pauseMenu;
         StartMenu startMenu;
+        Story story;
 
         public LevelManager Manager
         {
@@ -41,6 +42,7 @@ namespace ToA
             pauseMenu.Load();
             startMenu = new StartMenu(content);
             startMenu.Load();
+            story = new Story(content, Window);
             MediaPlayer.Play(Game1.Instance.SoundManager.Songs["GameMenuMusic"]);
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Volume = 0.1f;
@@ -65,6 +67,9 @@ namespace ToA
                 case GameState.STARTMENU:
                     startMenu.Update();
                     break;
+                case GameState.STORY:
+                    story.Update();
+                    break;
             }
         }
 
@@ -82,10 +87,17 @@ namespace ToA
                 case GameState.PAUSEMENU:
                     graphicsDevice.Clear(Color.CornflowerBlue);
                     pauseMenu.Draw(spriteBatch, Window);
+                    spriteBatch.End();
                     break;
                 case GameState.STARTMENU:
                     graphicsDevice.Clear(Color.CornflowerBlue);
                     startMenu.Draw(spriteBatch, Window);
+                    spriteBatch.End();
+                    break;
+                case GameState.STORY:
+                    graphicsDevice.Clear(Color.Black);
+                    story.Draw(spriteBatch, Window);
+                    spriteBatch.End();
                     break;
             }
         }
