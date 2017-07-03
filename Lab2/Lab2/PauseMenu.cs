@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using System;
 using System.Xml.Linq;
 
 namespace ToA
@@ -85,6 +86,7 @@ namespace ToA
                         Game1.Instance.musicVolume += 0.1f;
                     }
                 }
+                Console.WriteLine(Game1.Instance.musicVolume);
                 MediaPlayer.Volume = Game1.Instance.musicVolume;
             }
             if (pauseMenuChosen == PauseMenuChosen.SOUNDEFFECTS_VOLUME)
@@ -95,12 +97,20 @@ namespace ToA
                     {
                         Game1.Instance.spriteEffectVolume -= 0.1f;
                     }
+                    if (Game1.Instance.spriteEffectVolume < 0)
+                    {
+                        Game1.Instance.spriteEffectVolume = 0.0f;
+                    }
                 }
                 if (Game1.Instance.InputManager.menuRight)
                 {
                     if (Game1.Instance.spriteEffectVolume < 1.0f)
                     {
                         Game1.Instance.spriteEffectVolume += 0.1f;
+                    }
+                    if (Game1.Instance.spriteEffectVolume > 1.0f)
+                    {
+                        Game1.Instance.spriteEffectVolume = 1.0f;
                     }
                 }
                 SoundEffect.MasterVolume = Game1.Instance.spriteEffectVolume;

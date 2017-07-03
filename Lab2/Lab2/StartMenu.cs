@@ -93,12 +93,20 @@ namespace ToA
                     {
                         Game1.Instance.spriteEffectVolume -= 0.1f;
                     }
+                    if (Game1.Instance.spriteEffectVolume < 0)
+                    {
+                        Game1.Instance.spriteEffectVolume = 0.0f;
+                    }
                 }
                 if (Game1.Instance.InputManager.menuRight)
                 {
                     if (Game1.Instance.spriteEffectVolume < 1.0f)
                     {
                         Game1.Instance.spriteEffectVolume += 0.1f;
+                    }
+                    if (Game1.Instance.spriteEffectVolume > 1.0f)
+                    {
+                        Game1.Instance.spriteEffectVolume = 1.0f;
                     }
                 }
                 SoundEffect.MasterVolume = Game1.Instance.spriteEffectVolume;
