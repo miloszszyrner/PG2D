@@ -29,7 +29,7 @@ namespace ToA
             {
                 spriteBatch.DrawString(font, story[i], new Vector2(Window.ClientBounds.Width / 2 - font.MeasureString(story[i]).Length() / 2, position + i * font.MeasureString(story[0]).Y), Color.White);
             }
-            spriteBatch.DrawString(font, skip, new Vector2(Window.ClientBounds.Width - font.MeasureString(skip).Length(), Window.ClientBounds.Height - font.MeasureString(skip).Y), Color.White);
+            spriteBatch.DrawString(font, skip, new Vector2(Window.ClientBounds.Width - font.MeasureString(skip).Length()/2, Window.ClientBounds.Height - font.MeasureString(skip).Y/2), Color.White,0.0f,Vector2.Zero,0.5f,SpriteEffects.None,0.0f);
             spriteBatch.End();
         }
 
