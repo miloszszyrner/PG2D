@@ -79,7 +79,7 @@ namespace ToA
                 menuChoose = true;
             else
                 menuChoose = false;
-            previousstate = state;  
+            previousstate = state;
 
         }
     }

@@ -52,10 +52,13 @@ namespace ToA
                 position--;
                 if (position < 0)
                 {
+                    
                     Game1.Instance.DisplayManager.gameState = GameState.STARTMENU;
-                    //Tutaj ustawic powrot do pierwszego poziomu
+                    Game1.Instance.levelNumber = 1;
+                    Game1.Instance.DisplayManager.Manager.loadLevel(Game1.Instance.levelNumber);
                 }
             }
+            Console.WriteLine(Game1.Instance.InputManager.menuChoose);
         }
     }
 }

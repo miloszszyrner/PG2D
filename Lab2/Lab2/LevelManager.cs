@@ -55,7 +55,6 @@ namespace ToA
             foreach (var level in game)
             {
                 Game1.Instance.NumberOfLevels++;
-                Console.WriteLine(Game1.Instance.NumberOfLevels);
             }
             loadLevel(Game1.Instance.levelNumber);
         }
@@ -70,6 +69,7 @@ namespace ToA
             {
                 if (Convert.ToInt32(level.Element("LevelId").Value) == levelId)
                 {
+                    Console.WriteLine(levelId);
                     spriteCountPerLevel = Convert.ToInt32(level.Element("SpriteCount").Value);
                     spriteList = new List<Sprite>(spriteCountPerLevel);
                     foreach (var sprite in level.Descendants("Sprite"))
