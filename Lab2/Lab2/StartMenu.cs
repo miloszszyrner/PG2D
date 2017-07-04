@@ -17,6 +17,7 @@ namespace ToA
 {
     class StartMenu : Display
     {
+        Effect logotypeEffect;
         Sprite options, optionsChosen, quit, quitChosen, background, volumeLvlOn, volumeLvlOff, load, loadChosen, start, startChosen, logoType;
         private ContentManager content;
         StartMenuChosen startMenuChosen = StartMenuChosen.START;
@@ -126,9 +127,10 @@ namespace ToA
 
         public void Draw(SpriteBatch spriteBatch, GameWindow Window)
         {
-            spriteBatch.Begin();
+            spriteBatch.Begin(0, null, null, null, null, logotypeEffect);
 
             background.Draw(spriteBatch);
+
             logoType.setPosition(Window.ClientBounds.Width / 4 - 120, Window.ClientBounds.Height / 2 - 500);
             logoType.Draw(spriteBatch);
         
@@ -168,7 +170,7 @@ namespace ToA
             }
             if (startMenuChosen == StartMenuChosen.SOUNDEFFECTS_VOLUME)
             {
-                optionsChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2);
+                optionsChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 + 70);
                 optionsChosen.Draw(spriteBatch);
             }
             quit.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 + 240);

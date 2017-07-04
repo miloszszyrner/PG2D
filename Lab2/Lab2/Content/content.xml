@@ -112,8 +112,8 @@
 				<Y>1200</Y>
 			  </Position>
 			  <Animation>
-				<SizeX>95</SizeX>
-				<SizeY>157</SizeY>
+          <SizeX>70</SizeX>
+          <SizeY>114</SizeY>
 				<Frames>13</Frames>
 			  </Animation>
 			</Sprite>
@@ -158,8 +158,8 @@
 				<Y>1200</Y>
 			  </Position>
 			  <Animation>
-				<SizeX>95</SizeX>
-				<SizeY>157</SizeY>
+          <SizeX>70</SizeX>
+          <SizeY>114</SizeY>
 				<Frames>13</Frames>
 			  </Animation>
 			</Sprite>
