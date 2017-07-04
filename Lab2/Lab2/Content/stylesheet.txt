@@ -1,0 +1,239 @@
+.sprite {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-Tile_Background2 {
+    width: 100px;
+    height: 100px;
+    background-position: 0 0;
+}
+
+.sprite-air {
+    width: 100px;
+    height: 100px;
+    background-position: -100px 0;
+}
+
+.sprite-column_down_left {
+    width: 100px;
+    height: 100px;
+    background-position: -200px 0;
+}
+
+.sprite-column_down_right {
+    width: 100px;
+    height: 100px;
+    background-position: -300px 0;
+}
+
+.sprite-column_middle_deco_left {
+    width: 100px;
+    height: 100px;
+    background-position: -400px 0;
+}
+
+.sprite-column_middle_deco_right {
+    width: 100px;
+    height: 100px;
+    background-position: -500px 0;
+}
+
+.sprite-column_middle_left {
+    width: 100px;
+    height: 100px;
+    background-position: 0 -100px;
+}
+
+.sprite-column_middle_right {
+    width: 100px;
+    height: 100px;
+    background-position: -100px -100px;
+}
+
+.sprite-column_top_left {
+    width: 100px;
+    height: 100px;
+    background-position: -200px -100px;
+}
+
+.sprite-column_top_right {
+    width: 100px;
+    height: 100px;
+    background-position: -300px -100px;
+}
+
+.sprite-platform_1_center {
+    width: 100px;
+    height: 100px;
+    background-position: -400px -100px;
+}
+
+.sprite-platform_1_left {
+    width: 100px;
+    height: 100px;
+    background-position: -500px -100px;
+}
+
+.sprite-platform_1_right {
+    width: 100px;
+    height: 100px;
+    background-position: 0 -200px;
+}
+
+.sprite-spiders_net {
+    width: 100px;
+    height: 100px;
+    background-position: -100px -200px;
+}
+
+.sprite-spikes_down_new {
+    width: 100px;
+    height: 100px;
+    background-position: -200px -200px;
+}
+
+.sprite-spikes_left_new {
+    width: 100px;
+    height: 100px;
+    background-position: -300px -200px;
+}
+
+.sprite-spikes_right_new {
+    width: 100px;
+    height: 100px;
+    background-position: -400px -200px;
+}
+
+.sprite-spikes_up_new {
+    width: 100px;
+    height: 100px;
+    background-position: -500px -200px;
+}
+
+.sprite-stairs_part1 {
+    width: 100px;
+    height: 100px;
+    background-position: 0 -300px;
+}
+
+.sprite-stairs_part2 {
+    width: 100px;
+    height: 100px;
+    background-position: -100px -300px;
+}
+
+.sprite-stairs_part3 {
+    width: 100px;
+    height: 100px;
+    background-position: -200px -300px;
+}
+
+.sprite-stairs_part4 {
+    width: 100px;
+    height: 100px;
+    background-position: -300px -300px;
+}
+
+.sprite-tile_base {
+    width: 100px;
+    height: 100px;
+    background-position: -400px -300px;
+}
+
+.sprite-tile_base_left {
+    width: 100px;
+    height: 100px;
+    background-position: -500px -300px;
+}
+
+.sprite-tile_base_right {
+    width: 100px;
+    height: 100px;
+    background-position: 0 -400px;
+}
+
+.sprite-tile_bottom_center {
+    width: 100px;
+    height: 100px;
+    background-position: -100px -400px;
+}
+
+.sprite-tile_bottom_left {
+    width: 100px;
+    height: 100px;
+    background-position: -200px -400px;
+}
+
+.sprite-tile_bottom_right {
+    width: 100px;
+    height: 100px;
+    background-position: -300px -400px;
+}
+
+.sprite-tile_broken {
+    width: 100px;
+    height: 100px;
+    background-position: -400px -400px;
+}
+
+.sprite-tile_broken_background {
+    width: 100px;
+    height: 100px;
+    background-position: -500px -400px;
+}
+
+.sprite-tile_floor {
+    width: 100px;
+    height: 100px;
+    background-position: 0 -500px;
+}
+
+.sprite-tile_floor_left {
+    width: 100px;
+    height: 100px;
+    background-position: -100px -500px;
+}
+
+.sprite-tile_floor_right {
+    width: 100px;
+    height: 100px;
+    background-position: -200px -500px;
+}
+
+.sprite-window_down_left {
+    width: 100px;
+    height: 100px;
+    background-position: -300px -500px;
+}
+
+.sprite-window_down_right {
+    width: 100px;
+    height: 100px;
+    background-position: -400px -500px;
+}
+
+.sprite-window_middle_left {
+    width: 100px;
+    height: 100px;
+    background-position: -500px -500px;
+}
+
+.sprite-window_middle_right {
+    width: 100px;
+    height: 100px;
+    background-position: -600px 0;
+}
+
+.sprite-window_up_left {
+    width: 100px;
+    height: 100px;
+    background-position: -600px -100px;
+}
+
+.sprite-window_up_right {
+    width: 100px;
+    height: 100px;
+    background-position: -600px -200px;
+}

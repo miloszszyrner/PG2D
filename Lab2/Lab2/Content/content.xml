@@ -2,7 +2,7 @@
 <Game>
     <Level>
 		<LevelId>1</LevelId>
-        <SpriteCount>4</SpriteCount>
+        <SpriteCount>5</SpriteCount>
         <Sprite>
 			    <Name>Content/gravity_normal</Name>
           <SpriteType>GRAVITY_UP</SpriteType>
@@ -10,13 +10,21 @@
               <X>1400</X>
               <Y>200</Y>
           </Position>            
+        </Sprite>   
+      <Sprite>
+            <Name>Content/background_1</Name>
+            <SpriteType>TEST</SpriteType>
+            <Position>
+              <X>0</X>
+              <Y>0</Y>
+            </Position>
         </Sprite>
-        <Sprite>
+      <Sprite>
 			    <Name>Content/gravity_upsidedown</Name>
           <SpriteType>GRAVITY_DOWN</SpriteType>
           <Position>
             <X>300</X>
-            <Y>900</Y>
+            <Y>800</Y>
           </Position>            
         </Sprite>
         <Sprite>
@@ -33,15 +41,15 @@
           </Animation>
        </Sprite>
        <Sprite>
-        <Name>Content/chodz</Name>
+        <Name>Content/spritesheet_walk</Name>
         <SpriteType>PLAYER</SpriteType>
         <Position>
           <X>150</X>
           <Y>600</Y>
         </Position>
         <Animation>
-          <SizeX>95</SizeX>
-          <SizeY>157</SizeY>
+          <SizeX>70</SizeX>
+          <SizeY>114</SizeY>
           <Frames>13</Frames>
         </Animation>
       </Sprite>
@@ -123,8 +131,8 @@
     </Level>
 	<Level>
 			<LevelId>3</LevelId>
-				<SpriteCount>2</SpriteCount>
-
+				<SpriteCount>1</SpriteCount>
+<!--
 			  <Sprite>
 				<Name>Content/Box</Name>
 				<SpriteType>BOX</SpriteType>
@@ -138,8 +146,9 @@
 					<Frames>1</Frames>
 			  </Animation>
 			  </Sprite>
-			<Sprite>
-			  <Name>Content/chodz</Name>
+-->			
+    <Sprite>
+        <Name>Content/chodz</Name>
 			  <SpriteType>PLAYER</SpriteType>
 			  <Position>
 				<X>200</X>

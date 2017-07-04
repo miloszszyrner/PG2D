@@ -52,8 +52,8 @@ namespace ToA
             this.content = content;
             tilePropertyType = new Dictionary<int, TileProperty>
             {
-                {1, TileProperty.TRAP }, //kolce
-                {2, TileProperty.BACKGROUND  }, //tlo
+                {1, TileProperty.BACKGROUND  }, //tlo				
+                {2, TileProperty.EARTH },
                 {3, TileProperty.COLUMN_DOWN_LEFT },
                 {4, TileProperty.COLUMN_DOWN_RIGHT },
                 {5, TileProperty.COLUMN_MIDDLE_DECO_LEFT },
@@ -63,19 +63,19 @@ namespace ToA
                 {9, TileProperty.COLUMN_MIDDLE_RIGHT },
                 {10, TileProperty.COLUMN_TOP_LEFT },
                 {11, TileProperty.COLUMN_TOP_RIGHT },
-                {12, TileProperty.SIGN },
-                {13, TileProperty.SIGN },
-                {14, TileProperty.WINDOW_UP_LEFT },
-                {15, TileProperty.PLATFORM_CENTER },
-                {16, TileProperty.PLATFORM_LEFT },
-                {17, TileProperty.PLATFORM_RIGHT },
+                {12, TileProperty.PLATFORM_CENTER },
+                {13, TileProperty.PLATFORM_CENTER }, //L	
+				{14, TileProperty.WINDOW_UP_LEFT },
+                {15, TileProperty.PLATFORM_CENTER }, //R
+				{16, TileProperty.EARTH },
+                {17, TileProperty.TRAP },
                 {18, TileProperty.TRAP },
                 {19, TileProperty.TRAP },
                 {20, TileProperty.TRAP },
                 {21, TileProperty.WINDOW_UP_RIGHT },
                 {22, TileProperty.STAIRS_PART1 },
                 {23, TileProperty.STAIRS_PART2 },
-                {24, TileProperty.STAIRS_PART3 },         
+                {24, TileProperty.STAIRS_PART3 },
                 {25, TileProperty.STAIRS_PART4 },
                 {26, TileProperty.BASE },
                 {27, TileProperty.BASE_LEFT },
@@ -88,18 +88,12 @@ namespace ToA
                 {34, TileProperty.BACKGROUND_BROKEN},
                 {35, TileProperty.EARTH }, //nieużywane, placeholder
                 {36, TileProperty.FLOOR },
-                {37, TileProperty.FLOOR_RIGHT },
-                {38, TileProperty.FLOOR_LEFT },
-                {39, TileProperty.WINDOW_DOWN_LEFT },               
-				{40, TileProperty.WINDOW_DOWN_RIGHT },        
+                {37, TileProperty.FLOOR }, //L
+                {38, TileProperty.FLOOR }, //R
+                {39, TileProperty.WINDOW_DOWN_LEFT },
+                {40, TileProperty.WINDOW_DOWN_RIGHT },
                 {41, TileProperty.WINDOW_MIDDLE_LEFT },
                 {42, TileProperty.EARTH } //nieużywane, placeholder
-
-
-                
-           
-
-              
 
             };
 			foreach (XElement layer in xDoc.Root.Descendants("layer"))
