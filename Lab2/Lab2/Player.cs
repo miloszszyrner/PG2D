@@ -45,15 +45,30 @@ namespace ToA
             if (Game1.Instance.InputManager.right)
             {
                 velocity.X = -3f;
-                Animate(pGameTime, 1);
+                if (hasJumped)
+                {
+                    Animate(pGameTime, 3);
+                }
+                else
+                {
+                    Animate(pGameTime, 1);
+                }
             }
             else if (Game1.Instance.InputManager.left)
             {
                 velocity.X = 3f;
-                Animate(pGameTime, 0);
+                if (hasJumped)
+                {
+                    Animate(pGameTime, 2);
+                }
+                else
+                {
+                    Animate(pGameTime, 0);
+                }
             }
             else
                 sourceRectangle = new Rectangle(0, 0, animationX, animationY);
+           
             if (Game1.Instance.InputManager.right == Game1.Instance.InputManager.left)
                 velocity.X = 0f;
 
