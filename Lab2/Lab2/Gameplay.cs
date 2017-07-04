@@ -16,9 +16,11 @@ namespace ToA
         private int position = 0;
         private SpriteFont font;
         private String[] credits = { "Koniec Gry", "Tworcy", "Programista - Milosz Szyrner", "Projektant Gry - Michal Kaminski", "Grafik - Patrycja Ignaczak", "Tester - Katarzyna Koziel" };
+        GameWindow Window;
 
         public Gameplay(ContentManager content, GameWindow Window)
         {
+            this.Window = Window;
             position = Window.ClientBounds.Height;
             font = content.Load<SpriteFont>("Content/CreditsFont");
         }
@@ -50,7 +52,7 @@ namespace ToA
             if (Game1.Instance.levelNumber == Game1.Instance.NumberOfLevels)
             {
                 position--;
-                if (position < 0)
+                if (position < 0 || (position < Window.ClientBounds.Height - 10 && Game1.Instance.InputManager.menuChoose))
                 {
                     
                     Game1.Instance.DisplayManager.gameState = GameState.STARTMENU;
