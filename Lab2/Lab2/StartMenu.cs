@@ -26,7 +26,7 @@ namespace ToA
         }
         public void Load()
         {
-            
+            Effect logotypeEffect = content.Load<Effect>("Content/logotypeEffect"); //tutorialowy efekt do nałożenia na logo gry
             Texture2D backgroundTexture = content.Load<Texture2D>("Content/main_menu2");
             Texture2D logoTypeTexture = content.Load<Texture2D>("Content/logotype");
             Texture2D optionsButtonTexture = content.Load<Texture2D>("Content/button_options");
@@ -52,6 +52,7 @@ namespace ToA
             loadChosen = new Button(1f, loadChosenTexture, Vector2.Zero, SpriteType.BUTTON);
             start = new Button(1f, startTexture, Vector2.Zero, SpriteType.BUTTON);
             startChosen = new Button(1f, startChosenTexture, Vector2.Zero, SpriteType.BUTTON);
+
             
         }
         public void Update()
@@ -177,7 +178,6 @@ namespace ToA
                 quitChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 + 240);
                 quitChosen.Draw(spriteBatch);
             }
-
             spriteBatch.End();
         }
     }

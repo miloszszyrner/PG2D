@@ -620,3 +620,9 @@
 /processorParam:Quality=Best
 /build:Sounds/wispy_wind_3.ogg
 
+#begin logotypeEffect.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:logotypeEffect.fx
+
