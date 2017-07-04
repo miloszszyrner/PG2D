@@ -182,7 +182,7 @@ namespace ToA
 
             spriteBatch.Begin(0, null, null, null, null, logotypeEffect);
             //logoType.setPosition(Window.ClientBounds.Width / 4 - 120, Window.ClientBounds.Height / 2 - 500);
-            spriteBatch.Draw(content.Load<Texture2D>("Content/logotype"),new Vector2(350,20), new Rectangle(0, 0, 400, 250), new Color(255, 255, 255, 50)); //ostatnia liczba to kanał alfa, decudyje o tym jak logo przenika przez chmury w tle (0-255)
+            spriteBatch.Draw(content.Load<Texture2D>("Content/logotype"),new Vector2(350,20), new Rectangle(0, 0, 400, 250), new Color(255, 255, 255, 50));
             spriteBatch.End();
         }
 

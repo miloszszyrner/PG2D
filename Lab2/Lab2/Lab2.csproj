@@ -105,6 +105,7 @@
     <Content Include="Content\Box.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\buttonEffect.fx" />
     <Content Include="Content\chodz.png" />
     <Content Include="Content\content.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
