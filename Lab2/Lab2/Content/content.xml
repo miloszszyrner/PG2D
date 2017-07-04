@@ -2,16 +2,16 @@
 <Game>
     <Level>
 		<LevelId>1</LevelId>
-        <SpriteCount>5</SpriteCount>
-        <Sprite>
+        <SpriteCount>3</SpriteCount>
+      <!--   <Sprite>
 			    <Name>Content/gravity_normal</Name>
           <SpriteType>GRAVITY_UP</SpriteType>
           <Position>
-              <X>1400</X>
+              <X>1500</X>
               <Y>200</Y>
           </Position>            
         </Sprite>   
-      <!--
+     
       <Sprite>
             <Name>Content/background_1</Name>
             <SpriteType>BUTTON</SpriteType>
@@ -20,15 +20,15 @@
               <Y>0</Y>
             </Position>
         </Sprite> 
-        -->
+      
       <Sprite>  
 			    <Name>Content/gravity_upsidedown</Name>
           <SpriteType>GRAVITY_DOWN</SpriteType>
           <Position>
             <X>300</X>
-            <Y>800</Y>
+            <Y>900</Y>
           </Position>            
-        </Sprite>
+        </Sprite>  -->
         <Sprite>
            <Name>Content/mario</Name>
            <SpriteType>ENEMY</SpriteType>
@@ -47,7 +47,7 @@
         <SpriteType>PLAYER</SpriteType>
         <Position>
           <X>120</X>
-          <Y>600</Y>
+          <Y>800</Y>
         </Position>
         <Animation>
           <SizeX>70</SizeX>
