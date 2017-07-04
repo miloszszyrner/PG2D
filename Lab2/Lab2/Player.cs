@@ -31,6 +31,7 @@ namespace ToA
                 position.Y -= 10f;
                 velocity.Y = -12f;
                 hasJumped = true;
+                Animate(pGameTime, 2);
                 Game1.Instance.SoundManager.Sounds["Jump"].Play(Game1.Instance.spriteEffectVolume, 0f, 0f);
             }
             if (Game1.Instance.InputManager.up && !gravity && isGravity)
@@ -38,19 +39,20 @@ namespace ToA
                 position.Y += 10f;
                 velocity.Y = 12f;
                 isGravity = false;
+                Animate(pGameTime, 3);
                 Game1.Instance.SoundManager.Sounds["Jump"].Play(Game1.Instance.spriteEffectVolume, 0f, 0f);
             }
-            if (Game1.Instance.InputManager.right)
+            if (Game1.Instance.InputManager.right && !hasJumped)
             {
                 velocity.X = -3f;
                 Animate(pGameTime, 1);
             }
-            else if (Game1.Instance.InputManager.left)
+            else if (Game1.Instance.InputManager.left && !hasJumped)
             {
                 velocity.X = 3f;
                 Animate(pGameTime, 0);
             }
-            else
+            else if(!hasJumped)
                 sourceRectangle = new Rectangle(0, 0, animationX, animationY);
             if (Game1.Instance.InputManager.right == Game1.Instance.InputManager.left)
                 velocity.X = 0f;
