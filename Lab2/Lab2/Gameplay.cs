@@ -60,7 +60,6 @@ namespace ToA
                     Game1.Instance.DisplayManager.Manager.loadLevel(Game1.Instance.levelNumber);
                 }
             }
-            Console.WriteLine(Game1.Instance.InputManager.menuChoose);
         }
     }
 }

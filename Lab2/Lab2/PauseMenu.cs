@@ -86,7 +86,6 @@ namespace ToA
                         Game1.Instance.musicVolume += 0.1f;
                     }
                 }
-                Console.WriteLine(Game1.Instance.musicVolume);
                 MediaPlayer.Volume = Game1.Instance.musicVolume;
             }
             if (pauseMenuChosen == PauseMenuChosen.SOUNDEFFECTS_VOLUME)

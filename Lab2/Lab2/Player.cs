@@ -33,6 +33,7 @@ namespace ToA
                 velocity.Y = -9f;
                 hasJumped = true;
                 Game1.Instance.SoundManager.Sounds["Jump"].Play(Game1.Instance.spriteEffectVolume, 0f, 0f);
+                Animate(pGameTime, 2);
             }
             if (Game1.Instance.InputManager.up && !gravity && isGravity)
             {
@@ -170,13 +171,15 @@ namespace ToA
         }
         private void AnimateJump(GameTime pGameTime, int row)
         {
-            if (currentFrame >= totalFrames)
-                currentFrame = 0;
-            else
-                currentFrame++;
+            while (hasJumped)
+            {
+                if (currentFrame >= totalFrames)
+                    currentFrame = 0;
+                else
+                    currentFrame++;
 
-            sourceRectangle = new Rectangle(animationX * currentFrame, row * animationY, animationX, animationY);
-            Thread.Sleep(200);
+                sourceRectangle = new Rectangle(animationX * currentFrame, row * animationY, animationX, animationY);
+            }
         }
     }
 }
