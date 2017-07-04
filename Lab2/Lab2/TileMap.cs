@@ -52,43 +52,50 @@ namespace ToA
             this.content = content;
             tilePropertyType = new Dictionary<int, TileProperty>
             {
-                {1, TileProperty.TRAP },
-                //{2, TileProperty. },
-                {3, TileProperty.BACKGROUND },
-                {4, TileProperty.COLUMN_DOWN_LEFT },
-                {5, TileProperty.COLUMN_DOWN_RIGHT },
-                {6, TileProperty.BACKGROUND_BROKEN },
-                {7, TileProperty.COLUMN_MIDDLE_DECO_LEFT },
-                {8, TileProperty.COLUMN_MIDDLE_DECO_RIGHT }, 
-                {9, TileProperty.COLUMN_MIDDLE_LEFT }, 
-                {10, TileProperty.COLUMN_MIDDLE_RIGHT },
-                {11, TileProperty.COLUMN_TOP_LEFT },
-                {12, TileProperty.FLOOR },
-                {13, TileProperty.COLUMN_TOP_RIGHT },
-                {14, TileProperty.PLATFORM_CENTER },
-				{15, TileProperty.PLATFORM_LEFT },
-				{16, TileProperty.PLATFORM_RIGHT },
-                {17, TileProperty.STAIRS_PART1 },
-                {18, TileProperty.FLOOR_LEFT },
-                {19, TileProperty.STAIRS_PART2 },
-                {20, TileProperty.STAIRS_PART3 },
-                {21, TileProperty.STAIRS_PART4 },
-                {22, TileProperty.BASE },
-				{23, TileProperty.BASE_LEFT }, 
-                {24, TileProperty.FLOOR_RIGHT }, 
-                {25, TileProperty.BASE_RIGHT },
-				{26, TileProperty.BOTTOM },
-				{27, TileProperty.BOTTOM },
-				{28, TileProperty.BOTTOM },
-				{29, TileProperty.BROKEN },
-				{30, TileProperty.WINDOW_DOWN_LEFT }, 
-                {31, TileProperty.WINDOW_DOWN_RIGHT }, 
-                {32, TileProperty.WINDOW_MIDDLE_LEFT },
-				{33, TileProperty.WINDOW_MIDDLE_RIGHT },
-				{34, TileProperty.WINDOW_UP_LEFT },
-				{35, TileProperty.WINDOW_UP_RIGHT },
-				{36, TileProperty.EARTH }
-			};
+                {1, TileProperty.BACKGROUND  }, //tlo				
+                {2, TileProperty.EARTH },
+                {3, TileProperty.COLUMN_DOWN_LEFT },
+                {4, TileProperty.COLUMN_DOWN_RIGHT },
+                {5, TileProperty.COLUMN_MIDDLE_DECO_LEFT },
+                {6, TileProperty.COLUMN_MIDDLE_DECO_RIGHT },
+                {7, TileProperty.WINDOW_MIDDLE_RIGHT },
+                {8, TileProperty.COLUMN_MIDDLE_LEFT },
+                {9, TileProperty.COLUMN_MIDDLE_RIGHT },
+                {10, TileProperty.COLUMN_TOP_LEFT },
+                {11, TileProperty.COLUMN_TOP_RIGHT },
+                {12, TileProperty.PLATFORM_CENTER },
+                {13, TileProperty.PLATFORM_CENTER }, //L	
+				{14, TileProperty.WINDOW_UP_LEFT },
+                {15, TileProperty.PLATFORM_CENTER }, //R
+				{16, TileProperty.EARTH },
+                {17, TileProperty.TRAP },
+                {18, TileProperty.TRAP },
+                {19, TileProperty.TRAP },
+                {20, TileProperty.TRAP },
+                {21, TileProperty.WINDOW_UP_RIGHT },
+                {22, TileProperty.STAIRS_PART1 },
+                {23, TileProperty.STAIRS_PART2 },
+                {24, TileProperty.STAIRS_PART3 },
+                {25, TileProperty.STAIRS_PART4 },
+                {26, TileProperty.BASE },
+                {27, TileProperty.BASE_LEFT },
+                {28, TileProperty.EARTH },
+                {29, TileProperty.BASE_RIGHT },
+                {30, TileProperty.BOTTOM },
+                {31, TileProperty.BOTTOM },
+                {32, TileProperty.BOTTOM },
+                {33, TileProperty.BROKEN },
+                {34, TileProperty.BACKGROUND_BROKEN},
+                {35, TileProperty.EARTH }, //nieużywane, placeholder
+                {36, TileProperty.FLOOR },
+                {37, TileProperty.FLOOR }, //L
+                {38, TileProperty.FLOOR }, //R
+                {39, TileProperty.WINDOW_DOWN_LEFT },
+                {40, TileProperty.WINDOW_DOWN_RIGHT },
+                {41, TileProperty.WINDOW_MIDDLE_LEFT },
+                {42, TileProperty.EARTH } //nieużywane, placeholder
+
+            };
 			foreach (XElement layer in xDoc.Root.Descendants("layer"))
 			{
 				switch (layer.Attribute("name").Value)

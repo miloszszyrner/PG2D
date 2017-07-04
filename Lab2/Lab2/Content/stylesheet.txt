@@ -4,13 +4,13 @@
     display: block;
 }
 
-.sprite-Spikes {
+.sprite-Tile_Background2 {
     width: 100px;
     height: 100px;
     background-position: 0 0;
 }
 
-.sprite-Tile_Background2 {
+.sprite-air {
     width: 100px;
     height: 100px;
     background-position: -100px 0;
@@ -64,49 +64,49 @@
     background-position: -300px -100px;
 }
 
-.sprite-gravity_normal {
+.sprite-platform_1_center {
     width: 100px;
     height: 100px;
     background-position: -400px -100px;
 }
 
-.sprite-gravity_upsidedown {
+.sprite-platform_1_left {
     width: 100px;
     height: 100px;
     background-position: -500px -100px;
 }
 
-.sprite-platform_1_center {
+.sprite-platform_1_right {
     width: 100px;
     height: 100px;
     background-position: 0 -200px;
 }
 
-.sprite-platform_1_left {
+.sprite-spiders_net {
     width: 100px;
     height: 100px;
     background-position: -100px -200px;
 }
 
-.sprite-platform_1_right {
+.sprite-spikes_down_new {
     width: 100px;
     height: 100px;
     background-position: -200px -200px;
 }
 
-.sprite-spikes_down {
+.sprite-spikes_left_new {
     width: 100px;
     height: 100px;
     background-position: -300px -200px;
 }
 
-.sprite-spikes_left {
+.sprite-spikes_right_new {
     width: 100px;
     height: 100px;
     background-position: -400px -200px;
 }
 
-.sprite-spikes_right {
+.sprite-spikes_up_new {
     width: 100px;
     height: 100px;
     background-position: -500px -200px;

@@ -48,7 +48,7 @@ namespace ToA
         }
         public virtual void checkCollisions()
         {
-            int offset = 15;
+            int offset = 0;
             for (int i = 0; i < Game1.Instance.DisplayManager.Manager.TileMap.mapWidth; i++)
                 for (int j = 0; j < Game1.Instance.DisplayManager.Manager.TileMap.mapHeight; j++)
                 {
@@ -145,7 +145,7 @@ namespace ToA
             if (hasJumped && gravity)
             {
                 float i = 1;
-                velocity.Y += 0.15f * i; //grawitacja
+                velocity.Y += 0.1f * i; //grawitacja
             }
             if (!hasJumped && gravity)
                 velocity.Y = 0f;
@@ -153,7 +153,7 @@ namespace ToA
             if (!isGravity && !gravity)
             {
                 float i = 1;
-                velocity.Y -= 0.15f * i; //grawitacja
+                velocity.Y -= 0.1f * i; //grawitacja
             }
             if (isGravity && !gravity)
                 velocity.Y = 0f;

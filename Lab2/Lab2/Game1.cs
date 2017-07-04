@@ -31,7 +31,6 @@ namespace Lab2
         }
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
         public TileMap TileMap;
         public int levelNumber { get; set; } = 1;
         public int NumberOfLevels { get; set; } = 0;
@@ -117,7 +116,6 @@ namespace Lab2
         {
           
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
             displayManager = new DisplayManger(GraphicsDevice, Content, Window );
             displayManager.Load();
 
@@ -168,7 +166,7 @@ namespace Lab2
         protected override void Draw(GameTime gameTime)
         {
             displayManager.Draw(spriteBatch);
-            
+           
             base.Draw(gameTime);
         }
     }
