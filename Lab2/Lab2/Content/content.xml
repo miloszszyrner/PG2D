@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Game>
     <Level>
-		<LevelId>1</LevelId>
+		<LevelId>3</LevelId>
         <SpriteCount>3</SpriteCount>
       <!--   <Sprite>
 			    <Name>Content/gravity_normal</Name>
@@ -74,13 +74,13 @@
   
   <Level>
     <LevelId>2</LevelId>
-				<SpriteCount>4</SpriteCount>
+				<SpriteCount>3</SpriteCount>
 				<Sprite>
 					<Name>Content/gravity_normal</Name>
 					<SpriteType>GRAVITY_UP</SpriteType>
 					<Position>
-						<X>1400</X>
-						<Y>200</Y>
+						<X>1200</X>
+						<Y>300</Y>
 					</Position>            
 				</Sprite>
 				<Sprite>
@@ -88,10 +88,10 @@
 					<SpriteType>GRAVITY_DOWN</SpriteType>
 					<Position>
 					  <X>300</X>
-						<Y>900</Y>
+						<Y>1300</Y>
 					</Position>            
 				</Sprite>
-
+<!--
 			  <Sprite>
 				<Name>Content/Box</Name>
 				<SpriteType>BOX</SpriteType>
@@ -105,6 +105,7 @@
 					<Frames>1</Frames>
 			  </Animation>
 			  </Sprite>
+  -->
 			<Sprite>
 			  <Name>Content/spritesheet_walk</Name>
 			  <SpriteType>PLAYER</SpriteType>
@@ -134,7 +135,7 @@
 			</Music>
     </Level>
 	<Level>
-			<LevelId>3</LevelId>
+			<LevelId>1</LevelId>
 				<SpriteCount>1</SpriteCount>
 <!--
 			  <Sprite>
