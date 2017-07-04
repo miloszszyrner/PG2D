@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
+using System.Threading;
 
 namespace ToA
 {
@@ -166,6 +167,16 @@ namespace ToA
                     }
 
                 }
+        }
+        private void AnimateJump(GameTime pGameTime, int row)
+        {
+            if (currentFrame >= totalFrames)
+                currentFrame = 0;
+            else
+                currentFrame++;
+
+            sourceRectangle = new Rectangle(animationX * currentFrame, row * animationY, animationX, animationY);
+            Thread.Sleep(200);
         }
     }
 }
