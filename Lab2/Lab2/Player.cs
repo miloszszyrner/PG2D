@@ -52,7 +52,11 @@ namespace ToA
             }
             else if(!hasJumped)
                 sourceRectangle = new Rectangle(0, 0, animationX, animationY);
-            if(hasJumped)
+            if(hasJumped && Game1.Instance.InputManager.right)
+            {
+                Animate(pGameTime, 3);
+            }
+            if (hasJumped && Game1.Instance.InputManager.left)
             {
                 Animate(pGameTime, 2);
             }
