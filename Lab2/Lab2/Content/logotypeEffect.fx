@@ -21,32 +21,18 @@ struct VertexShaderOutput
 	float2 TextureCoordinates : TEXCOORD0;
 };
 
-float4 MainPS(VertexShaderOutput input) : COLOR
+sampler TextureSampler : register(s0);
+
+float4 MainPS(float4 color : COLOR0, float2 texCoord : TEXCOORD0) : COLOR0
 {
-	float4 color = tex2D(SpriteTextureSampler,input.TextureCoordinates);
 
-	float4 red = float4(1, 0, 0, 1);
-	float4 orange = float4(1, .5, 0, 1);
-	float4 yellow = float4(1, 1, 0, 1);
-	float4 green = float4(0, 1, 0, 1);
-	float4 blue = float4(0, 0, 1, 1);
-	float4 indigo = float4(.3, 0, .8, 1);
-	float4 violet = float4(1, .8, 1, 1);
-
-	float step = 1.0 / 7;
+	float4 tex = tex2D(TextureSampler, texCoord);
+	float greyscale = dot(tex.rgb, float3(0.1, 0.1, 0.1));
 
 
-	if (!any(color)) return color;
+	tex.rgb = lerp(greyscale, tex.rgb, color.a * 1);
 
-	if (input.TextureCoordinates.x < (step * 1)) color = red;
-	else if (input.TextureCoordinates.x < (step * 2)) color = orange;
-	else if (input.TextureCoordinates.x < (step * 3)) color = yellow;
-	else if (input.TextureCoordinates.x < (step * 4)) color = green;
-	else if (input.TextureCoordinates.x < (step * 5)) color = blue;
-	else if (input.TextureCoordinates.x < (step * 6)) color = indigo;
-	else                            color = violet;
-
-	return color;
+	return tex;
 }
 
 technique SpriteDrawing

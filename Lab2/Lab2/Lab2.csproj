@@ -123,6 +123,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\logotype.png" />
+    <Content Include="Content\logotypeEffect.fx" />
     <Content Include="Content\mario.png" />
     <Content Include="Content\optionsButton.png" />
     <Content Include="Content\optionsButtonChosen.png" />
