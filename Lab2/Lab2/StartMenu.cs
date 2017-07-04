@@ -17,7 +17,7 @@ namespace ToA
 {
     class StartMenu : Display
     {
-        Sprite options, optionsChosen, quit, quitChosen, background, volumeLvlOn, volumeLvlOff, load, loadChosen, start, startChosen;
+        Sprite options, optionsChosen, quit, quitChosen, background, volumeLvlOn, volumeLvlOff, load, loadChosen, start, startChosen, logoType;
         private ContentManager content;
         StartMenuChosen startMenuChosen = StartMenuChosen.START;
         public StartMenu(ContentManager content)
@@ -26,7 +26,9 @@ namespace ToA
         }
         public void Load()
         {
+            
             Texture2D backgroundTexture = content.Load<Texture2D>("Content/main_menu2");
+            Texture2D logoTypeTexture = content.Load<Texture2D>("Content/logotype");
             Texture2D optionsButtonTexture = content.Load<Texture2D>("Content/button_options");
             Texture2D optionsButtonChosenTexture = content.Load<Texture2D>("Content/button_options_hover");
             Texture2D quitButtonTexture = content.Load<Texture2D>("Content/button_quit");
@@ -39,6 +41,7 @@ namespace ToA
             Texture2D startChosenTexture = content.Load<Texture2D>("Content/button_start_hover");
 
             background = new Button(1f, backgroundTexture, Vector2.Zero, SpriteType.BUTTON);
+            logoType = new Button(1f, logoTypeTexture, Vector2.Zero, SpriteType.BUTTON);
             options = new Button(1f, optionsButtonTexture, Vector2.Zero, SpriteType.BUTTON);
             optionsChosen = new Button(1f, optionsButtonChosenTexture, Vector2.Zero, SpriteType.BUTTON);
             quit = new Button(1f, quitButtonTexture, Vector2.Zero, SpriteType.BUTTON);
@@ -49,6 +52,7 @@ namespace ToA
             loadChosen = new Button(1f, loadChosenTexture, Vector2.Zero, SpriteType.BUTTON);
             start = new Button(1f, startTexture, Vector2.Zero, SpriteType.BUTTON);
             startChosen = new Button(1f, startChosenTexture, Vector2.Zero, SpriteType.BUTTON);
+            
         }
         public void Update()
         {
@@ -124,37 +128,39 @@ namespace ToA
             spriteBatch.Begin();
 
             background.Draw(spriteBatch);
-
-            start.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 - 400);
+            logoType.setPosition(Window.ClientBounds.Width / 4 - 120, Window.ClientBounds.Height / 2 - 500);
+            logoType.Draw(spriteBatch);
+        
+            start.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 - 270);
             start.Draw(spriteBatch);
             if (startMenuChosen == StartMenuChosen.START)
             {
-                startChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 - 400);
+                startChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 - 270);
                 startChosen.Draw(spriteBatch);
             }
 
-            load.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 - 200);
+            load.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 - 100);
             load.Draw(spriteBatch);
             if (startMenuChosen == StartMenuChosen.LOAD)
             {
-                loadChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 - 200);
+                loadChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 - 100);
                 loadChosen.Draw(spriteBatch);
             }
 
-            options.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2);
+            options.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 + 70);
             options.Draw(spriteBatch);
             if (startMenuChosen == StartMenuChosen.BACKGROUND_MUSIC_VOLUME)
             {
-                optionsChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2);
+                optionsChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 + 70);
                 optionsChosen.Draw(spriteBatch);
                 for (int i = 0; i < 10; i++)
                 {
-                    volumeLvlOff.setPosition(Window.ClientBounds.Width / 4 + 300 + i * 50, Window.ClientBounds.Height / 2 + 25);
+                    volumeLvlOff.setPosition(Window.ClientBounds.Width / 4 + 300 + i * 50, Window.ClientBounds.Height / 2 + 95);
                     volumeLvlOff.Draw(spriteBatch);
                 }
                 for (int i = 0; i < (int)(Game1.Instance.musicVolume * 10); i++)
                 {
-                    volumeLvlOn.setPosition(Window.ClientBounds.Width / 4 + 300 + i * 50, Window.ClientBounds.Height / 2 + 25);
+                    volumeLvlOn.setPosition(Window.ClientBounds.Width / 4 + 300 + i * 50, Window.ClientBounds.Height / 2 + 95);
                     volumeLvlOn.Draw(spriteBatch);
                 }
 
@@ -164,11 +170,11 @@ namespace ToA
                 optionsChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2);
                 optionsChosen.Draw(spriteBatch);
             }
-            quit.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 + 200);
+            quit.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 + 240);
             quit.Draw(spriteBatch);
             if (startMenuChosen == StartMenuChosen.QUIT)
             {
-                quitChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 + 200);
+                quitChosen.setPosition(Window.ClientBounds.Width / 4 - 100, Window.ClientBounds.Height / 2 + 240);
                 quitChosen.Draw(spriteBatch);
             }
 

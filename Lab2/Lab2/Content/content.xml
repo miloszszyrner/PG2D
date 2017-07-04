@@ -11,15 +11,18 @@
               <Y>200</Y>
           </Position>            
         </Sprite>   
+      <!--
       <Sprite>
             <Name>Content/background_1</Name>
-            <SpriteType>TEST</SpriteType>
+            <SpriteType>BUTTON</SpriteType>
             <Position>
               <X>0</X>
               <Y>0</Y>
             </Position>
-        </Sprite>
+        </Sprite> 
+        -->
       <Sprite>
+     
 			    <Name>Content/gravity_upsidedown</Name>
           <SpriteType>GRAVITY_DOWN</SpriteType>
           <Position>
@@ -44,7 +47,7 @@
         <Name>Content/spritesheet_walk</Name>
         <SpriteType>PLAYER</SpriteType>
         <Position>
-          <X>150</X>
+          <X>120</X>
           <Y>600</Y>
         </Position>
         <Animation>
@@ -102,7 +105,7 @@
 			  </Animation>
 			  </Sprite>
 			<Sprite>
-			  <Name>Content/chodz</Name>
+			  <Name>Content/spritesheet_walk</Name>
 			  <SpriteType>PLAYER</SpriteType>
 			  <Position>
 				<X>200</X>
@@ -148,7 +151,7 @@
 			  </Sprite>
 -->			
     <Sprite>
-        <Name>Content/chodz</Name>
+        <Name>Content/spritesheet_walk</Name>
 			  <SpriteType>PLAYER</SpriteType>
 			  <Position>
 				<X>200</X>
