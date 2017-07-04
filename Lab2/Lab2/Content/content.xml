@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Game>
     <Level>
-		<LevelId>3</LevelId>
+		<LevelId>1</LevelId>
         <SpriteCount>5</SpriteCount>
         <Sprite>
 			    <Name>Content/gravity_normal</Name>
@@ -21,8 +21,7 @@
             </Position>
         </Sprite> 
         -->
-      <Sprite>
-     
+      <Sprite>  
 			    <Name>Content/gravity_upsidedown</Name>
           <SpriteType>GRAVITY_DOWN</SpriteType>
           <Position>
@@ -71,6 +70,8 @@
 		  <GameMenuMusic>Content/Music/Surreal-Game-Menu_Looping</GameMenuMusic>
 	  </Music>
   </Level>
+  
+  
   <Level>
     <LevelId>2</LevelId>
 				<SpriteCount>4</SpriteCount>
@@ -133,7 +134,7 @@
 			</Music>
     </Level>
 	<Level>
-			<LevelId>1</LevelId>
+			<LevelId>3</LevelId>
 				<SpriteCount>1</SpriteCount>
 <!--
 			  <Sprite>

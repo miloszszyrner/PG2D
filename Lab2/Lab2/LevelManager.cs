@@ -151,6 +151,9 @@ namespace ToA
         public void Draw(SpriteBatch sp)
         {
             this.sp = sp;
+            Texture2D backgroundTexture = content.Load<Texture2D>("Content/background_1");
+            Sprite background = new Button(1f, backgroundTexture, Vector2.Zero, SpriteType.BUTTON);
+            background.Draw(sp);
             tileMap.Draw(sp);
             foreach (Sprite sprite in spriteList)
             {   
