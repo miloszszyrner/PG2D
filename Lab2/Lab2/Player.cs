@@ -28,15 +28,15 @@ namespace ToA
             }
             if (Game1.Instance.InputManager.up && gravity && !hasJumped)
             {
-                position.Y -= 10f;
-                velocity.Y = -12f;
+                position.Y -= 6.5f;
+                velocity.Y = -9f;
                 hasJumped = true;
                 Game1.Instance.SoundManager.Sounds["Jump"].Play(Game1.Instance.spriteEffectVolume, 0f, 0f);
             }
             if (Game1.Instance.InputManager.up && !gravity && isGravity)
             {
-                position.Y += 10f;
-                velocity.Y = 12f;
+                position.Y += 6.5f;
+                velocity.Y = 9f;
                 isGravity = false;
                 Game1.Instance.SoundManager.Sounds["Jump"].Play(Game1.Instance.spriteEffectVolume, 0f, 0f);
             }
