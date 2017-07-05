@@ -72,6 +72,11 @@ namespace ToA
             if (Game1.Instance.InputManager.right == Game1.Instance.InputManager.left)
                 velocity.X = 0f;
 
+            if(!Game1.Instance.InputManager.right && !Game1.Instance.InputManager.left && hasJumped)
+            {
+                Animate(pGameTime, 2);
+            }
+
             checkGravitation();
 
             if (gravity)
