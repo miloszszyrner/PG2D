@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Game>
     <Level>
-		<LevelId>3</LevelId>
+		<LevelId>1</LevelId>
         <SpriteCount>3</SpriteCount>
       <!--   <Sprite>
 			    <Name>Content/gravity_normal</Name>
@@ -135,7 +135,7 @@
 			</Music>
     </Level>
 	<Level>
-			<LevelId>1</LevelId>
+			<LevelId>3</LevelId>
 				<SpriteCount>1</SpriteCount>
 <!--
 			  <Sprite>
