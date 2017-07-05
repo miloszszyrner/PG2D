@@ -13,27 +13,9 @@ namespace ToA
 {
     class Gameplay : Display
     {
-        private int position = 0;
-        private SpriteFont font;
-        private String[] credits = { "Koniec Gry", "Tworcy", "Programista - Milosz Szyrner", "Projektant Gry - Michal Kaminski", "Grafik - Patrycja Ignaczak", "Tester - Katarzyna Koziel" };
-        GameWindow Window;
-
-        public Gameplay(ContentManager content, GameWindow Window)
-        {
-            this.Window = Window;
-            position = Window.ClientBounds.Height;
-            font = content.Load<SpriteFont>("Content/CreditsFont");
-        }
-
         public void Draw(SpriteBatch spriteBatch, GameWindow Window)
         {
-            if (Game1.Instance.levelNumber == Game1.Instance.NumberOfLevels)
-            {
-                for (int i = 0; i < credits.Length; i++)
-                {
-                    spriteBatch.DrawString(font, credits[i], new Vector2(Window.ClientBounds.Width / 2 - font.MeasureString(credits[i]).Length() / 2, position + i * font.MeasureString(credits[0]).Y), Color.White);
-                }
-            }
+            throw new NotImplementedException();
         }
 
         public void Load()
@@ -49,16 +31,9 @@ namespace ToA
                 Game1.Instance.InputManager.pause = false;
                 MediaPlayer.Play(Game1.Instance.SoundManager.Songs["GameMenuMusic"]);
             }
-            if (Game1.Instance.levelNumber == Game1.Instance.NumberOfLevels)
+            if (Game1.Instance.levelNumber == Game1.Instance.NumberOfLevels && Game1.Instance.isFinishing)
             {
-                position--;
-                if (position < 0 || (position < Window.ClientBounds.Height - 10 && Game1.Instance.InputManager.menuChoose))
-                {
-                    
-                    Game1.Instance.DisplayManager.gameState = GameState.STARTMENU;
-                    Game1.Instance.levelNumber = 1;
-                    Game1.Instance.DisplayManager.Manager.loadLevel(Game1.Instance.levelNumber);
-                }
+                Game1.Instance.DisplayManager.gameState = GameState.ENDGAME;
             }
         }
     }

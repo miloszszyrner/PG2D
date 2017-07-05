@@ -11,6 +11,7 @@ namespace ToA
         GAMEPLAY,
         PAUSEMENU,
         STARTMENU,
-        STORY
+        STORY,
+        ENDGAME
     }
 }
