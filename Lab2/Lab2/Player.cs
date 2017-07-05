@@ -173,7 +173,8 @@ namespace ToA
                         if (Game1.Instance.InputManager.enter)
                         {
                             Game1.Instance.SoundManager.Sounds["InteriorDoorUnlock"].Play(Game1.Instance.spriteEffectVolume, 0f, 0f);
-                            Game1.Instance.DisplayManager.Manager.loadLevel(++Game1.Instance.levelNumber);
+                            if(++Game1.Instance.levelNumber <=3)
+                                Game1.Instance.DisplayManager.Manager.loadLevel(Game1.Instance.levelNumber);
                             Game1.Instance.isFinishing = false;
                         }
                     }

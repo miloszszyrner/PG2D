@@ -2,16 +2,16 @@
 <Game>
     <Level>
 		<LevelId>1</LevelId>
-        <SpriteCount>5</SpriteCount>
-        <Sprite>
+        <SpriteCount>1</SpriteCount>
+      <!--   <Sprite>
 			    <Name>Content/gravity_normal</Name>
           <SpriteType>GRAVITY_UP</SpriteType>
           <Position>
-              <X>1400</X>
+              <X>1500</X>
               <Y>200</Y>
           </Position>            
         </Sprite>   
-      <!--
+     
       <Sprite>
             <Name>Content/background_1</Name>
             <SpriteType>BUTTON</SpriteType>
@@ -20,15 +20,15 @@
               <Y>0</Y>
             </Position>
         </Sprite> 
-        -->
+      
       <Sprite>  
 			    <Name>Content/gravity_upsidedown</Name>
           <SpriteType>GRAVITY_DOWN</SpriteType>
           <Position>
             <X>300</X>
-            <Y>800</Y>
+            <Y>900</Y>
           </Position>            
-        </Sprite>
+        </Sprite>  
         <Sprite>
            <Name>Content/mario</Name>
            <SpriteType>ENEMY</SpriteType>
@@ -41,13 +41,13 @@
 			      <SizeY>100</SizeY>
 			      <Frames>1</Frames>
           </Animation>
-       </Sprite>
+       </Sprite>-->
        <Sprite>
         <Name>Content/spritesheet_walk</Name>
         <SpriteType>PLAYER</SpriteType>
         <Position>
           <X>120</X>
-          <Y>600</Y>
+          <Y>800</Y>
         </Position>
         <Animation>
           <SizeX>70</SizeX>
@@ -74,13 +74,13 @@
   
   <Level>
     <LevelId>2</LevelId>
-				<SpriteCount>4</SpriteCount>
+				<SpriteCount>3</SpriteCount>
 				<Sprite>
 					<Name>Content/gravity_normal</Name>
 					<SpriteType>GRAVITY_UP</SpriteType>
 					<Position>
-						<X>1400</X>
-						<Y>200</Y>
+						<X>1200</X>
+						<Y>300</Y>
 					</Position>            
 				</Sprite>
 				<Sprite>
@@ -88,10 +88,10 @@
 					<SpriteType>GRAVITY_DOWN</SpriteType>
 					<Position>
 					  <X>300</X>
-						<Y>900</Y>
+						<Y>1300</Y>
 					</Position>            
 				</Sprite>
-
+<!--
 			  <Sprite>
 				<Name>Content/Box</Name>
 				<SpriteType>BOX</SpriteType>
@@ -105,6 +105,7 @@
 					<Frames>1</Frames>
 			  </Animation>
 			  </Sprite>
+  -->
 			<Sprite>
 			  <Name>Content/spritesheet_walk</Name>
 			  <SpriteType>PLAYER</SpriteType>
