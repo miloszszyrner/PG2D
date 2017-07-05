@@ -13,7 +13,7 @@ namespace ToA
     class Story : Display
     {
         private SpriteFont font;
-        private String[] story = { "historia", "naszego" , "bohatera" };
+        private String[] story = { "Everyone has their own problems.", "Our character is no exception." , "But he cannot face his own demons." , "However, he sees an out to his situation." , "The worst one there is." };
         private String skip = "press enter to skip";
         private int position = 0;
 
