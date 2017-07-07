@@ -36,3 +36,11 @@ namespace ToA
         }
     }
 }
+/*
+Wykorzystane strony:
+muzyka w menu -
+ 	http://soundimage.org
+efekty dźwiękowe :
+    http://www.freesfx.co.uk/soundeffects
+    https://freesound.org/
+*/
