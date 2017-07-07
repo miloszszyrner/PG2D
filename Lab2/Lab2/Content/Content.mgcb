@@ -20,12 +20,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Tekst.spritefont
 
-#begin jump.ogg
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:jump.ogg
-
 #begin spritesheet_walk.png
 /importer:TextureImporter
 /processor:TextureProcessor

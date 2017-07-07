@@ -23,14 +23,12 @@
 		<Sounds>
 			<Jump>Content/Sounds/jump</Jump>
 			<Death>Content/Sounds/death</Death>
-			<InteriorDoorUnlock>Content/Sounds/interior-Door_Unlock
-			</InteriorDoorUnlock>
+			<InteriorDoorUnlock>Content/Sounds/interior-Door_Unlock</InteriorDoorUnlock>
 			<Gravity>Content/Sounds/gravity</Gravity>
 		</Sounds>
 		<Music>
 			<BackgroundMusic>Content/Music/background_music</BackgroundMusic>
-			<GameMenuMusic>Content/Music/Surreal-Game-Menu_Looping
-			</GameMenuMusic>
+			<GameMenuMusic>Content/Music/Surreal-Game-Menu_Looping</GameMenuMusic>
 		</Music>
 	</Level>
 
@@ -74,14 +72,12 @@
 		<Sounds>
 			<Jump>Content/Sounds/jump</Jump>
 			<Death>Content/Sounds/death</Death>
-			<InteriorDoorUnlock>Content/Sounds/interior-Door_Unlock
-			</InteriorDoorUnlock>
+			<InteriorDoorUnlock>Content/Sounds/interior-Door_Unlock</InteriorDoorUnlock>
 			<Gravity>Content/Sounds/gravity</Gravity>
 		</Sounds>
 		<Music>
 			<BackgroundMusic>Content/Music/background_music</BackgroundMusic>
-			<GameMenuMusic>Content/Music/Surreal-Game-Menu_Looping
-			</GameMenuMusic>
+			<GameMenuMusic>Content/Music/Surreal-Game-Menu_Looping</GameMenuMusic>
 		</Music>
 	</Level>
 	<Level>
@@ -107,14 +103,12 @@
 		<Sounds>
 			<Jump>Content/Sounds/jump</Jump>
 			<Death>Content/Sounds/death</Death>
-			<InteriorDoorUnlock>Content/Sounds/interior-Door_Unlock
-			</InteriorDoorUnlock>
+			<InteriorDoorUnlock>Content/Sounds/interior-Door_Unlock</InteriorDoorUnlock>
 			<Gravity>Content/Sounds/gravity</Gravity>
 		</Sounds>
 		<Music>
 			<BackgroundMusic>Content/Music/background_music</BackgroundMusic>
-			<GameMenuMusic>Content/Music/Surreal-Game-Menu_Looping
-			</GameMenuMusic>
+			<GameMenuMusic>Content/Music/Surreal-Game-Menu_Looping</GameMenuMusic>
 		</Music>
 	</Level>
 </Game>
